@@ -10,4 +10,10 @@ public class PrimaryController {
         App.setRoot("secondary");
     }
 
+
+    @FXML
+    private void switchToBrowsePage() throws IOException {
+        App.setRoot("BrowsePage");
+    }
+
 }
