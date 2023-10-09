@@ -14,20 +14,20 @@ public class SecondaryController {
     private void handleMaleButtonClick() throws IOException {
         // Handle the "Male" button click here
         // You can change the behavior as needed
-        App.setRoot("primary");
+        App.setRoot("tertiary");
     }
 
     @FXML
     private void handleFemaleButtonClick() throws IOException {
         // Handle the "Female" button click here
         // You can change the behavior as needed
-        App.setRoot("primary");
+        App.setRoot("tertiary");
     }
 
     @FXML
     private void handleNeutralButtonClick() throws IOException {
         // Handle the "Neutral" button click here
         // You can change the behavior as needed
-        App.setRoot("primary");
+        App.setRoot("tertiary");
     }
 }
