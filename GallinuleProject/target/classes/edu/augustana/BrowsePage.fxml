@@ -1,8 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.BrowsePage">
-
+   <children>
+      <ScrollBar layoutX="568.0" layoutY="14.0" orientation="VERTICAL" prefHeight="411.0" prefWidth="18.0" />
+      <Label alignment="TOP_CENTER" layoutX="114.0" layoutY="37.0" prefHeight="17.0" prefWidth="394.0" text="Collections" textAlignment="RIGHT" textFill="#f8f6f6">
+         <font>
+            <Font name="Georgia" size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="106.0" text="Premade" textFill="#f8f5f5" underline="true">
+         <font>
+            <Font name="Georgia" size="27.0" />
+         </font>
+      </Label>
+      <Label layoutX="364.0" layoutY="106.0" opacity="0.63" text="Your Plans" textFill="#f8f5f5">
+         <font>
+            <Font name="Georgia" size="27.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00a79d" height="124.0" layoutX="64.0" layoutY="155.0" stroke="BLACK" strokeType="INSIDE" width="146.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00a79d" height="124.0" layoutX="339.0" layoutY="155.0" stroke="BLACK" strokeType="INSIDE" width="146.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00a79d" height="124.0" layoutX="65.0" layoutY="308.0" stroke="BLACK" strokeType="INSIDE" width="146.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00a79d" height="124.0" layoutX="339.0" layoutY="308.0" stroke="BLACK" strokeType="INSIDE" width="146.0" />
+      <Label layoutX="85.0" layoutY="189.0" text="Premade 1 " textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="359.0" layoutY="342.0" text="Premade 1 " textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="342.0" text="Premade 1 " textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="359.0" layoutY="189.0" text="Premade 1 " textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b3c0cd" height="37.0" layoutX="153.0" layoutY="229.0" stroke="BLACK" strokeType="INSIDE" width="38.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b3c0cd" height="37.0" layoutX="429.0" layoutY="381.0" stroke="BLACK" strokeType="INSIDE" width="38.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b3c0cd" height="37.0" layoutX="163.0" layoutY="381.0" stroke="BLACK" strokeType="INSIDE" width="38.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b3c0cd" height="37.0" layoutX="429.0" layoutY="229.0" stroke="BLACK" strokeType="INSIDE" width="38.0" />
+      <Line endX="-88.0" endY="12.0" layoutX="266.0" layoutY="236.0" startX="-100.0" />
+      <Line endX="-89.49559020996094" endY="-3.692413330078125" layoutX="267.0" layoutY="253.0" startX="-101.55413818359375" startY="5.077423095703125" />
+   </children>
 </AnchorPane>
