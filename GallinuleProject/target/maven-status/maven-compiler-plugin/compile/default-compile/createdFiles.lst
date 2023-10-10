@@ -1,4 +1,6 @@
-edu\augustana\BrowsePage.class
+edu/augustana/TertiaryController.class
 module-info.class
-edu\augustana\PrimaryController.class
-edu\augustana\TertiaryController.class
+edu/augustana/PrimaryController.class
+edu/augustana/BrowsePlan.class
+edu/augustana/YourPlanPage.class
+edu/augustana/PremadePlanPage.class
