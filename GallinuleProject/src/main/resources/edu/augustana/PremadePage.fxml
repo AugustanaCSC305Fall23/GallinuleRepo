@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.BrowsePage">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PremadePlanPage">
    <children>
       <ScrollBar layoutX="568.0" layoutY="14.0" orientation="VERTICAL" prefHeight="411.0" prefWidth="18.0" />
       <Label alignment="TOP_CENTER" layoutX="114.0" layoutY="37.0" prefHeight="17.0" prefWidth="394.0" text="Collections" textAlignment="RIGHT" textFill="#f8f6f6">
@@ -62,5 +63,6 @@
       <Line endX="-89.49559020996094" endY="-3.692413330078125" layoutX="543.0" layoutY="253.0" startX="-101.55413818359375" startY="5.077423095703125" />
       <Line endX="-89.49559020996094" endY="-3.692413330078125" layoutX="277.0" layoutY="404.0" startX="-101.55413818359375" startY="5.077423095703125" />
       <Line endX="-89.49559020996094" endY="-3.692413330078125" layoutX="549.0" layoutY="404.0" startX="-101.55413818359375" startY="5.077423095703125" />
+      <Button fx:id="BackButton" onAction="#switchToBrowsePlan" layoutX="13.0" layoutY="13.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="55.0" text="Back" />
    </children>
 </AnchorPane>

@@ -12,8 +12,8 @@ public class PrimaryController {
 
 
     @FXML
-    private void switchToBrowsePage() throws IOException {
-        App.setRoot("BrowsePage");
+    private void switchToBrowsePlan() throws IOException {
+        App.setRoot("BrowsePlan");
     }
 
 }
