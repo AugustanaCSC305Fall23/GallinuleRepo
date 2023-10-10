@@ -11,7 +11,7 @@
 
 <VBox alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="700.0" spacing="20.0" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.TertiaryController">
     <children>
-      <AnchorPane prefHeight="500.0" prefWidth="600.0">
+      <AnchorPane prefHeight="500.0" prefWidth="700.0">
          <children>
             <ComboBox layoutY="1.0" prefWidth="150.0" promptText="Level" />
             <ComboBox layoutX="163.0" layoutY="32.0" prefWidth="150.0" promptText="Event" />
@@ -32,7 +32,7 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
               <Button fx:id="secondaryButton" layoutX="-6.0" layoutY="46.0" onAction="#switchToSecondary" text="Back" />
-            <Button layoutX="544.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Preview" />
+            <Button layoutX="473.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Preview" />
          </children>
       </AnchorPane>
     </children>
