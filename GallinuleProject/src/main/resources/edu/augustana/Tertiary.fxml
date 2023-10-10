@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<VBox alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="700.0" spacing="20.0" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.SecondaryController">
+<VBox alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="700.0" spacing="20.0" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.TertiaryController">
     <children>
       <AnchorPane prefHeight="500.0" prefWidth="600.0">
          <children>
@@ -31,7 +31,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-              <Button fx:id="secondaryButton" layoutX="-6.0" layoutY="46.0" onAction="#switchToPrimary" text="Back" />
+              <Button fx:id="secondaryButton" layoutX="-6.0" layoutY="46.0" onAction="#switchToSecondary" text="Back" />
             <Button layoutX="544.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Preview" />
          </children>
       </AnchorPane>
