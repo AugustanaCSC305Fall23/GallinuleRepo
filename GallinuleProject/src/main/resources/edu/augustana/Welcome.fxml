@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" spacing="20.0" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PrimaryController">
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" spacing="20.0" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.WelcomeController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -17,7 +17,7 @@
                </font>
             </Label>
             <Label layoutX="79.0" layoutY="-12.0" />
-            <Button fx:id="CreatePlanButton" layoutX="268.0" layoutY="62.0" onAction="#switchToSecondary" prefHeight="38.0" prefWidth="124.0" style="-fx-background-color: #00a79d;" text="Create Plans" textFill="#fcf8f8" />
+            <Button fx:id="CreatePlanButton" layoutX="268.0" layoutY="62.0" onAction="#switchToGender" prefHeight="38.0" prefWidth="124.0" style="-fx-background-color: #00a79d;" text="Create Plans" textFill="#fcf8f8" />
             <Button fx:id="BrowsePlanButton" layoutX="267.0" layoutY="117.0" onAction="#switchToBrowsePlan" prefHeight="41.0" prefWidth="125.0" style="-fx-background-color: #00a79d;" text="Browse Plans" textFill="#fcf8f8" />
          </children>
       </AnchorPane>

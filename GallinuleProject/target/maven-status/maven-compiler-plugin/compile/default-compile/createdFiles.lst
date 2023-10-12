@@ -1,15 +1,7 @@
-<<<<<<< HEAD
 edu\augustana\PremadePlanPage.class
 module-info.class
+edu\augustana\GenderController.class
+edu\augustana\WelcomeController.class
 edu\augustana\YourPlanPage.class
-edu\augustana\PrimaryController.class
 edu\augustana\TertiaryController.class
 edu\augustana\BrowsePlan.class
-=======
-edu/augustana/TertiaryController.class
-module-info.class
-edu/augustana/PrimaryController.class
-edu/augustana/BrowsePlan.class
-edu/augustana/YourPlanPage.class
-edu/augustana/PremadePlanPage.class
->>>>>>> ef53157e9d4da6b9d084fb6c57b6c65246c91833

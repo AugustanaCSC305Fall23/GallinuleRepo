@@ -31,7 +31,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-              <Button fx:id="secondaryButton" layoutX="-6.0" layoutY="46.0" onAction="#switchToSecondary" text="Back" />
+              <Button fx:id="secondaryButton" layoutX="-6.0" layoutY="46.0" onAction="#switchToGender" text="Back" />
             <Button layoutX="530.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Preview" />
          </children>
       </AnchorPane>

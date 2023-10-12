@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" spacing="20.0" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.SecondaryController">
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" spacing="20.0" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.GenderController">
     <children>
       <AnchorPane prefHeight="500.0" prefWidth="700.0">
          <children>
@@ -19,7 +19,7 @@
               <Button layoutX="268.0" layoutY="154.0" onAction="#handleMaleButtonClick" prefHeight="38.0" prefWidth="124.0" style="-fx-background-color: #00a79d;" text="Male" textFill="#fcf8f8" />
               <Button layoutX="268.0" layoutY="203.0" onAction="#handleFemaleButtonClick" prefHeight="38.0" prefWidth="124.0" style="-fx-background-color: #00a79d;" text="Female" textFill="#fcf8f8" />
               <Button layoutX="268.0" layoutY="253.0" onAction="#handleNeutralButtonClick" prefHeight="38.0" prefWidth="124.0" style="-fx-background-color: #00a79d;" text="Neutral" textFill="#fcf8f8" />
-            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToPrimary" text="&lt;" />
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToWelcome" text="&lt;" />
          </children>
       </AnchorPane>
     </children>
