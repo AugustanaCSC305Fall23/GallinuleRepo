@@ -5,24 +5,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.BrowsePlan">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.BrowsePlanController">
    <children>
-      <Label alignment="TOP_CENTER" layoutX="190.0" layoutY="132.0" text="Collections" textAlignment="CENTER" textFill="#f8f7f7">
+      <Label alignment="TOP_CENTER" layoutX="190.0" layoutY="132.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" text="Collections" textAlignment="CENTER" textFill="#f8f7f7">
          <font>
             <Font name="Georgia" size="45.0" />
          </font>
       </Label>
-      <Label layoutX="98.0" layoutY="273.0" onMouseClicked="#switchToPremadePage" text="Premade" textFill="#fffdfd">
+      <Label layoutX="98.0" layoutY="273.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#switchToPremadePage" text="Premade" textFill="#fffdfd">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Label layoutX="402.0" layoutY="274.0" onMouseClicked="#switchToYourPlanPage" text="Your Plan" textFill="#f5f2f2">
+      <Label layoutX="402.0" layoutY="274.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#switchToYourPlanPage" text="Your Plan" textFill="#f5f2f2">
          <font>
             <Font name="Georgia" size="29.0" />
          </font>
       </Label>
-      <Button layoutX="25.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Back" />
+      <Button layoutX="25.0" layoutY="24.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToPrimary" text="Back" />
    </children>
 </AnchorPane>

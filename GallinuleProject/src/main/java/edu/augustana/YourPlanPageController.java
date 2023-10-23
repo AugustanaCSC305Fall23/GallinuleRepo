@@ -3,7 +3,7 @@ package edu.augustana;
 import java.io.IOException;
 import javafx.fxml.FXML;
 
-public class YourPlanPage {
+public class YourPlanPageController {
 
     @FXML
     private void switchToBrowsePlan() throws IOException {
