@@ -1,23 +1,53 @@
 package edu.augustana;
 
 import java.io.IOException;
-import java.util.Objects;
-
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.transform.Scale;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
-public class StartController {
+public class StartController implements Initializable {
 
 
-    public BorderPane bp;
     @FXML
-    private Node mainScreen;
+    private ImageView MenuButton;
 
+    @FXML
+    private BorderPane bp;
+
+    @FXML
+    private AnchorPane mainScreen;
+
+    @FXML
+    private AnchorPane navAnchor;
+
+    @FXML
+    private VBox navPane;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        MenuButton.setOnMouseClicked(Event -> {
+
+            TranslateTransition slideAction = new TranslateTransition();
+            slideAction.setDuration(Duration.seconds(0.4));
+
+            slideAction.setNode(navPane);
+
+            slideAction.setToX(0);
+            slideAction.play();
+            navPane.setTranslateX(-176);
+
+        });
+    }
     @FXML
     private void switchWelcome() throws IOException {
         loadPage("Welcome");
@@ -41,11 +71,6 @@ public class StartController {
         bp.setCenter(root);
 
     }
-
-
-
-
-
 
 
 
