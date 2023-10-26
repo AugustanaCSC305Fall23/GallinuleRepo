@@ -1,7 +1,4 @@
-edu\augustana\PremadePlanPage.class
+edu/augustana/WelcomeController.class
+edu/augustana/ViewAllCard.class
+edu/augustana/GenderController.class
 module-info.class
-edu\augustana\GenderController.class
-edu\augustana\WelcomeController.class
-edu\augustana\YourPlanPage.class
-edu\augustana\TertiaryController.class
-edu\augustana\BrowsePlan.class
