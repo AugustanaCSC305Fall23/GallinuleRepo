@@ -16,4 +16,9 @@ public class WelcomeController {
         App.setRoot("BrowsePlan");
     }
 
+    @FXML
+    private void switchToViewAllCard() throws IOException {
+        App.setRoot("ViewAllCard");
+    }
+
 }

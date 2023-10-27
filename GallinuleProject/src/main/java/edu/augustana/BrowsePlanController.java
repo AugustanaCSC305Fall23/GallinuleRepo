@@ -18,4 +18,6 @@ public class BrowsePlanController {
     private void switchToYourPlanPage() throws IOException {
         App.setRoot("YourPlanPage");
     }
+
+
 }
