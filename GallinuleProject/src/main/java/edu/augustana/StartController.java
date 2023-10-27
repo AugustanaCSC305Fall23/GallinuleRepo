@@ -1,5 +1,6 @@
 package edu.augustana;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,10 +8,12 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -27,27 +30,39 @@ public class StartController implements Initializable {
     private AnchorPane mainScreen;
 
     @FXML
-    private AnchorPane navAnchor;
+    private VBox slider;
 
     @FXML
-    private VBox navPane;
+    private AnchorPane navPane;
+
+    @FXML
+    private HBox MenuHolder;
+
+    private int x = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         MenuButton.setOnMouseClicked(Event -> {
-
+            if(x == -200) {
+                x = 0;
+            } else {
+                x = -200;
+            }
             TranslateTransition slideAction = new TranslateTransition();
             slideAction.setDuration(Duration.seconds(0.4));
 
             slideAction.setNode(navPane);
+            slideAction.setToX(x);
 
-            slideAction.setToX(0);
             slideAction.play();
-            navPane.setTranslateX(-176);
 
         });
+
     }
+
+
+
     @FXML
     private void switchWelcome() throws IOException {
         loadPage("Welcome");

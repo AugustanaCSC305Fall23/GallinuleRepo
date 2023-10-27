@@ -1,0 +1,15 @@
+.navbaritems:hover{
+    -fx-border-color: WHITE;
+    -fx-border-width: 0px 0px 0px 3px;
+    -fx-font-weight: bold;
+}
+
+.createplanbutton:hover{
+    -fx-border-color: WHITE;
+    -fx-border-width: 1px 1px 1px 1px;
+    -fx-font-weight: bold;
+}
+
+.MenuButton:hover{
+    -fx-opacity: 0.5;
+}
