@@ -1,4 +1,10 @@
 edu/augustana/WelcomeController.class
 edu/augustana/ViewAllCard.class
 edu/augustana/GenderController.class
+edu/augustana/Card.class
 module-info.class
+edu/augustana/YourPlanPageController.class
+edu/augustana/PremadePageController.class
+edu/augustana/CreatePlanController.class
+edu/augustana/StartController.class
+edu/augustana/BrowsePlanController.class

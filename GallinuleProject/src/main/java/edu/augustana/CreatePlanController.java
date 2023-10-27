@@ -1,12 +1,17 @@
 package edu.augustana;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
 
-public class TertiaryController {
+import java.io.IOException;
+
+public class CreatePlanController {
 
     @FXML
     private void switchToGender() throws IOException {
         App.setRoot("Gender");
     }
+
+
+
+
 }

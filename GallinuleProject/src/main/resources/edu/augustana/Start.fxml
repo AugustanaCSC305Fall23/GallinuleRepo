@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.StartController">
+   <left>
+      <VBox fx:id="navPane" prefHeight="400.0" prefWidth="134.0" style="-fx-background-color: #343434;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="navAnchor" prefHeight="402.0" prefWidth="134.0">
+               <children>
+                  <Separator layoutY="44.0" prefHeight="5.0" prefWidth="137.0" />
+                  <Text fill="WHITE" layoutX="31.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LessonPlanner" />
+                  <Button layoutX="-1.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#switchWelcome" prefHeight="45.0" prefWidth="137.0" style="-fx-background-color: transparent;" text="Dashboard" textFill="WHITE" />
+                  <Button layoutX="-1.0" layoutY="149.0" mnemonicParsing="false" onMouseClicked="#switchBrowse" prefHeight="45.0" prefWidth="137.0" style="-fx-background-color: transparent;" text="Browse" textFill="WHITE" />
+                  <Button layoutX="-1.0" layoutY="194.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="137.0" style="-fx-background-color: transparent;" text="ExTitle" textFill="WHITE" />
+                  <Button layoutX="6.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#switchCreatePlan" prefHeight="32.0" prefWidth="126.0" style="-fx-background-color: #ff0099;" text="Create Plan" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="147.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Lesson Planner (Example text for now)" textAlignment="CENTER" wrappingWidth="168.8034210205078" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -1,6 +1,6 @@
 package edu.augustana;
 
-import com.opencsv.CSVReader;
+
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,11 +15,11 @@ public class Card {
     private String img;
     private String gender;
     private String modelSex;
-    private String level;
-    private String equipments;
-    private String keywords;
+    private List<String> level;
+    private List<String> equipments;
+    private List<String> keywords;
 
-    public Card(String code, String event, String category, String title, String packFolder, String img, String gender, String modelSex, String level, String equipments, String keywords) {
+    public Card(String code, String event, String category, String title, String packFolder, String img, String gender, String modelSex, List<String> level, List<String> equipments, List<String> keywords) {
         this.code = code;
         this.event = event;
         this.category = category;
@@ -65,26 +65,17 @@ public class Card {
         return modelSex;
     }
 
-    public String getLevel() {
+    public List<String> getLevel() {
         return level;
     }
 
-    public String getEquipments() {
+    public List<String> getEquipments() {
         return equipments;
     }
 
-    public String getKeywords() {
+    public List<String> getKeywords() {
         return keywords;
     }
 
-    public static List<Card> readCardsFromCSV(String filePath) throws IOException {
-        try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/DEMO1.csv"))) {
-            List<String[]> lines = reader.readAll();
-            lines.remove(0);
 
-            return lines.stream()
-                    .map(data -> new Card(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10]))
-                    .toList();
-        }
-    }
 }
