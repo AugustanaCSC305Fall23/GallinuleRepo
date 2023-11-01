@@ -2,7 +2,7 @@ package edu.augustana;
 
 
 
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -32,6 +32,7 @@ public class Card {
         this.equipments = equipments;
         this.keywords = keywords;
     }
+
 
     public String getCode() {
         return code;
