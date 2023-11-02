@@ -83,6 +83,10 @@ public class StartController implements Initializable {
     private void switchCreatePlan() throws IOException {
         loadPage("CreatePlan");
     }
+    @FXML
+    private void switchViewAllCards() throws IOException {
+        loadPage("ViewAllCard");
+    }
 
     @FXML
     private void loadPage(String page) throws IOException{
