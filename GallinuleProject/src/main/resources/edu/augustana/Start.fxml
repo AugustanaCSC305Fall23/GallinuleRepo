@@ -12,13 +12,6 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.StartController">
-   <center>
-      <AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1275.0" BorderPane.alignment="TOP_LEFT">
-         <children>
-            <Text layoutX="551.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Lesson Planner (Example text for now)" textAlignment="CENTER" wrappingWidth="168.8034210205078" AnchorPane.bottomAnchor="345.33333333333337" AnchorPane.leftAnchor="551.0" AnchorPane.rightAnchor="555.5299123128254" AnchorPane.topAnchor="346.0" />
-         </children>
-      </AnchorPane>
-   </center>
    <left>
       <AnchorPane fx:id="navPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #343434;" BorderPane.alignment="CENTER">
          <children>
@@ -44,14 +37,17 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button layoutX="10.0" layoutY="204.0" mnemonicParsing="false" onMouseClicked="#switchViewAllCards" prefHeight="60.0" prefWidth="269.0" style="-fx-background-color: transparent;" styleClass="navbaritems" text="Card Library" textFill="WHITE" />
+                  <Button layoutX="10.0" layoutY="204.0" mnemonicParsing="false" onMouseClicked="#switchViewAllCards" prefHeight="60.0" prefWidth="269.0" style="-fx-background-color: transparent;" styleClass="navbaritems" text="Card Library" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Button>
                </children>
             </VBox>
          </children>
       </AnchorPane>
    </left>
    <top>
-      <AnchorPane prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <HBox fx:id="MenuHolder" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1275.3333333333333" AnchorPane.topAnchor="0.0">
                <children>
@@ -63,9 +59,25 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </ImageView>
+                  <Text fx:id="AppTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Lesson Planner" wrappingWidth="202.80339813232422">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
                </children>
             </HBox>
          </children>
       </AnchorPane>
    </top>
+   <center>
+      <VBox fx:id="mainScreen" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Lesson Planner (Example text for now)" textAlignment="CENTER" wrappingWidth="168.8034210205078" AnchorPane.bottomAnchor="345.33333333333337" AnchorPane.leftAnchor="551.0" AnchorPane.rightAnchor="555.5299123128254" AnchorPane.topAnchor="346.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>
