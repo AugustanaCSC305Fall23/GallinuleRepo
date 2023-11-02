@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="bp" prefHeight="200.0" prefWidth="200.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.StartController">
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.StartController">
    <center>
-      <AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1275.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1275.0" BorderPane.alignment="TOP_LEFT">
          <children>
             <Text layoutX="551.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Lesson Planner (Example text for now)" textAlignment="CENTER" wrappingWidth="168.8034210205078" AnchorPane.bottomAnchor="345.33333333333337" AnchorPane.leftAnchor="551.0" AnchorPane.rightAnchor="555.5299123128254" AnchorPane.topAnchor="346.0" />
          </children>
@@ -44,6 +44,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
+                  <Button layoutX="10.0" layoutY="204.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="269.0" style="-fx-background-color: transparent;" styleClass="navbaritems" text="Cards" textFill="WHITE" />
                </children>
             </VBox>
          </children>
@@ -54,7 +55,7 @@
          <children>
             <HBox fx:id="MenuHolder" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1275.3333333333333" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fx:id="MenuButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="MenuButton">
+                  <ImageView fx:id="MenuButton" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="genButton">
                      <image>
                         <Image url="@../../main-menu.png" />
                      </image>

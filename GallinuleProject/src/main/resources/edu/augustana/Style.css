@@ -10,6 +10,6 @@
     -fx-font-weight: bold;
 }
 
-.MenuButton:hover{
-    -fx-opacity: 0.5;
+.genButton:hover{
+    -fx-opacity: 0.60;
 }

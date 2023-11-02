@@ -49,12 +49,19 @@ public class StartController implements Initializable {
                 x = -200;
             }
             TranslateTransition slideAction = new TranslateTransition();
+            TranslateTransition slideAction2 = new TranslateTransition();
             slideAction.setDuration(Duration.seconds(0.4));
+            slideAction2.setDuration(Duration.seconds(0.4));
 
             slideAction.setNode(navPane);
             slideAction.setToX(x);
+            slideAction2.setNode(mainScreen);
+            slideAction2.setToX(x);
 
             slideAction.play();
+            slideAction2.play();
+
+
 
         });
 
