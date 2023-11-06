@@ -9,20 +9,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="725.0" prefWidth="1275.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="725.0" prefWidth="1275.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ViewAllCard">
    <left>
       <VBox prefHeight="545.0" prefWidth="188.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <children>
-            <AnchorPane prefHeight="668.0" prefWidth="190.0">
+            <AnchorPane fx:id="testAnchor" prefHeight="668.0" prefWidth="190.0">
                <children>
                   <ComboBox layoutX="20.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Event" style="-fx-border-width: 1px 1px 1px 1px; -fx-border-color: ff0099; -fx-border-radius: 10; -fx-background-color: transparent;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
                   <ComboBox layoutX="20.0" layoutY="180.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Model" style="-fx-background-color: transparent; -fx-border-radius: 10; -fx-border-color: ff0099;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
@@ -55,7 +53,7 @@
                   </Label>
                </children>
             </VBox>
-            <TextField layoutX="285.0" layoutY="18.0" prefHeight="45.0" prefWidth="475.0" promptText="Search" style="-fx-background-color: trans; -fx-border-color: black; -fx-border-radius: 30;" AnchorPane.topAnchor="18.0">
+            <TextField layoutX="285.0" layoutY="13.0" prefHeight="45.0" prefWidth="475.0" promptText="Search" style="-fx-background-color: trans; -fx-border-color: black; -fx-border-radius: 30;" AnchorPane.topAnchor="13.0">
                <font>
                   <Font size="24.0" />
                </font>
@@ -66,27 +64,19 @@
    <center>
       <AnchorPane prefHeight="603.0" prefWidth="851.0" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane prefHeight="603.0" prefWidth="750.0" style="-fx-background-color: white;">
+            <ScrollPane layoutX="-3.0" prefHeight="552.0" prefWidth="753.0" style="-fx-background-color: white;">
                <content>
-                  <AnchorPane prefHeight="683.0" prefWidth="730.0" style="-fx-background-color: white;">
+                  <AnchorPane prefHeight="548.0" prefWidth="732.0" style="-fx-background-color: white;">
                      <children>
-                        <GridPane prefHeight="690.0" prefWidth="734.0" style="-fx-background-color: white;">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
+                        <FlowPane layoutX="4.0" layoutY="19.0" prefHeight="530.0" prefWidth="719.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="19.0">
+                           <children>
+                              <ImageView fx:id="testCard" fitHeight="125.0" fitWidth="147.0" onMouseClicked="#testChange" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../DEMO1Pack/1.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </FlowPane>
                      </children>
                   </AnchorPane>
                </content>

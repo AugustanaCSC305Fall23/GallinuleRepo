@@ -20,11 +20,14 @@ public class CardDatabase {
     public void addCardsFromCSVFile(File csvFile) throws CsvValidationException, IOException {
         CSVReader reader = new CSVReaderBuilder(new FileReader(csvFile)).build();
         String [] nextLine;
+
         while ((nextLine = reader.readNext()) != null) {
-            // nextLine[] is an array of values from the line
-            System.out.println(nextLine[0] + nextLine[1] + "etc...");
+            Card testCard = new Card(nextLine);
+            allCards.add(testCard);
         }
 
     }
+
+    public Card getCardByID(String cardID){ return allCards.get(allCards.indexOf(cardID)); }
 
 }

@@ -15,24 +15,23 @@ public class Card {
     private String img;
     private String gender;
     private String modelSex;
-    private List<String> level;
-    private List<String> equipments;
-    private List<String> keywords;
+    private String level;
+    private String equipments;
+    private String keywords;
 
-    public Card(String code, String event, String category, String title, String packFolder, String img, String gender, String modelSex, List<String> level, List<String> equipments, List<String> keywords) {
-        this.code = code;
-        this.event = event;
-        this.category = category;
-        this.title = title;
-        this.packFolder = packFolder;
-        this.img = img;
-        this.gender = gender;
-        this.modelSex = modelSex;
-        this.level = level;
-        this.equipments = equipments;
-        this.keywords = keywords;
+    public Card(String[] csvRowData) {
+        this.code = csvRowData[0];
+        this.event = csvRowData[1];
+        this.category = csvRowData[2];
+        this.title = csvRowData[3];
+        this.packFolder = csvRowData[4];
+        this.img = csvRowData[5];
+        this.gender = csvRowData[6];
+        this.modelSex = csvRowData[7];
+        this.level = csvRowData[8];
+        this.equipments = csvRowData[9];
+        this.keywords = csvRowData[10];
     }
-
 
     public String getCode() {
         return code;
@@ -66,15 +65,15 @@ public class Card {
         return modelSex;
     }
 
-    public List<String> getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public List<String> getEquipments() {
+    public String getEquipments() {
         return equipments;
     }
 
-    public List<String> getKeywords() {
+    public String getKeywords() {
         return keywords;
     }
 

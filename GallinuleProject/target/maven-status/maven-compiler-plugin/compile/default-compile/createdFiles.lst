@@ -1,11 +1,11 @@
 edu\augustana\BrowsePlanController.class
 edu\augustana\Card.class
 edu\augustana\PremadePageController.class
+edu\augustana\GenderController.class
+edu\augustana\CreatePlanController.class
+edu\augustana\ViewAllCard.class
 edu\augustana\StartController.class
 module-info.class
 edu\augustana\CardDatabase.class
-edu\augustana\GenderController.class
 edu\augustana\WelcomeController.class
 edu\augustana\YourPlanPageController.class
-edu\augustana\CreatePlanController.class
-edu\augustana\ViewAllCard.class

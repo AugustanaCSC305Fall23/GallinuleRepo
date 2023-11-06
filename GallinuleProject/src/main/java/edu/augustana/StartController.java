@@ -74,8 +74,6 @@ public class StartController implements Initializable {
             slideAction4.play();
 
 
-
-
         });
 
     }
