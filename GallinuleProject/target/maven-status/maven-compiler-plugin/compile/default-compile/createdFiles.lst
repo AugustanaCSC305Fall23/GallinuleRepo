@@ -1,6 +1,7 @@
 edu\augustana\BrowsePlanController.class
 edu\augustana\Card.class
 edu\augustana\PremadePageController.class
+edu\augustana\LessonPlan.class
 edu\augustana\GenderController.class
 edu\augustana\CreatePlanController.class
 edu\augustana\ViewAllCard.class

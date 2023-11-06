@@ -77,5 +77,23 @@ public class Card {
         return keywords;
     }
 
+    @Override
+    public String toString() {
+        return "Card{" +
+                "code='" + code + '\'' +
+                ", event='" + event + '\'' +
+                ", category='" + category + '\'' +
+                ", title='" + title + '\'' +
+                ", packFolder='" + packFolder + '\'' +
+                ", img='" + img + '\'' +
+                ", gender='" + gender + '\'' +
+                ", modelSex='" + modelSex + '\'' +
+                ", level='" + level + '\'' +
+                ", equipments=" + equipments +
+                ", keywords=" + keywords +
+                '}';
+    }
+
+
 
 }
