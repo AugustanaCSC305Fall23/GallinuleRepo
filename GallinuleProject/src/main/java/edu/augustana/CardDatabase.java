@@ -20,7 +20,8 @@ public class CardDatabase {
 
     public void addCardsFromCSVFile(File csvFile) throws CsvValidationException, IOException {
         CSVReader reader = new CSVReaderBuilder(new FileReader(csvFile)).build();
-        String [] nextLine;
+        String[] nextLine;
+
         boolean isFirstLine = true;
         while ((nextLine = reader.readNext()) != null) {
 
@@ -40,9 +41,12 @@ public class CardDatabase {
 
                 System.out.println(card);
             }
+
         }
 
     }
+
+
 
     public static void main(String[] args) {
 
@@ -57,7 +61,6 @@ public class CardDatabase {
             e.printStackTrace();
         }
     }
-
 
 
 }

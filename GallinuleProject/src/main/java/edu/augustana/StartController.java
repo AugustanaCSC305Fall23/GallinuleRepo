@@ -8,7 +8,6 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import javafx.scene.text.Text;
 
 public class StartController implements Initializable {
 
@@ -27,7 +27,7 @@ public class StartController implements Initializable {
     private BorderPane bp;
 
     @FXML
-    private AnchorPane mainScreen;
+    private VBox mainScreen;
 
     @FXML
     private VBox slider;
@@ -37,6 +37,9 @@ public class StartController implements Initializable {
 
     @FXML
     private HBox MenuHolder;
+
+    @FXML
+    private Text AppTitle;
 
     private int x = 0;
 
@@ -50,12 +53,28 @@ public class StartController implements Initializable {
                 x = -200;
             }
             TranslateTransition slideAction = new TranslateTransition();
+            TranslateTransition slideAction2 = new TranslateTransition();
+            TranslateTransition slideAction3 = new TranslateTransition();
+            TranslateTransition slideAction4 = new TranslateTransition();
             slideAction.setDuration(Duration.seconds(0.4));
+            slideAction2.setDuration(Duration.seconds(0.4));
 
             slideAction.setNode(navPane);
             slideAction.setToX(x);
+            slideAction2.setNode(bp);
+            slideAction2.setToX(x);
+            slideAction3.setNode(MenuButton);
+            slideAction3.setToX(-( x ));
+            slideAction4.setNode(AppTitle);
+            slideAction4.setToX(-( x ));
 
             slideAction.play();
+            slideAction2.play();
+            slideAction3.play();
+            slideAction4.play();
+
+
+
 
         });
 
@@ -76,6 +95,10 @@ public class StartController implements Initializable {
     @FXML
     private void switchCreatePlan() throws IOException {
         loadPage("CreatePlan");
+    }
+    @FXML
+    private void switchViewAllCards() throws IOException {
+        loadPage("ViewAllCard");
     }
 
     @FXML
