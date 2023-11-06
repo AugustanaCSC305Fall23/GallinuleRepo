@@ -2,8 +2,10 @@ package edu.augustana;
 
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +45,7 @@ public class StartController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         MenuButton.setOnMouseClicked(Event -> {
-            if(x == -200) {
+            if (x == -200) {
                 x = 0;
             } else {
                 x = -200;
@@ -62,39 +64,41 @@ public class StartController implements Initializable {
             slideAction2.play();
 
 
-
         });
 
     }
 
 
-
     @FXML
-    private void switchWelcome() throws IOException {
+    private void switchWelcome() throws IOException, URISyntaxException {
         loadPage("Welcome");
     }
 
     @FXML
-    private void switchBrowse() throws IOException {
+    private void switchBrowse() throws IOException, URISyntaxException {
         loadPage("BrowsePlan");
     }
 
     @FXML
-    private void switchCreatePlan() throws IOException {
+    private void switchCreatePlan() throws IOException, URISyntaxException {
         loadPage("CreatePlan");
     }
+
     @FXML
-    private void switchViewAllCards() throws IOException {
+    private void switchViewAllCards() throws IOException, URISyntaxException {
         loadPage("ViewAllCard");
     }
 
     @FXML
-    private void loadPage(String page) throws IOException{
-        Parent root = null;
-
-        root = FXMLLoader.load(getClass().getResource(page + ".fxml"));
-        bp.setCenter(root);
-
+    private void loadPage(String page) {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource(page + ".fxml"));
+            Parent root = loader.load();
+            bp.setCenter(root);
+        } catch (IOException e) {
+            // Handle the exception or log the error message
+            e.printStackTrace();
+        }
     }
 
 

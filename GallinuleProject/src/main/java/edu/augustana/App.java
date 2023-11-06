@@ -1,11 +1,13 @@
 package edu.augustana;
 
+import com.opencsv.exceptions.CsvValidationException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -34,7 +36,8 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CsvValidationException, IOException {
+        CardDatabase.addCardsFromCSVFile(new File("CardPacks/DEMO1.csv"));
         launch();
     }
 
