@@ -1,7 +1,4 @@
 package edu.augustana;
 
-public interface CardFilter {
-
-
-
+public class CardFilter {
 }

@@ -16,7 +16,7 @@ public class ViewAllCard {
 
     private List<Card> allCards;
 
-    private CardSearch cardSearch;
+    private TextSearchFilter cardSearch;
 
     @FXML
     private ComboBox genderFilter;
@@ -32,7 +32,7 @@ public class ViewAllCard {
     void initialize() {
         System.out.println("Initializing");
         allCards = CardDatabase.getAllCards();
-        cardSearch = new CardSearch(allCards);
+        cardSearch = new TextSearchFilter(allCards);
         populateFlowPane(flowPaneCards, allCards);
         this.genderFilter.getItems().addAll(new String[]{"Male", "Female", "Neutral"});
         this.eventFilter.getItems().addAll(new String[]{"Vault", "Beam", "Uneven Bars", "Floor"});
