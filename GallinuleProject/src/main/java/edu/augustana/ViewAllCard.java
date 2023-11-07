@@ -35,7 +35,7 @@ public class ViewAllCard {
         cardSearch = new TextSearchFilter(allCards);
         populateFlowPane(flowPaneCards, allCards);
         this.genderFilter.getItems().addAll(new String[]{"Male", "Female", "Neutral"});
-        this.eventFilter.getItems().addAll(new String[]{"Vault", "Beam", "Uneven Bars", "Floor"});
+        this.eventFilter.getItems().addAll(new String[]{"Vault", "Beam", "Uneven Bars", "Floor", "Parallel Bars", "Horizontal Bars", "Pommel Horse", "Rings"});
         this.levelFilter.getItems().addAll(new String[]{"ALL", "B", "AB", "I", "A"});
         this.modelFilter.getItems().addAll(new String[]{"Male", "Female"});
 
