@@ -37,4 +37,14 @@ public class CardDatabase {
         addCardsFromCSVFile(csvFile);
 
     }
+
+    public static Card getCardByUniqueID(String id) {
+        for (Card card : allCards) {
+            if (card.getCode().equals(id)) {
+                return card;
+            }
+        }
+        return null; 
+    }
+
 }
