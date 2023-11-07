@@ -1,14 +1,10 @@
 package edu.augustana;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ViewAllCard {
     @FXML
@@ -26,6 +22,7 @@ public class ViewAllCard {
         allCards = CardDatabase.getAllCards();
         cardSearch = new CardSearch(allCards);
         populateFlowPane(flowPaneCards, allCards);
+
     }
 
     @FXML
@@ -41,7 +38,7 @@ public class ViewAllCard {
     }
 
     public void populateFlowPane(FlowPane flowPane, List<Card> cards) {
-        double spacingBetweenCards = 10.0; // You can adjust this value as needed
+        double spacingBetweenCards = 10.0;
 
         flowPane.getChildren().clear(); // Clear existing cards before adding new ones
 

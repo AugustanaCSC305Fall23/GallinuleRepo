@@ -2,3 +2,4 @@ edu/augustana/CardFilter.class
 module-info.class
 edu/augustana/CardSearch.class
 edu/augustana/CardView.class
+edu/augustana/LessonPlan.class

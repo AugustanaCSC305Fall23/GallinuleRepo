@@ -29,6 +29,7 @@ public class CardSearch {
                 .collect(Collectors.toList());
     }
 
+
     private boolean cardContainsProperty(Card card, String filter) {
         String filterLowerCase = filter.toLowerCase();
         List<String> propertiesToSearch = Arrays.asList(

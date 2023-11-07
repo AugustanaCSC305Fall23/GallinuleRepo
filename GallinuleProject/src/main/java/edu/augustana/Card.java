@@ -1,12 +1,9 @@
 package edu.augustana;
 
-
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class Card {
@@ -23,46 +20,19 @@ public class Card {
     private final List<String> equipments;
     private final List<String> keywords;
 
-    public boolean containsProperty(String keyword) {
-        String keywordLower = keyword.toLowerCase();
-        return code.toLowerCase().contains(keywordLower) ||
-                event.toLowerCase().contains(keywordLower) ||
-                category.toLowerCase().contains(keywordLower) ||
-                title.toLowerCase().contains(keywordLower) ||
-                packFolder.toLowerCase().contains(keywordLower) ||
-                img.toLowerCase().contains(keywordLower) ||
-                gender.toLowerCase().contains(keywordLower) ||
-                modelSex.toLowerCase().contains(keywordLower) ||
-                level.stream().anyMatch(level -> level.toLowerCase().contains(keywordLower)) ||
-                equipments.stream().anyMatch(equipment -> equipment.toLowerCase().contains(keywordLower)) ||
-                keywords.stream().anyMatch(keywords -> keyword.toLowerCase().contains(keywordLower));
+    public Card(String[] csvRowData) {
+        this.code = csvRowData[0];
+        this.event = csvRowData[1];
+        this.category = csvRowData[2];
+        this.title = csvRowData[3];
+        this.packFolder = csvRowData[4];
+        this.img = csvRowData[5];
+        this.gender = csvRowData[6];
+        this.modelSex = csvRowData[7];
+        this.level = Arrays.asList(csvRowData[8].split(";"));
+        this.equipments = Arrays.asList(csvRowData[9].split(";"));
+        this.keywords = Arrays.asList(csvRowData[10].split(";"));
     }
-
-    public ImageView createImageView()
-    {
-        String filename = "file:CardPacks/DEMO1Pack/"+getImg();
-        Image img = new Image(filename);
-
-        ImageView imgView = new ImageView(img);
-        imgView.setFitHeight(CARD_SIZE);
-        imgView.setFitWidth(CARD_SIZE);
-        return imgView;
-    }
-
-    public Card(String code, String event, String category, String title, String packFolder, String img, String gender, String modelSex, List<String> level, List<String> equipments, List<String> keywords) {
-        this.code = code;
-        this.event = event;
-        this.category = category;
-        this.title = title;
-        this.packFolder = packFolder;
-        this.img = img;
-        this.gender = gender;
-        this.modelSex = modelSex;
-        this.level = level;
-        this.equipments = equipments;
-        this.keywords = keywords;
-    }
-
 
     public String getCode() {
         return code;
@@ -108,8 +78,18 @@ public class Card {
         return keywords;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    public ImageView createImageView() {
+        String filename = "file:CardPacks/DEMO1Pack/" + getImg();
+        Image img = new Image(filename);
+
+        ImageView imgView = new ImageView(img);
+        imgView.setFitHeight(CARD_SIZE);
+        imgView.setFitWidth(CARD_SIZE);
+        return imgView;
+    }
+
+    @Override
+    public String toString() {
         return "Card{" +
                 "code='" + code + '\'' +
                 ", event='" + event + '\'' +

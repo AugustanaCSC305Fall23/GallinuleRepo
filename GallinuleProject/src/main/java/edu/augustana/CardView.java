@@ -6,10 +6,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 public class CardView extends StackPane {
-    private final Card card;
+
 
     public CardView(Card card) {
-        this.card = card;
 
         ImageView imageView = card.createImageView();
         imageView.setPreserveRatio(true);
@@ -22,10 +21,6 @@ public class CardView extends StackPane {
         setPadding(new Insets(5));
 
         getChildren().add(imageView);
-    }
-
-    public Card getCard() {
-        return card;
     }
 
     public void setSpacingBetweenCards(double spacing) {
