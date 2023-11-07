@@ -23,10 +23,24 @@ public class Card {
     private final List<String> equipments;
     private final List<String> keywords;
 
+    public boolean containsProperty(String keyword) {
+        String keywordLower = keyword.toLowerCase();
+        return code.toLowerCase().contains(keywordLower) ||
+                event.toLowerCase().contains(keywordLower) ||
+                category.toLowerCase().contains(keywordLower) ||
+                title.toLowerCase().contains(keywordLower) ||
+                packFolder.toLowerCase().contains(keywordLower) ||
+                img.toLowerCase().contains(keywordLower) ||
+                gender.toLowerCase().contains(keywordLower) ||
+                modelSex.toLowerCase().contains(keywordLower) ||
+                level.stream().anyMatch(level -> level.toLowerCase().contains(keywordLower)) ||
+                equipments.stream().anyMatch(equipment -> equipment.toLowerCase().contains(keywordLower)) ||
+                keywords.stream().anyMatch(keywords -> keyword.toLowerCase().contains(keywordLower));
+    }
+
     public ImageView createImageView()
     {
         String filename = "file:CardPacks/DEMO1Pack/"+getImg();
-        System.out.println("trying to create iamge with file: " + filename);
         Image img = new Image(filename);
 
         ImageView imgView = new ImageView(img);

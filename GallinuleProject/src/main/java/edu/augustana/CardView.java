@@ -2,7 +2,8 @@ package edu.augustana;
 
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 public class CardView extends StackPane {
     private final Card card;
@@ -15,7 +16,10 @@ public class CardView extends StackPane {
 
         setMaxWidth(Card.CARD_SIZE);
         setMaxHeight(Card.CARD_SIZE);
-        setStyle("-fx-background-color: lightgray; -fx-border-color: black; -fx-border-width: 2; -fx-padding: 5px;");
+        setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
+        setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(2))));
+
+        setPadding(new Insets(5));
 
         getChildren().add(imageView);
     }
