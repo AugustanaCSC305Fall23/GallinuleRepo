@@ -25,9 +25,9 @@ public class CardDatabase {
             if (isFirstLine) {
                 isFirstLine = false;
             } else {
-                Card testCard = new Card(nextLine);
-                allCards.add(testCard);
-                System.out.println(testCard);
+                Card card = new Card(nextLine);
+                allCards.add(card);
+                System.out.println(card);
             }
         }
     }
@@ -37,4 +37,14 @@ public class CardDatabase {
         addCardsFromCSVFile(csvFile);
 
     }
+
+    public static Card getCardByUniqueID(String id) {
+        for (Card card : allCards) {
+            if (card.getCode().equals(id)) {
+                return card;
+            }
+        }
+        return null; 
+    }
+
 }
