@@ -15,12 +15,12 @@ public class ViewAllCard {
 
     private List<Card> allCards;
 
-    private CardSearch cardSearch;
+    private TextSearchFilter cardSearch;
 
     @FXML
     void initialize() {
         allCards = CardDatabase.getAllCards();
-        cardSearch = new CardSearch(allCards);
+        cardSearch = new TextSearchFilter(allCards);
         populateFlowPane(flowPaneCards, allCards);
 
     }

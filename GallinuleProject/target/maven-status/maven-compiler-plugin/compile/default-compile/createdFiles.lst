@@ -1,5 +1,5 @@
-edu/augustana/CardFilter.class
+edu/augustana/TextSearchFilter.class
+edu/augustana/GenderFilter.class
 module-info.class
-edu/augustana/CardSearch.class
 edu/augustana/CardView.class
 edu/augustana/LessonPlan.class
