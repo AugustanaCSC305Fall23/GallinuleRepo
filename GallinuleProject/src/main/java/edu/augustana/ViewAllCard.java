@@ -1,6 +1,7 @@
 package edu.augustana;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 
@@ -18,10 +19,22 @@ public class ViewAllCard {
     private CardSearch cardSearch;
 
     @FXML
+    private ComboBox genderFilter;
+
+    @FXML
     void initialize() {
+        System.out.println("Initializing");
         allCards = CardDatabase.getAllCards();
         cardSearch = new CardSearch(allCards);
         populateFlowPane(flowPaneCards, allCards);
+        this.genderFilter.getItems().addAll(new String[]{"Male", "Female", "Neutral"});
+        
+
+
+    }
+
+    @FXML
+    void filterDropdown(){
 
     }
 
