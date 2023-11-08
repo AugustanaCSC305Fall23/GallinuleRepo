@@ -32,7 +32,7 @@ public class ViewAllCard {
 
     private void initializeComboBoxes() {
         genderFilter.getItems().addAll("Male", "Female", "Neutral");
-        eventFilter.getItems().addAll("Shapes", "Vault", "Beam", "Uneven Bars", "Floor", "Parallel Bars", "Horizontal Bars", "Pommel Horse", "Rings");
+        eventFilter.getItems().addAll("Tramp", "Vault", "Beam", "Uneven Bars", "Floor", "Parallel Bars", "Strength", "Horizontal Bars", "Pommel Horse", "Rings");
         levelFilter.getItems().addAll("ALL", "B", "AB", "I", "A");
         modelFilter.getItems().addAll("Male", "Female");
     }
@@ -85,6 +85,33 @@ public class ViewAllCard {
         }
     }
 
+    @FXML
+    void handleGenderFilter() {
+        String selectedGender = genderFilter.getValue(); // Get the selected gender from the ComboBox
+        String genderMapping = getGenderMapping(selectedGender);
+
+        if (genderMapping != null) {
+            // Apply the gender filter
+            CardFilter genderFilter = new GenderFilter(genderMapping);
+            List<Card> filteredCards = genderFilter.filter(allCards);
+            populateFlowPane(filteredCards);
+        } else {
+            // If "All" or no gender is selected, show all cards
+            populateFlowPane(allCards);
+        }
+    }
+
+    private String getGenderMapping(String selectedGender) {
+        if ("Male".equals(selectedGender)) {
+            return "M";
+        } else if ("Female".equals(selectedGender)) {
+            return "F";
+        } else if ("Neutral".equals(selectedGender)) {
+            return "N";
+        } else {
+            return null; // Return null for other cases or "All"
+        }
+    }
 
 
     private void populateFlowPane(List<Card> cards) {
