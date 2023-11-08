@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CardSearch {
+public class TextSearchFilter {
     private final List<Card> allCards;
 
-    public CardSearch(List<Card> allCards) {
+    public TextSearchFilter(List<Card> allCards) {
         this.allCards = allCards;
     }
 

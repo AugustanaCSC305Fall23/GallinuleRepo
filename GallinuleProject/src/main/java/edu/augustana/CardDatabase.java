@@ -44,7 +44,7 @@ public class CardDatabase {
                 return card;
             }
         }
-        return null; 
+        return null;
     }
 
 }
