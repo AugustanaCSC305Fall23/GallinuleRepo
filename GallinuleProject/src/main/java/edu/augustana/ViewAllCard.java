@@ -101,6 +101,22 @@ public class ViewAllCard {
         }
     }
 
+    @FXML
+    void handleModelFilter() {
+        String selectedModelSex = modelFilter.getValue(); // Get the selected model's sex from the ComboBox
+
+        if (selectedModelSex != null && !selectedModelSex.isEmpty() && !selectedModelSex.equals("All")) {
+            // Apply the model's sex filter
+            CardFilter modelFilter = new ModelSexFilter(selectedModelSex);
+            List<Card> filteredCards = modelFilter.filter(allCards);
+            populateFlowPane(filteredCards);
+        } else {
+            // If "All" or no model's sex is selected, show all cards
+            populateFlowPane(allCards);
+        }
+    }
+
+
     private String getGenderMapping(String selectedGender) {
         if ("Male".equals(selectedGender)) {
             return "M";
@@ -112,6 +128,8 @@ public class ViewAllCard {
             return null; // Return null for other cases or "All"
         }
     }
+
+
 
 
     private void populateFlowPane(List<Card> cards) {
