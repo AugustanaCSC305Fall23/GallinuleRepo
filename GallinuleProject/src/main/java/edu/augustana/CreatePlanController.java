@@ -33,6 +33,14 @@ public class CreatePlanController implements Initializable {
 
     private List<Card> allCards;
 
+    @FXML
+    private Button previewButton;
+
+    @FXML
+    private void switchToPreview() throws IOException {
+        App.setRoot("Preview");
+    }
+
 
 
     @Override

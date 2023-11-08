@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -60,7 +61,7 @@
       </AnchorPane>
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="previewPart" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <ComboBox layoutX="55.0" layoutY="28.0" prefHeight="38.0" prefWidth="218.0" promptText="EVENT" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 30;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="30.0" />
             <HBox layoutX="52.0" layoutY="83.0" prefHeight="100.0" prefWidth="632.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
@@ -78,4 +79,13 @@
          </children>
       </AnchorPane>
    </center>
+   <bottom>
+      <Button fx:id="previewButton" mnemonicParsing="false" onAction="#switchToPreview" style="-fx-background-color: trans; -fx-border-radius: 30; -fx-border-color: ff0099; -fx-border-width: 2;" text="Preview" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></Button>
+   </bottom>
 </BorderPane>
