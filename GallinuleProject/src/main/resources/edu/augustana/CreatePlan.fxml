@@ -1,44 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1275.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1275.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreatePlanController">
    <padding>
       <Insets bottom="50.0" left="10.0" right="200.0" />
    </padding>
    <left>
       <AnchorPane prefHeight="726.0" prefWidth="233.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane layoutX="-4.0" layoutY="-1.0" prefHeight="610.0" prefWidth="252.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-19.0" AnchorPane.topAnchor="0.0">
+            <TextField prefHeight="22.0" prefWidth="231.0" promptText="Search" style="-fx-background-color: #e3e3e3; -fx-background-radius: 30; -fx-border-color: black; -fx-border-radius: 30;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+            <ScrollPane layoutY="52.0" prefHeight="563.0" prefWidth="253.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-19.0" AnchorPane.topAnchor="75.0">
                <content>
-                  <ListView prefHeight="859.0" prefWidth="232.0" style="-fx-background-color: white;">
-                     <contextMenu>
-                        <ContextMenu>
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Unspecified Action">
-                                 <graphic>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                 </graphic>
-                              </MenuItem>
-                          </items>
-                        </ContextMenu>
-                     </contextMenu>
-                  </ListView>
+                  <ListView fx:id="searchCardList" prefHeight="887.0" prefWidth="232.0" style="-fx-background-color: white;" stylesheets="@Style.css" />
                </content>
             </ScrollPane>
+            <ComboBox layoutY="33.0" prefWidth="150.0" promptText="Filter" style="-fx-background-color: #e3e3e3; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: black;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
          </children>
       </AnchorPane>
    </left>
@@ -61,7 +51,7 @@
                   </Label>
                </children>
             </VBox>
-            <TextField layoutX="276.0" layoutY="3.0" prefHeight="45.0" prefWidth="475.0" promptText="Title" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 30; -fx-border-width: 3;" text="Untitled Plan" AnchorPane.leftAnchor="285.0" AnchorPane.topAnchor="2.0">
+            <TextField layoutX="276.0" layoutY="3.0" prefHeight="45.0" prefWidth="475.0" promptText="Title" style="-fx-background-color: #e3e3e3; -fx-background-radius: 30; -fx-border-color: ff0099; -fx-border-radius: 30; -fx-border-width: 3;" text="Untitled Plan" AnchorPane.leftAnchor="285.0" AnchorPane.topAnchor="2.0">
                <font>
                   <Font size="24.0" />
                </font>
@@ -69,4 +59,23 @@
          </children>
       </AnchorPane>
    </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ComboBox layoutX="55.0" layoutY="28.0" prefHeight="38.0" prefWidth="218.0" promptText="EVENT" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 30;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="30.0" />
+            <HBox layoutX="52.0" layoutY="83.0" prefHeight="100.0" prefWidth="632.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+               <children>
+                  <TilePane fx:id="tilePane1" prefHeight="100.0" prefWidth="731.0" style="-fx-border-color: black; -fx-border-radius: 10;" />
+               </children>
+            </HBox>
+            <ComboBox layoutX="65.0" layoutY="203.0" prefHeight="38.0" prefWidth="218.0" promptText="EVENT" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 30;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="200.0" />
+            <HBox layoutX="62.0" layoutY="251.0" prefHeight="100.0" prefWidth="632.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+               <children>
+                  <TilePane fx:id="tilePane2" prefHeight="100.0" prefWidth="731.0" style="-fx-border-color: black; -fx-border-radius: 10;" />
+               </children>
+            </HBox>
+            <Label alignment="CENTER" layoutX="59.0" layoutY="381.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: lightgrey; -fx-border-radius: 10; -fx-border-color: black; -fx-background-radius: 10;" styleClass="genButton" stylesheets="@Style.css" text="Add Row..." textAlignment="CENTER" AnchorPane.leftAnchor="55.0" />
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

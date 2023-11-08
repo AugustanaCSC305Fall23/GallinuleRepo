@@ -59,9 +59,9 @@
         </VBox>
     </left>
     <center>
-        <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+        <ScrollPane fitToHeight="true" fitToWidth="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" BorderPane.alignment="TOP_LEFT">
             <content>
-                <FlowPane fx:id="flowPaneCards" alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="150.0" prefWrapLength="200.0" />
+                <FlowPane fx:id="flowPaneCards" alignment="CENTER" prefHeight="200.0" prefWidth="150.0" prefWrapLength="200.0" rowValignment="TOP" />
             </content>
         </ScrollPane>
     </center>

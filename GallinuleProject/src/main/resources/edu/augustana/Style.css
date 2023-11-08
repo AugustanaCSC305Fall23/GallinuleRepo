@@ -13,3 +13,9 @@
 .genButton:hover{
     -fx-opacity: 0.60;
 }
+
+.listView{
+    -fx-border-color: black;
+    -fx-font-size: 10;
+    -fx-border-radius: 10;
+}
