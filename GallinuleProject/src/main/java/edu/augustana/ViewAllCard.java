@@ -70,6 +70,22 @@ public class ViewAllCard {
         }
     }
 
+    @FXML
+    void handleLevelFilter() {
+        String selectedLevel = levelFilter.getValue(); // Get the selected level from the ComboBox
+
+        if (selectedLevel != null && !selectedLevel.isEmpty() && !selectedLevel.equals("ALL")) {
+            // Apply the level filter
+            CardFilter levelFilter = new LevelFilter(selectedLevel);
+            List<Card> filteredCards = levelFilter.filter(allCards);
+            populateFlowPane(filteredCards);
+        } else {
+            // If "ALL" or no level is selected, show all cards
+            populateFlowPane(allCards);
+        }
+    }
+
+
 
     private void populateFlowPane(List<Card> cards) {
         double spacingBetweenCards = 10.0;
