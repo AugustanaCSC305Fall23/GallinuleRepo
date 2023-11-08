@@ -1,17 +1,19 @@
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\App.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\CardView.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\Course.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\GenderController.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\Card.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\WelcomeController.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\module-info.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\CardDatabase.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\BrowsePlanController.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\YourPlanPageController.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\CardFilter.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\PremadePageController.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\CreatePlanController.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\LessonPlan.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\StartController.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\CardSearch.java
-C:\Users\QCMas\Downloads\Augie 2023-24\CSC305\git\GallinuleRepo\GallinuleProject\src\main\java\edu\augustana\ViewAllCard.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/CardView.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/PremadePageController.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/StartController.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/BrowsePlanController.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/WelcomeController.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/YourPlanPageController.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/CardDatabase.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/EventFilter.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/TextSearchFilter.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/GenderController.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/Card.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/ViewAllCard.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/App.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/GenderFilter.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/module-info.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/CreatePlanController.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/Course.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/CardFilter.java
+/Users/stephenkodua/Desktop/CSE305Project/git/GallinuleRepo/GallinuleProject/src/main/java/edu/augustana/LessonPlan.java

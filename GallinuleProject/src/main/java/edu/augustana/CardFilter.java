@@ -1,4 +1,8 @@
 package edu.augustana;
 
-public class CardFilter {
+import java.util.List;
+
+public interface CardFilter {
+    List<Card> filter(List<Card> cards);
 }
+
