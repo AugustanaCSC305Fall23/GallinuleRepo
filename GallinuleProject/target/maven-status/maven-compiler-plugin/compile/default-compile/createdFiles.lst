@@ -1,7 +1,13 @@
+edu\augustana\CardSelectToPreview.class
 edu\augustana\CardView.class
+edu\augustana\LevelFilter.class
 edu\augustana\LessonPlan.class
+edu\augustana\ModelSexFilter.class
 edu\augustana\GenderFilter.class
 edu\augustana\Course.class
 edu\augustana\TextSearchFilter.class
+edu\augustana\Preview.class
+edu\augustana\EventFilter.class
 module-info.class
 edu\augustana\CardFilter.class
+edu\augustana\PrintGymFile.class
