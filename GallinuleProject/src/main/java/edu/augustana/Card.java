@@ -3,10 +3,11 @@ package edu.augustana;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-public class Card {
+public class Card implements Serializable {
     public static final int CARD_SIZE = 300;
     private final String code;
     private final String event;
