@@ -1,4 +1,6 @@
+edu/augustana/PrintGymFile.class
 edu/augustana/EventFilter.class
 module-info.class
 edu/augustana/LevelFilter.class
+edu/augustana/Preview.class
 edu/augustana/ModelSexFilter.class

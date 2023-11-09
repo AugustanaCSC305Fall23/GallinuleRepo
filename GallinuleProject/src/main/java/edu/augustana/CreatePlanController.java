@@ -42,14 +42,12 @@ public class CreatePlanController implements Initializable {
     }
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allCards = CardDatabase.getAllCards();
 
 
-
-        for(int i = 0; i < 7; i++){
+        for (int i = 0; i < 7; i++) {
             Button cardHolder = new Button("+");
             cardHolder.setPrefHeight(100);
             cardHolder.setPrefWidth(100);
@@ -57,8 +55,9 @@ public class CreatePlanController implements Initializable {
         }
         populateListView(searchCardList, allCards);
     }
-    private void populateListView(ListView<Label> listView, List<Card> allCards){
-        for (Card card : allCards){
+
+    private void populateListView(ListView<Label> listView, List<Card> allCards) {
+        for (Card card : allCards) {
             Label cardSample = new Label(String.format("%s - %s", card.getCode(), card.getTitle()));
             cardSample.getStyleClass().add("listView");
             cardSample.getStylesheets().add("src/main/resources/edu/augustana/Style.css");
