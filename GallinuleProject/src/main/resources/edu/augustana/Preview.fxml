@@ -15,6 +15,7 @@
          <children>
             <Button layoutX="131.0" layoutY="627.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="144.0" style="-fx-background-color: trans; -fx-border-radius: 30; -fx-border-color: ff0099; -fx-border-width: 2;" text="Download" />
             <Button fx:id="printButton" layoutX="371.0" layoutY="624.0" mnemonicParsing="false" onAction="#printPlan" prefHeight="48.0" prefWidth="144.0" style="-fx-background-color: trans; -fx-border-radius: 30; -fx-border-color: ff0099; -fx-border-width: 2;" text="Print" />
+            <Button layoutX="40.0" layoutY="638.0" mnemonicParsing="false" onMouseClicked="#switchToStart" text="Back" />
          </children></AnchorPane>
   </items>
 </SplitPane>
