@@ -1,6 +1,7 @@
 edu\augustana\CardView.class
 edu\augustana\LessonPlan.class
+edu\augustana\GenderFilter.class
 edu\augustana\Course.class
+edu\augustana\TextSearchFilter.class
 module-info.class
 edu\augustana\CardFilter.class
-edu\augustana\CardSearch.class

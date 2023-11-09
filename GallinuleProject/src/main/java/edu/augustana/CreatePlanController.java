@@ -39,24 +39,27 @@ public class CreatePlanController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allCards = CardDatabase.getAllCards();
 
-
-
         for(int i = 0; i < 7; i++){
             Button cardHolder = new Button("+");
             cardHolder.setPrefHeight(100);
             cardHolder.setPrefWidth(100);
             tilePane1.getChildren().add(cardHolder);
         }
+
         populateListView(searchCardList, allCards);
     }
+
     private void populateListView(ListView<Label> listView, List<Card> allCards){
         for (Card card : allCards){
+            Tooltip img = new Tooltip("");
             Label cardSample = new Label(String.format("%s - %s", card.getCode(), card.getTitle()));
             cardSample.getStyleClass().add("listView");
             cardSample.getStylesheets().add("src/main/resources/edu/augustana/Style.css");
             cardSample.setPadding(new Insets(0, 0, 0, 10));
             cardSample.setPrefHeight(30);
             cardSample.setPrefWidth(215);
+            cardSample.setTooltip(img);
+            img.setGraphic(new CardView(card));
             listView.getItems().add(cardSample);
         }
     }

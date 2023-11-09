@@ -63,13 +63,13 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <ComboBox layoutX="55.0" layoutY="28.0" prefHeight="38.0" prefWidth="218.0" promptText="EVENT" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 30;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="30.0" />
-            <HBox layoutX="52.0" layoutY="83.0" prefHeight="100.0" prefWidth="632.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <HBox layoutX="52.0" layoutY="83.0" prefHeight="100.0" prefWidth="632.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="75.0">
                <children>
                   <TilePane fx:id="tilePane1" prefHeight="100.0" prefWidth="731.0" style="-fx-border-color: black; -fx-border-radius: 10;" />
                </children>
             </HBox>
             <ComboBox layoutX="65.0" layoutY="203.0" prefHeight="38.0" prefWidth="218.0" promptText="EVENT" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 30;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="200.0" />
-            <HBox layoutX="62.0" layoutY="251.0" prefHeight="100.0" prefWidth="632.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <HBox layoutX="62.0" layoutY="251.0" prefHeight="100.0" prefWidth="632.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="75.0">
                <children>
                   <TilePane fx:id="tilePane2" prefHeight="100.0" prefWidth="731.0" style="-fx-border-color: black; -fx-border-radius: 10;" />
                </children>
