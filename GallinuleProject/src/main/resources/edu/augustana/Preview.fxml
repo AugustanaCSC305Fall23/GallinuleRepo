@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.524247491638796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1275.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1">
+<SplitPane dividerPositions="0.524247491638796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1275.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Preview">
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+    <AnchorPane fx:id="previewFileAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
             <VBox fx:id="PreviewBox" layoutX="62.0" layoutY="23.0" prefHeight="677.5" prefWidth="540.0" style="-fx-background-color: grey;" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
             <Button layoutX="131.0" layoutY="627.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="144.0" style="-fx-background-color: trans; -fx-border-radius: 30; -fx-border-color: ff0099; -fx-border-width: 2;" text="Download" />
-            <Button layoutX="336.0" layoutY="627.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="144.0" style="-fx-background-color: trans; -fx-border-radius: 30; -fx-border-color: ff0099; -fx-border-width: 2;" text="Print" />
+            <Button fx:id="printButton" layoutX="371.0" layoutY="624.0" mnemonicParsing="false" onAction="#printPlan" prefHeight="48.0" prefWidth="144.0" style="-fx-background-color: trans; -fx-border-radius: 30; -fx-border-color: ff0099; -fx-border-width: 2;" text="Print" />
          </children></AnchorPane>
   </items>
 </SplitPane>
