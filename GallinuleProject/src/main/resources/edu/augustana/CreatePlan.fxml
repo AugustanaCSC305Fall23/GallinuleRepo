@@ -63,29 +63,32 @@
    <center>
       <AnchorPane fx:id="previewPart" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ComboBox layoutX="55.0" layoutY="28.0" prefHeight="38.0" prefWidth="218.0" promptText="EVENT" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 30;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="30.0" />
-            <HBox layoutX="52.0" layoutY="83.0" prefHeight="100.0" prefWidth="632.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <ComboBox fx:id="firstCombo" layoutX="55.0" layoutY="28.0" prefHeight="38.0" prefWidth="218.0" promptText="EVENT" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 30;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="30.0" />
+            <HBox layoutX="52.0" layoutY="83.0" prefHeight="100.0" prefWidth="632.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="75.0">
                <children>
                   <TilePane fx:id="tilePane1" prefHeight="100.0" prefWidth="731.0" style="-fx-border-color: black; -fx-border-radius: 10;" />
                </children>
             </HBox>
-            <ComboBox layoutX="65.0" layoutY="203.0" prefHeight="38.0" prefWidth="218.0" promptText="EVENT" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 30;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="200.0" />
-            <HBox layoutX="62.0" layoutY="251.0" prefHeight="100.0" prefWidth="632.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <ComboBox fx:id="secondCombo" layoutX="65.0" layoutY="203.0" prefHeight="38.0" prefWidth="218.0" promptText="EVENT" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 30;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="200.0" />
+            <HBox layoutX="62.0" layoutY="251.0" prefHeight="100.0" prefWidth="632.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="75.0">
                <children>
                   <TilePane fx:id="tilePane2" prefHeight="100.0" prefWidth="731.0" style="-fx-border-color: black; -fx-border-radius: 10;" />
                </children>
             </HBox>
             <Label alignment="CENTER" layoutX="59.0" layoutY="381.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: lightgrey; -fx-border-radius: 10; -fx-border-color: black; -fx-background-radius: 10;" styleClass="genButton" stylesheets="@Style.css" text="Add Row..." textAlignment="CENTER" AnchorPane.leftAnchor="55.0" />
+            <ListView fx:id="equipmentList" layoutX="556.0" layoutY="-52.0" prefHeight="124.0" prefWidth="258.0" />
          </children>
       </AnchorPane>
    </center>
    <bottom>
-      <Button fx:id="previewButton" mnemonicParsing="false" onAction="#switchToPreview" style="-fx-background-color: trans; -fx-border-radius: 30; -fx-border-color: ff0099; -fx-border-width: 2;" text="Preview" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="20.0" />
-         </BorderPane.margin>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets></Button>
+      <AnchorPane prefHeight="57.0" prefWidth="1065.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="previewButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#switchToPreview" style="-fx-background-color: trans; -fx-border-radius: 30; -fx-border-color: ff0099; -fx-border-width: 2;" text="Preview" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="15.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+         </children>
+      </AnchorPane>
    </bottom>
 </BorderPane>
