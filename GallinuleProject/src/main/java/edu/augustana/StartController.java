@@ -2,7 +2,6 @@ package edu.augustana;
 
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -66,9 +65,9 @@ public class StartController implements Initializable {
             slideAction2.setNode(bp);
             slideAction2.setToX(x);
             slideAction3.setNode(MenuButton);
-            slideAction3.setToX(-( x ));
+            slideAction3.setToX(-(x));
             slideAction4.setNode(AppTitle);
-            slideAction4.setToX(-( x ));
+            slideAction4.setToX(-(x));
 
             slideAction.play();
             slideAction2.play();
@@ -81,22 +80,22 @@ public class StartController implements Initializable {
 
 
     @FXML
-    private void switchWelcome() throws IOException, URISyntaxException {
+    private void switchWelcome() throws IOException {
         loadPage("Welcome");
     }
 
     @FXML
-    private void switchBrowse() throws IOException, URISyntaxException {
+    private void switchBrowse() throws IOException {
         loadPage("BrowsePlan");
     }
 
     @FXML
-    private void switchCreatePlan() throws IOException, URISyntaxException {
+    private void switchCreatePlan() throws IOException {
         loadPage("CreatePlan");
     }
 
     @FXML
-    private void switchViewAllCards() throws IOException, URISyntaxException {
+    private void switchViewAllCards() throws IOException {
         loadPage("ViewAllCard");
     }
 
@@ -107,7 +106,6 @@ public class StartController implements Initializable {
         bp.setCenter(root);
 
     }
-
 
 
 }

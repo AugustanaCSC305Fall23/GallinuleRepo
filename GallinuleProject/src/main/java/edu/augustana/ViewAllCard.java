@@ -33,7 +33,7 @@ public class ViewAllCard {
     private void initializeComboBoxes() {
         genderFilter.getItems().addAll("Male", "Female", "Neutral");
         eventFilter.getItems().addAll("Tramp", "Vault", "Beam", "Uneven Bars", "Floor", "Parallel Bars", "Strength", "Horizontal Bars", "Pommel Horse", "Rings");
-        levelFilter.getItems().addAll("ALL", "B", "AB", "I", "A");
+        levelFilter.getItems().addAll("ALL", "Beginner", "Advance Beginner", "Intermediate", "Advance");
         modelFilter.getItems().addAll("Male", "Female");
     }
 
@@ -128,9 +128,6 @@ public class ViewAllCard {
             return null; // Return null for other cases or "All"
         }
     }
-
-
-
 
     private void populateFlowPane(List<Card> cards) {
         double spacingBetweenCards = 10.0;
