@@ -44,7 +44,7 @@
             </children>
         </AnchorPane>
     </top>
-       <left>
+    <left>
         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
                 <AnchorPane fx:id="testAnchor" prefHeight="668.0" prefWidth="190.0">

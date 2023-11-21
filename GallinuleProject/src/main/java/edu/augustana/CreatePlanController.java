@@ -49,6 +49,7 @@ public class CreatePlanController implements Initializable {
 
     @FXML
     private void switchToPreview() throws IOException {
+
         App.setRoot("Preview");
     }
 
@@ -129,7 +130,6 @@ public class CreatePlanController implements Initializable {
         }
 
     }
-
     private void removeCurrentEquipment(ListView<String> equipmentView, String code){
         int equipmentIndex = 0;
         for(String equipment: equipmentView.getItems()){
@@ -147,4 +147,16 @@ public class CreatePlanController implements Initializable {
 
     public List<Card> getSavedCards(){ return savedCards; }
 
+
+
+    @FXML
+    private void goBackToStart() {
+        try {
+            App.setRoot("Start"); // Navigate back to the "CreatePlan" page
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
+
