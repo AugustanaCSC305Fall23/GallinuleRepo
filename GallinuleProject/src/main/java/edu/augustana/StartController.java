@@ -45,9 +45,11 @@ public class StartController implements Initializable {
 
     private int x = 0;
 
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         MenuButton.setOnMouseClicked(Event -> {
             if (x == -200) {
                 x = 0;
@@ -101,12 +103,15 @@ public class StartController implements Initializable {
     }
 
     @FXML
-    private void loadPage(String page) throws IOException {
+    public void loadPage(String page) throws IOException {
+
         FXMLLoader loader = new FXMLLoader(App.class.getResource(page + ".fxml"));
         Parent root = loader.load();
         bp.setCenter(root);
 
     }
+
+
 
 
 

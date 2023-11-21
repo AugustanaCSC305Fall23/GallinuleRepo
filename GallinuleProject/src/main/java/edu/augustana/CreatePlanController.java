@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,8 +25,6 @@ public class CreatePlanController implements Initializable {
     @FXML
     private Button testButton;
 
-    private List<Card> allCards;
-
     @FXML
     private Button previewButton;
 
@@ -39,7 +34,18 @@ public class CreatePlanController implements Initializable {
     private ComboBox<String> secondCombo;
     @FXML
     private ListView<String> equipmentList;
+    @FXML
+    private Label addRowButton;
+
+
+
+    private List<Card> allCards;
+
     private List<String> equipment;
+
+    public static List<Card> savedCards;
+
+    private String codeCheck;
 
     @FXML
     private void switchToPreview() throws IOException {
@@ -65,26 +71,37 @@ public class CreatePlanController implements Initializable {
     }
 
     private void populateEventRows(ListView<Label> listView, TilePane pane){
-        for(int i = 0; i < 7; i++){
-            Button cardHolder = new Button("+");
+
+        for(int i = 0; i < 8; i++){
+            Label cardHolder = new Label("+");
             cardHolder.setPrefHeight(100);
-            cardHolder.setPrefWidth(100);
+            cardHolder.setPrefWidth(80);
+            cardHolder.getStyleClass().add("eventRow");
+
             cardHolder.setOnMouseClicked(event -> {
+
+                codeCheck = listView.getSelectionModel().getSelectedItem().getText().substring(0, listView.getSelectionModel().getSelectedItem().getText().indexOf('-'));
+                //savedCards.add(CardDatabase.getCardByID(codeCheck)); Having issues implementing 
+                System.out.println(savedCards);
                 Tooltip img = new Tooltip("");
+                if(!cardHolder.getText().equals("+")){
+                    removeCurrentEquipment(equipmentList, cardHolder.getText().substring(0, cardHolder.getText().indexOf('-')));
+                }
+                addCurrentEquipment(equipmentList, codeCheck);
                 cardHolder.setText(listView.getSelectionModel().getSelectedItem().getText());
-                addCurrentEquipment(equipmentList, listView.getSelectionModel().getSelectedItem().getText().substring(0, listView.getSelectionModel().getSelectedItem().getText().indexOf('-')));
                 cardHolder.setWrapText(true);
                 cardHolder.setTooltip(img);
                 img.setGraphic(listView.getSelectionModel().getSelectedItem().getTooltip().getGraphic());
 
             });
-            pane.getChildren().add(cardHolder);
 
+            pane.getChildren().add(cardHolder);
 
         }
     }
 
     private void populateListView(ListView<Label> listView, List<Card> allCards){
+
         for (Card card : allCards){
             Tooltip img = new Tooltip("");
             Label cardSample = new Label(String.format("%s- %s", card.getCode(), card.getTitle()));
@@ -96,18 +113,38 @@ public class CreatePlanController implements Initializable {
             img.setGraphic(new CardView(card));
             listView.getItems().add(cardSample);
         }
+
     }
 
     private void addCurrentEquipment(ListView<String> equipmentView, String code){
+
         List<String> equipments = CardDatabase.getCardByID(code).getEquipments();
         for(String equipment: equipments){
             if(equipment.strip().equals("None")){
                 return;
             }
-            if (!equipmentView.getItems().contains(equipment)){
-                equipmentView.getItems().addAll(equipment);
+            if (!equipmentView.getItems().contains(String.format("%s- %s", code, equipment))){
+                equipmentView.getItems().add(String.format("%s- %s", code, equipment));
             }
         }
+
     }
+
+    private void removeCurrentEquipment(ListView<String> equipmentView, String code){
+        int equipmentIndex = 0;
+        for(String equipment: equipmentView.getItems()){
+
+            if(equipment.substring(0, equipment.indexOf('-')).equals(code)){
+
+                equipmentView.getItems().remove(equipmentIndex);
+
+            }
+            equipmentIndex++;
+        }
+
+
+    }
+
+    public List<Card> getSavedCards(){ return savedCards; }
 
 }
