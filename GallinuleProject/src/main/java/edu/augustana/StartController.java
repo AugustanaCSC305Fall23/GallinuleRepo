@@ -49,6 +49,12 @@ public class StartController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try { //start on the dashboard
+            switchWelcome();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         MenuButton.setOnMouseClicked(Event -> {
             if (x == -200) {
                 x = 0;

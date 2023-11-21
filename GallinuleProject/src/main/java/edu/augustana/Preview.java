@@ -2,6 +2,9 @@ package edu.augustana;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -16,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 public class Preview implements Initializable {
     private LessonPlan lessonPlan;
@@ -25,21 +29,13 @@ public class Preview implements Initializable {
     @FXML
     private Button printButton;
     @FXML
-    private TilePane previewTile1;
+    private FlowPane previewTile1;
 
     @FXML
-    private TilePane previewTile2;
+    private FlowPane previewTile2;
+    @FXML
+    private Label titleLabel;
 
-
-//    public void populatePreview(){ commenting out for now for push
-//        List<Card> finishedCards = CreatePlanController.savedCards;
-//        for(Card card: finishedCards){
-//            Label previewCardHolder = new Label(card.getImg());
-//            previewCardHolder.setPrefHeight(80);
-//            previewCardHolder.setPrefWidth(100);
-//        }
-//
-//    }
     private PrintGymFile printer = new PrintGymFile(); // Create an instance of the printing class
 
 
@@ -49,28 +45,31 @@ public class Preview implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Fetch all cards and populate the preview
-        List<Card> allCards = CardDatabase.getAllCards();
-        populatePreview(allCards);
+        List<Card> finishedCards = CreatePlanController.getCurrentLessonPlan().getSavedCards();
+        titleLabel.setText(CreatePlanController.getCurrentLessonPlan().getTitle());
+        populatePreview(finishedCards);
 
         // Set up the print button action
         printButton.setOnAction(event -> printPlan());
 
     }
 
-    private void populatePreview(List<Card> allCards) {
-        int cardCount = 0;
-        for (Card card : allCards) {
-            // Create a CardView for each card
-            CardView cardView = new CardView(card);
+        public void populatePreview(List<Card> finishedCards){
 
-            // Set spacing between card views
-            cardView.setSpacingBetweenCards(10.0);
+        for(Card card: finishedCards){
+            CardView cardImg = new CardView(card);
+            cardImg.setPrefWidth(60);
+            cardImg.setPrefHeight(40);
 
-            // Add the CardView to the FlowPane
-            flowPaneCards.getChildren().add(cardView);
+            Label previewCardHolder = new Label(card.getTitle());
 
-            cardCount++;
+            previewCardHolder.setGraphic(cardImg);
+            previewCardHolder.setPrefHeight(250);
+            previewCardHolder.setPrefWidth(250);
+            previewTile1.getChildren().add(previewCardHolder);
         }
+
+
     }
 
     @FXML
@@ -80,11 +79,7 @@ public class Preview implements Initializable {
 
 
     @FXML
-    private void goBackToCreatePlan() {
-        try {
-            App.setRoot("CreatePlan"); // Navigate back to the "CreatePlan" page
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void switchToStart() throws IOException {
+        App.setRoot("Start");
     }
 }

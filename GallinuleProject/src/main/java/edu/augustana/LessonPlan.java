@@ -14,21 +14,23 @@ import javafx.scene.control.PopupControl;
 import javafx.scene.control.Tooltip;
 
 public class LessonPlan extends PopupControl implements Serializable {
-
-    private List<String> cardIDs;
     private ArrayList<Card> cardSelections;
     private String title;
 
-    public LessonPlan() {
-        cardSelections = new ArrayList<>();
+    private List<Card> savedCards;
+
+    public LessonPlan(String title) {
+        savedCards = new ArrayList<>();
+
+        this.title = title;
     }
 
     public TreeMap<String, Card> getCardsGroupedByEvent(){
         return null;
     }
 
-    public void addCard(Card newCard){
-
+    public void saveCard(Card newCard){
+        savedCards.add(newCard);
     }
 
 
@@ -60,4 +62,9 @@ public class LessonPlan extends PopupControl implements Serializable {
         }
         return plan;
     }
+    public void renameLesson(String newName){
+        title = newName;
+    }
+    public List<Card> getSavedCards(){ return savedCards; }
+    public String getTitle(){ return title; }
 }

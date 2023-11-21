@@ -37,19 +37,20 @@ public class CreatePlanController implements Initializable {
     @FXML
     private Label addRowButton;
 
+    @FXML
+    private TextField titleBar;
 
+    private static LessonPlan currentLessonPlan;
 
     private List<Card> allCards;
 
     private List<String> equipment;
 
-    public static List<Card> savedCards;
-
     private String codeCheck;
 
     @FXML
     private void switchToPreview() throws IOException {
-
+        handleTitleChange();
         App.setRoot("Preview");
     }
 
@@ -58,7 +59,7 @@ public class CreatePlanController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allCards = CardDatabase.getAllCards();
-
+        currentLessonPlan = new LessonPlan("Untitled Plan");
         populateListView(searchCardList, allCards);
         populateEventRows(searchCardList, tilePane1);
         populateEventRows(searchCardList, tilePane2);
@@ -69,6 +70,11 @@ public class CreatePlanController implements Initializable {
     private void populateEventBox(ComboBox<String> box) {
         box.getItems().addAll("Tramp", "Vault", "Beam", "Uneven Bars", "Floor", "Parallel Bars", "Strength", "Horizontal Bars", "Pommel Horse", "Rings");
 
+    }
+
+    @FXML
+    private void handleTitleChange(){
+        currentLessonPlan.renameLesson(titleBar.getText());
     }
 
     private void populateEventRows(ListView<Label> listView, TilePane pane){
@@ -82,8 +88,7 @@ public class CreatePlanController implements Initializable {
             cardHolder.setOnMouseClicked(event -> {
 
                 codeCheck = listView.getSelectionModel().getSelectedItem().getText().substring(0, listView.getSelectionModel().getSelectedItem().getText().indexOf('-'));
-                //savedCards.add(CardDatabase.getCardByID(codeCheck)); Having issues implementing 
-                System.out.println(savedCards);
+                currentLessonPlan.saveCard(CardDatabase.getCardByID(codeCheck));
                 Tooltip img = new Tooltip("");
                 if(!cardHolder.getText().equals("+")){
                     removeCurrentEquipment(equipmentList, cardHolder.getText().substring(0, cardHolder.getText().indexOf('-')));
@@ -144,11 +149,6 @@ public class CreatePlanController implements Initializable {
 
 
     }
-
-    public List<Card> getSavedCards(){ return savedCards; }
-
-
-
     @FXML
     private void goBackToStart() {
         try {
@@ -157,6 +157,8 @@ public class CreatePlanController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public static LessonPlan getCurrentLessonPlan(){ return currentLessonPlan; }
 
 }
 
