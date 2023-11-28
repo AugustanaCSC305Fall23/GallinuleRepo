@@ -7,12 +7,11 @@ import com.opencsv.exceptions.CsvValidationException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CardDatabase {
+
+    private static CardDatabase theSingleDB = new CardDatabase();
     static final List<Card> allCards = new ArrayList<>();
     static final Map<String,Card> allCardsMap = new HashMap<>(); //declaration to avoid null references
 
@@ -34,6 +33,10 @@ public class CardDatabase {
         }
     }
 
+    public static CardDatabase getDB(){
+        return theSingleDB;
+    }
+
 
     public static Card getCardByID(String cardID) {
         return allCardsMap.get(cardID);
@@ -41,6 +44,43 @@ public class CardDatabase {
 
     public static List<Card> getAllCards() {
         return new ArrayList<>(allCards);
+    }
+
+    public List<String> getEventList() {
+        Set<String> eventSet = new TreeSet<>();
+        for (Card card : allCards) {
+            eventSet.add(card.getEvent());
+        }
+        return new ArrayList<>(eventSet);
+    }
+
+    public List<String> getGenderList() {
+        Set<String> genderSet = new TreeSet<>();
+        for (Card card : allCards) {
+            genderSet.add(card.getGender());
+        }
+        return new ArrayList<>(genderSet);
+    }
+
+    public List<String> getModelList() {
+        Set<String> modelSet = new TreeSet<>();
+        for (Card card : allCards) {
+            modelSet.add(card.getModelSex());
+        }
+        return new ArrayList<>(modelSet);
+    }
+
+    public List<String> getLevelList() {
+        Set<String> levelSet = new TreeSet<>();
+
+        for (Card card : allCards) {
+            List<String> cardLevels = card.getLevel();
+            for (String level : cardLevels) {
+                levelSet.add(level);
+            }
+        }
+
+        return new ArrayList<>(levelSet);
     }
 
     public static Map<String, Card> getAllCardsMap() {
