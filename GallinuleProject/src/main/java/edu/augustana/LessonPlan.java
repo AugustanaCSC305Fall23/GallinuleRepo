@@ -1,4 +1,4 @@
-package edu.augustana.data;
+package edu.augustana;
 
 import javafx.scene.control.PopupControl;
 

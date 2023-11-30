@@ -1,4 +1,4 @@
-package edu.augustana.data;
+package edu.augustana;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;

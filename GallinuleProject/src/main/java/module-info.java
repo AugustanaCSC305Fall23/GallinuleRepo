@@ -6,10 +6,4 @@ module edu.augustana {
 
     opens edu.augustana to javafx.fxml;
     exports edu.augustana;
-    exports edu.augustana.ui;
-    opens edu.augustana.ui to javafx.fxml;
-    exports edu.augustana.filters;
-    opens edu.augustana.filters to javafx.fxml;
-    exports edu.augustana.data;
-    opens edu.augustana.data to javafx.fxml;
 }

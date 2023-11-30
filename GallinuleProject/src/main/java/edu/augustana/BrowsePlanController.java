@@ -1,8 +1,7 @@
-package edu.augustana.ui;
+package edu.augustana;
 
 import java.io.IOException;
 
-import edu.augustana.ui.App;
 import javafx.fxml.FXML;
 
 public class BrowsePlanController {

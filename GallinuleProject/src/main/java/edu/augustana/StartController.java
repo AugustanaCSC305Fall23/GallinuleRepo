@@ -1,11 +1,10 @@
-package edu.augustana.ui;
+package edu.augustana;
 
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import edu.augustana.ui.App;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

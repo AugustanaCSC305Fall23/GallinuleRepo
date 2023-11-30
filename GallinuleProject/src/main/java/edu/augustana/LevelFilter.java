@@ -1,6 +1,4 @@
-package edu.augustana.filters;
-
-import edu.augustana.data.Card;
+package edu.augustana;
 
 import java.util.Arrays;
 import java.util.List;
