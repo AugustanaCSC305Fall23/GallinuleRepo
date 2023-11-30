@@ -1,10 +1,4 @@
-package edu.augustana.ui;
-import edu.augustana.data.Card;
-import edu.augustana.data.CardView;
-import edu.augustana.data.LessonPlan;
-import edu.augustana.filters.PrintGymFile;
-import edu.augustana.ui.App;
-import edu.augustana.ui.CreatePlanController;
+package edu.augustana;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

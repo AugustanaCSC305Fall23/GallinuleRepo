@@ -1,6 +1,5 @@
-package edu.augustana.data;
+package edu.augustana;
 
-import edu.augustana.filters.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;

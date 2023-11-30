@@ -1,8 +1,8 @@
-package edu.augustana.ui;
+package edu.augustana;
 
-import edu.augustana.data.Card;
-import edu.augustana.data.CardDatabase;
-import edu.augustana.data.CardView;
+import edu.augustana.Card;
+import edu.augustana.CardDatabase;
+import edu.augustana.CardView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

@@ -1,4 +1,4 @@
-package edu.augustana.filters;
+package edu.augustana;
 
 import javafx.print.Printer;
 import javafx.print.PrinterJob;

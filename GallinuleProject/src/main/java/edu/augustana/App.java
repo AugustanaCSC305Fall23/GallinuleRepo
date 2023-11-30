@@ -1,7 +1,6 @@
-package edu.augustana.ui;
+package edu.augustana;
 
 import com.opencsv.exceptions.CsvValidationException;
-import edu.augustana.data.CardDatabase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

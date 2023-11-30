@@ -1,9 +1,5 @@
-package edu.augustana.ui;
+package edu.augustana;
 
-import edu.augustana.data.Card;
-import edu.augustana.data.CardDatabase;
-import edu.augustana.data.CardView;
-import edu.augustana.data.LessonPlan;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
