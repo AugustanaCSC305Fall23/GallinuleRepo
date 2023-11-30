@@ -32,8 +32,9 @@ public class ViewAllCard {
     }
 
     private void initializeComboBoxes() {
+        genderFilter.getItems().add("ALL");
         genderFilter.getItems().addAll("Male", "Female", "Neutral");
-        eventFilter.getItems().addAll("Tramp", "Vault", "Beam", "Uneven Bars", "Floor", "Parallel Bars", "Strength", "Horizontal Bars", "Pommel Horse", "Rings");
+        eventFilter.getItems().addAll(CardDatabase.getDB().getEventList());
         levelFilter.getItems().addAll("ALL", "Beginner", "Advance Beginner", "Intermediate", "Advance");
         modelFilter.getItems().addAll("Male", "Female");
     }

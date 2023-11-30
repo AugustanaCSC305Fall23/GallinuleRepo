@@ -20,6 +20,11 @@ public class LessonPlan extends PopupControl implements Serializable {
         this.title = title;
     }
 
+    public LessonPlan(){
+        savedCards = new ArrayList<>();
+        this.title = "Untitled";
+    }
+
     public TreeMap<String, Card> getCardsGroupedByEvent(){
         return null;
     }

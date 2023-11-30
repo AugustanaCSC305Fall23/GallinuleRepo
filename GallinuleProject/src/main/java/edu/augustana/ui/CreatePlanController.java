@@ -63,7 +63,7 @@ public class CreatePlanController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allCards = CardDatabase.getAllCards();
-        currentLessonPlan = new LessonPlan("Untitled Plan");
+        currentLessonPlan = new LessonPlan();
         populateListView(searchCardList, allCards);
         populateEventRows(searchCardList, tilePane1);
         populateEventRows(searchCardList, tilePane2);
@@ -72,7 +72,7 @@ public class CreatePlanController implements Initializable {
     }
 
     private void populateEventBox(ComboBox<String> box) {
-        box.getItems().addAll("Tramp", "Vault", "Beam", "Uneven Bars", "Floor", "Parallel Bars", "Strength", "Horizontal Bars", "Pommel Horse", "Rings");
+        box.getItems().addAll(CardDatabase.getDB().getEventList() );
 
     }
 
