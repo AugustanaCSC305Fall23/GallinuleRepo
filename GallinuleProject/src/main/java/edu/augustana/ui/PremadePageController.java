@@ -1,6 +1,8 @@
-package edu.augustana;
+package edu.augustana.ui;
 
 import java.io.IOException;
+
+import edu.augustana.ui.App;
 import javafx.fxml.FXML;
 
 public class PremadePageController {

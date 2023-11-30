@@ -1,9 +1,11 @@
-package edu.augustana;
+package edu.augustana.ui;
 
+import edu.augustana.data.Card;
+import edu.augustana.data.CardDatabase;
+import edu.augustana.data.CardView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;

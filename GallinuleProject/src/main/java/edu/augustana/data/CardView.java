@@ -1,4 +1,4 @@
-package edu.augustana;
+package edu.augustana.data;
 
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;

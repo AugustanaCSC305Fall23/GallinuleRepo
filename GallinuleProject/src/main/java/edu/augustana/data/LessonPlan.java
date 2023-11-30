@@ -1,4 +1,4 @@
-package edu.augustana;
+package edu.augustana.data;
 
 import javafx.scene.control.PopupControl;
 
@@ -7,11 +7,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
-import java.lang.Object;
-import javafx.stage.Window;
-import javafx.stage.PopupWindow;
-import javafx.scene.control.PopupControl;
-import javafx.scene.control.Tooltip;
 
 public class LessonPlan extends PopupControl implements Serializable {
     private ArrayList<Card> cardSelections;

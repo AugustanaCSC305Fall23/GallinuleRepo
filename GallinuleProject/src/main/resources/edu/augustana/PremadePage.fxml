@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PremadePageController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #2a2f72;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ui.PremadePageController">
    <children>
       <ScrollBar layoutX="568.0" layoutY="14.0" orientation="VERTICAL" prefHeight="411.0" prefWidth="18.0" />
       <Label alignment="TOP_CENTER" layoutX="114.0" layoutY="37.0" prefHeight="17.0" prefWidth="394.0" text="Collections" textAlignment="RIGHT" textFill="#f8f6f6">
