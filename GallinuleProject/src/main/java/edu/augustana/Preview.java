@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class Preview implements Initializable {
+    public Button backButton;
     @FXML
     private AnchorPane printAnchor;
     private LessonPlan lessonPlan;
@@ -84,9 +85,10 @@ public class Preview implements Initializable {
         printer.printFile(printAnchor);
     }
 
-
     @FXML
-    private void switchToStart() throws IOException {
+    private void switchToPreviewPage() throws IOException {
+        System.out.println("Clicked");
         App.setRoot("Start");
     }
+
 }

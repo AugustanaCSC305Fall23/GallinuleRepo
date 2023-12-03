@@ -17,6 +17,7 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Button fx:id="printButton" layoutY="22.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 20; -fx-border-width: 3;" text="Print" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="22.0" />
+                  <Button fx:id="backButton" onAction="#switchToPreviewPage" layoutY="22.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 20; -fx-border-width: 3;" text="Back" AnchorPane.rightAnchor="156.0" AnchorPane.topAnchor="22.0" />
                </children>
             </AnchorPane>
          </children>

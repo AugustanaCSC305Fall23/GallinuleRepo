@@ -1,7 +1,11 @@
 package edu.augustana;
 
+import javafx.fxml.FXML;
 import javafx.print.*;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 
 public class PrintGymFile {
 
@@ -45,4 +49,6 @@ public class PrintGymFile {
         // Use the minimum scale factor to maintain aspect ratio
         return Math.max(scaleX, scaleY);
     }
+
+
 }
