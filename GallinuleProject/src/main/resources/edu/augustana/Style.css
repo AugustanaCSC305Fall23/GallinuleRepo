@@ -35,3 +35,8 @@
 .eventRow:hover{
     -fx-opacity: 0.60;
 }
+
+.placeholder{
+    -fx-border-radius: 5;
+    -fx-border-color: black;
+}
