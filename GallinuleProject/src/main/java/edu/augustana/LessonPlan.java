@@ -11,6 +11,7 @@ import java.util.TreeMap;
 public class LessonPlan extends PopupControl implements Serializable {
     private ArrayList<Card> cardSelections;
     private String title;
+    private ArrayList<String> events;
 
     private List<Card> savedCards;
 
