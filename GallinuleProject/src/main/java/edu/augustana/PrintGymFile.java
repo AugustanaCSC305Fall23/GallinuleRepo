@@ -30,7 +30,7 @@ public class PrintGymFile {
     }
 
     // Create a scaled copy of the content to fit on A4
-    private AnchorPane createScaledContent(AnchorPane content, PageLayout pageLayout) {
+    public AnchorPane createScaledContent(AnchorPane content, PageLayout pageLayout) {
         double scaleFactor = calculateScaleFactor(content, pageLayout);
         AnchorPane scaledContent = new AnchorPane(content.getChildren().toArray(new javafx.scene.Node[0]));
         scaledContent.getTransforms().add(new javafx.scene.transform.Scale(scaleFactor, scaleFactor));
@@ -38,7 +38,7 @@ public class PrintGymFile {
     }
 
     // Calculate the scale factor to fit the content on A4
-    private double calculateScaleFactor(AnchorPane content, PageLayout pageLayout) {
+    public double calculateScaleFactor(AnchorPane content, PageLayout pageLayout) {
         double scaleX = pageLayout.getPrintableWidth() / content.getBoundsInParent().getWidth();
         double scaleY = pageLayout.getPrintableHeight() / content.getBoundsInParent().getHeight();
 
