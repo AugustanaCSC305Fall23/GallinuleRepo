@@ -17,7 +17,7 @@ public class ModelSexFilter implements CardFilter {
 
     private List<Card> filterByModelSex(List<Card> cards) {
         return cards.stream()
-                .filter(card -> card.getModelSex().equalsIgnoreCase(selectedModelSex))
+                .filter(card -> selectedModelSex == null || selectedModelSex.equalsIgnoreCase(card.getModelSex()))
                 .collect(Collectors.toList());
     }
 

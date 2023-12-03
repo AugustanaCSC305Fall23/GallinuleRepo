@@ -1,4 +1,5 @@
 package edu.augustana;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -57,9 +58,9 @@ public class Preview implements Initializable {
 
     }
 
-        public void populatePreview(List<Card> finishedCards){
+    public void populatePreview(List<Card> finishedCards) {
 
-        for(Card card: finishedCards){
+        for (Card card : finishedCards) {
             CardView cardImg = new CardView(card);
             cardImg.setFitWidth(250);
             cardImg.setFitHeight(205);
@@ -76,8 +77,6 @@ public class Preview implements Initializable {
             previewCardHolder.getStyleClass().add("placeholder");
             previewTile1.getChildren().add(previewCardHolder);
         }
-
-
     }
 
     @FXML
