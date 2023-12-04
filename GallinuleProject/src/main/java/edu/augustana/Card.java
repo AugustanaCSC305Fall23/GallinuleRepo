@@ -80,7 +80,7 @@ public class Card implements Serializable {
     }
 
     public ImageView createImageView() {
-        String filename = "file:CardPacks/DEMO1Pack/" + getImg();
+        String filename = "file:CardPacks/"+ packFolder+ "/" + getImg();
         Image img = new Image(filename);
 
         ImageView imgView = new ImageView(img);
