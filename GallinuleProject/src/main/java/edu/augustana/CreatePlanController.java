@@ -158,6 +158,7 @@ public class CreatePlanController implements Initializable {
         }
     }
 
+
     public static LessonPlan getCurrentLessonPlan(){ return currentLessonPlan; }
 
 }

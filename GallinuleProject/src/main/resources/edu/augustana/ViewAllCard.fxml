@@ -36,7 +36,7 @@
                         </Label>
                     </children>
                 </VBox>
-                <TextField fx:id="searchTextField" layoutX="285.0" layoutY="13.0" onAction="#handleSearch" prefHeight="45.0" prefWidth="475.0" promptText="Search" style="-fx-background-color: trans; -fx-border-color: black; -fx-border-radius: 30;" AnchorPane.topAnchor="13.0">
+                <TextField fx:id="searchTextField" layoutX="285.0" layoutY="13.0"  prefHeight="45.0" prefWidth="475.0" promptText="Search" style="-fx-background-color: trans; -fx-border-color: black; -fx-border-radius: 30;" AnchorPane.topAnchor="13.0">
                     <font>
                         <Font size="24.0" />
                     </font>
@@ -49,10 +49,10 @@
             <children>
                 <AnchorPane fx:id="testAnchor" prefHeight="668.0" prefWidth="190.0">
                     <children>
-                        <ComboBox fx:id="eventFilter" onAction="#handleEventFilter" layoutX="20.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Event" style="-fx-border-width: 1px 1px 1px 1px; -fx-border-color: ff0099; -fx-border-radius: 10; -fx-background-color: transparent;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-                        <ComboBox fx:id="modelFilter" onAction="#handleModelFilter" layoutX="20.0" layoutY="180.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Model" style="-fx-background-color: transparent; -fx-border-radius: 10; -fx-border-color: ff0099;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-                        <ComboBox fx:id="genderFilter" onAction="#handleGenderFilter" layoutX="20.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Gender" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 10;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-                        <ComboBox fx:id="levelFilter" onAction="#handleLevelFilter" layoutX="20.0" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Level" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 10;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                        <ComboBox fx:id="eventFilter" layoutX="20.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Event" style="-fx-border-width: 1px 1px 1px 1px; -fx-border-color: ff0099; -fx-border-radius: 10; -fx-background-color: transparent;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                        <ComboBox fx:id="modelFilter"  layoutX="20.0" layoutY="180.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Model" style="-fx-background-color: transparent; -fx-border-radius: 10; -fx-border-color: ff0099;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                        <ComboBox fx:id="genderFilter"  layoutX="20.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Gender" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 10;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                        <ComboBox fx:id="levelFilter"  layoutX="20.0" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Level" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 10;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
                     </children>
                 </AnchorPane>
             </children>

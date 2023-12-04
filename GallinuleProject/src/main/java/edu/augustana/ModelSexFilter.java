@@ -16,10 +16,15 @@ public class ModelSexFilter implements CardFilter {
     }
 
     private List<Card> filterByModelSex(List<Card> cards) {
-        return cards.stream()
-                .filter(card -> card.getModelSex().equalsIgnoreCase(selectedModelSex))
-                .collect(Collectors.toList());
+        if (selectedModelSex != null && !selectedModelSex.isEmpty() && !selectedModelSex.contains("All")) {
+            return cards.stream()
+                    .filter(card -> card.getModelSex().equalsIgnoreCase(selectedModelSex))
+                    .collect(Collectors.toList());
+        } else{
+            return cards;
+        }
     }
+
 
     private String getGenderMapping(String selectedModelSex) {
         if ("Male".equals(selectedModelSex)) {
