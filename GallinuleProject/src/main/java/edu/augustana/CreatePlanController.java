@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.TilePane;
 
 import java.io.IOException;
@@ -14,6 +15,10 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CreatePlanController implements Initializable {
+
+    @FXML
+    public TextField searchTextField;
+
 
     @FXML
     private ListView<Label> searchCardList;
@@ -53,6 +58,8 @@ public class CreatePlanController implements Initializable {
 
     private String codeCheck;
 
+    private TextSearchFilter textSearchFilter;
+
     @FXML
     private void switchToPreview() throws IOException {
         handleTitleChange();
@@ -60,10 +67,10 @@ public class CreatePlanController implements Initializable {
     }
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allCards = CardDatabase.getAllCards();
+        textSearchFilter = new TextSearchFilter(allCards, "");
         currentLessonPlan = new LessonPlan();
         populateListView(searchCardList, allCards);
         populateEventRows(searchCardList, tilePane1); //remove parameters. unnecessary (note for myself)
@@ -71,19 +78,26 @@ public class CreatePlanController implements Initializable {
         populateEventBox(firstCombo);
         populateEventBox(secondCombo);
         populateFilterBox();
+
+        // Add event handler for Enter key in searchCardList
+        searchTextField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                handleSearch();
+            }
+        });
     }
 
     private void populateEventBox(ComboBox<String> box) {
-        box.getItems().addAll(CardDatabase.getDB().getEventList() );
+        box.getItems().addAll(CardDatabase.getDB().getEventList());
 
     }
 
     @FXML
-    private void handleTitleChange(){
+    private void handleTitleChange() {
         currentLessonPlan.renameLesson(titleBar.getText());
     }
 
-    private void populateFilterBox(){
+    private void populateFilterBox() {
         CheckBox favorite = new CheckBox();
         Separator line = new Separator();
         ComboBox<String> genderFilter = new ComboBox<String>();
@@ -106,9 +120,9 @@ public class CreatePlanController implements Initializable {
         filterBox.getItems().addAll(favorite, line, genderFilter, eventFilter, levelFilter, modelFilter);
     }
 
-    private void populateEventRows(ListView<Label> listView, TilePane pane){
+    private void populateEventRows(ListView<Label> listView, TilePane pane) {
 
-        for(int i = 0; i < 8; i++){
+        for (int i = 0; i < 8; i++) {
             Label cardHolder = new Label("+");
             cardHolder.setPrefHeight(100);
             cardHolder.setPrefWidth(80);
@@ -121,7 +135,7 @@ public class CreatePlanController implements Initializable {
                 currentLessonPlan.saveCard(CardDatabase.getCardByID(codeCheck));
                 Tooltip img = new Tooltip("");
 
-                if (CardDatabase.getCardByID(codeCheck).getEquipments().toString().strip().equals("None")){
+                if (CardDatabase.getCardByID(codeCheck).getEquipments().toString().strip().equals("None")) {
                     return;
                 }
 
@@ -138,9 +152,9 @@ public class CreatePlanController implements Initializable {
         }
     }
 
-    private void populateListView(ListView<Label> listView, List<Card> allCards){
+    private void populateListView(ListView<Label> listView, List<Card> allCards) {
 
-        for (Card card : allCards){
+        for (Card card : allCards) {
             ImageView imageView = card.createThumbnailImageView(); // we use thumbnail
             CardView cardView = new CardView(imageView);
             Tooltip img = new Tooltip("");
@@ -156,6 +170,17 @@ public class CreatePlanController implements Initializable {
 
     }
 
+    private void handleSearch() {
+        String searchCriteria = searchTextField.getText(); // Get the text from the search field
+        textSearchFilter.setSearchCriteria(searchCriteria);
+
+        List<Card> filteredCards = textSearchFilter.search(searchCriteria);
+
+        // Clear and repopulate the listView with the filtered cards
+        searchCardList.getItems().clear();
+        populateListView(searchCardList, filteredCards);
+
+    }
 
 
     @FXML
@@ -167,13 +192,16 @@ public class CreatePlanController implements Initializable {
         }
     }
 
-    private void existingCodeCheckToAdd(){
-        if (!equipmentList.getItems().contains(String.format("%s- %s", codeCheck, equipment))){
+    private void existingCodeCheckToAdd() {
+        if (!equipmentList.getItems().contains(String.format("%s- %s", codeCheck, equipment))) {
             equipmentList.getItems().add(String.format("%s- %s", codeCheck, equipment));
         }
     }
 
-    public static LessonPlan getCurrentLessonPlan(){ return currentLessonPlan; }
+    public static LessonPlan getCurrentLessonPlan() {
+        return currentLessonPlan;
+    }
+
 
 }
 
