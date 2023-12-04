@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 
 import java.util.List;
@@ -75,9 +76,11 @@ public class ViewAllCard {
         flowPaneCards.getChildren().clear();
 
         for (Card card : cards) {
-            CardView cardView = new CardView(card);
+            ImageView imageView = card.createThumbnailImageView(); // or card.createThumbnailImageView() based on your requirement
+            CardView cardView = new CardView(imageView);
             cardView.setSpacingBetweenCards(spacingBetweenCards);
             flowPaneCards.getChildren().add(cardView);
         }
     }
+
 }
