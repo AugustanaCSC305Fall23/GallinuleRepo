@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 
 import java.io.IOException;
@@ -124,7 +125,7 @@ public class CreatePlanController implements Initializable {
                     return;
                 }
 
-                existingCodeToAdd();
+                existingCodeCheckToAdd();
                 cardHolder.setText(listView.getSelectionModel().getSelectedItem().getText());
                 cardHolder.setWrapText(true);
                 cardHolder.setTooltip(img);
@@ -140,6 +141,8 @@ public class CreatePlanController implements Initializable {
     private void populateListView(ListView<Label> listView, List<Card> allCards){
 
         for (Card card : allCards){
+            ImageView imageView = card.createThumbnailImageView(); // we use thumbnail
+            CardView cardView = new CardView(imageView);
             Tooltip img = new Tooltip("");
             Label cardSample = new Label(String.format("%s- %s", card.getCode(), card.getTitle()));
             cardSample.getStyleClass().add("listView");
@@ -147,7 +150,7 @@ public class CreatePlanController implements Initializable {
             cardSample.setPrefHeight(30);
             cardSample.setPrefWidth(215);
             cardSample.setTooltip(img);
-            img.setGraphic(new CardView(card));
+            img.setGraphic(cardView);
             listView.getItems().add(cardSample);
         }
 
@@ -164,7 +167,7 @@ public class CreatePlanController implements Initializable {
         }
     }
 
-    private void existingCodeToAdd(){
+    private void existingCodeCheckToAdd(){
         if (!equipmentList.getItems().contains(String.format("%s- %s", codeCheck, equipment))){
             equipmentList.getItems().add(String.format("%s- %s", codeCheck, equipment));
         }

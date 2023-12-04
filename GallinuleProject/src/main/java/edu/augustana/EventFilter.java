@@ -17,8 +17,12 @@ public class EventFilter implements CardFilter {
     }
 
     private List<Card> filterByEvent(List<Card> cards) {
-        return cards.stream()
-                .filter(card -> card.getEvent().equalsIgnoreCase(selectedEvent))
-                .collect(Collectors.toList());
+        if (selectedEvent != null && !selectedEvent.isEmpty() && !(selectedEvent.contains("ALL"))) {
+            return cards.stream()
+                    .filter(card -> card.getEvent().equalsIgnoreCase(selectedEvent))
+                    .collect(Collectors.toList());
+        }else{
+            return cards;
+        }
     }
 }

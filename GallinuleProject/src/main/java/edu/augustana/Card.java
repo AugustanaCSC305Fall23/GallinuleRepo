@@ -26,7 +26,7 @@ public class Card implements Serializable {
         this.event = csvRowData[1];
         this.category = csvRowData[2];
         this.title = csvRowData[3];
-        this.packFolder = csvRowData[4];
+        this.packFolder = csvRowData[4].toUpperCase();
         this.img = csvRowData[5];
         this.gender = csvRowData[6];
         this.modelSex = csvRowData[7];
@@ -67,7 +67,7 @@ public class Card implements Serializable {
         return modelSex;
     }
 
-    public List<String> getLevel() {
+    public List<String> getLevels() {
         return level;
     }
 
@@ -80,7 +80,7 @@ public class Card implements Serializable {
     }
 
     public ImageView createImageView() {
-        String filename = "file:CardPacks/DEMO1Pack/" + getImg();
+        String filename = "file:CardPacks/"+ packFolder+ "/" + getImg();
         Image img = new Image(filename);
 
         ImageView imgView = new ImageView(img);
@@ -88,6 +88,7 @@ public class Card implements Serializable {
         imgView.setFitWidth(CARD_SIZE);
         return imgView;
     }
+
 
     @Override
     public String toString() {
@@ -105,4 +106,66 @@ public class Card implements Serializable {
                 ", keywords=" + keywords +
                 '}';
     }
+
+    public ImageView createHighResolutionImageView() {
+        String filename = "file:CardPacks/" + getPackFolder() + "Pack" + "/" + getImg();
+        System.out.println(filename);
+        Image img = new Image(filename);
+
+        ImageView imgView = new ImageView(img);
+        imgView.setFitHeight(CARD_SIZE);
+        imgView.setFitWidth(CARD_SIZE);
+        return imgView;
+    }
+
+    public ImageView createThumbnailImageView() {
+        String folderName = "StressTest";
+        String thumbnailFilename = getImg().replace(".png", ".jpg");
+        String thumbnailPath = "file:CardPacks/" + folderName + "/thumbs/" + thumbnailFilename;
+        System.out.println("Thumbnail Path: " + thumbnailPath);
+
+
+
+//        String folderName = getPackFolder() + "Pack";
+//        String thumbnailFilename = getImg().replace(".png", ".jpg");
+//        String thumbnailPath = "file:CardPacks/" + folderName + "/thumbs/" + thumbnailFilename;
+//        System.out.println("Thumbnail Path: " + thumbnailPath);
+
+        Image thumbnail = new Image(thumbnailPath);
+
+        ImageView thumbnailView = new ImageView(thumbnail);
+        thumbnailView.setFitHeight(CARD_SIZE);
+        thumbnailView.setFitWidth(CARD_SIZE);
+        return thumbnailView;
+    }
+
+//    public ImageView createThumbnailImageView() {
+//        String folderName = "StressTest";
+//        String thumbnailFilename = getImg().replace(".png", ".jpg");
+//
+//        try {
+//            String thumbnailPath = "file:CardPacks/" + folderName + "/thumbs/" + thumbnailFilename;
+//            System.out.println("Attempting to load thumbnail image: " + thumbnailPath);
+//
+//            Image thumbnail = new Image(thumbnailPath);
+//
+//            if (thumbnail.isError()) {
+//                System.err.println("Error loading thumbnail image: " + thumbnailPath);
+//                return null;
+//            }
+//
+//            System.out.println("Successfully loaded thumbnail image: " + thumbnailPath);
+//
+//            ImageView thumbnailView = new ImageView(thumbnail);
+//            thumbnailView.setFitHeight(CARD_SIZE);
+//            thumbnailView.setFitWidth(CARD_SIZE);
+//            return thumbnailView;
+//        } catch (Exception e) {
+//            System.err.println("Error loading thumbnail image: " + e.getMessage());
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+
+
 }

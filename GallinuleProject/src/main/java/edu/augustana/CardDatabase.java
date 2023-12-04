@@ -17,7 +17,6 @@ public class CardDatabase {
 
 
     public static void addCardsFromCSVFile(File csvFile) throws CsvValidationException, IOException {
-        //Use try for CSVReader to ensure close after reading
         try (CSVReader reader = new CSVReaderBuilder(new FileReader(csvFile)).build()) {
             String[] nextLine;
             boolean isFirstLine = true;
@@ -74,7 +73,7 @@ public class CardDatabase {
         Set<String> levelSet = new TreeSet<>();
 
         for (Card card : allCards) {
-            List<String> cardLevels = card.getLevel();
+            List<String> cardLevels = card.getLevels();
             for (String level : cardLevels) {
                 levelSet.add(level);
             }
@@ -88,8 +87,11 @@ public class CardDatabase {
     }
 
     public static void main(String[] args) throws CsvValidationException, IOException {
-        File csvFile = new File("src/main/resources/DEMO1.csv");
-        addCardsFromCSVFile(csvFile);
+        File csvFile1 = new File("src/main/resources/DEMO1.csv");
+        File csvFile2 = new File("src/main/resources/DEMO2.csv");
+
+        addCardsFromCSVFile(csvFile1);
+        addCardsFromCSVFile(csvFile2);
 
     }
 

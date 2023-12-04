@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -61,7 +62,8 @@ public class Preview implements Initializable {
     public void populatePreview(List<Card> finishedCards) {
 
         for (Card card : finishedCards) {
-            CardView cardImg = new CardView(card);
+            ImageView imageView = card.createHighResolutionImageView();
+            CardView cardImg = new CardView(imageView);
             cardImg.setFitWidth(250);
             cardImg.setFitHeight(205);
             Label eventText = new Label(card.getEquipments().toString());
