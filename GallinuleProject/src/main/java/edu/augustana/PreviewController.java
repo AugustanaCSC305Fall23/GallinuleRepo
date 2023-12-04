@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -69,7 +70,8 @@ public class PreviewController implements Initializable {
     private void populateCardImages(VBox imagesVBox, Card card) {
         double spacingBetweenCards = 10.0;
 
-        CardView cardView = new CardView(card);
+        ImageView imageView = card.createThumbnailImageView(); // use thumbnail
+        CardView cardView = new CardView(imageView);
         cardView.setSpacingBetweenCards(spacingBetweenCards);
 
         imagesVBox.getChildren().add(cardView);

@@ -3,6 +3,7 @@ package edu.augustana;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 
 import java.util.List;
@@ -136,9 +137,11 @@ public class ViewAllCard {
         flowPaneCards.getChildren().clear(); // Clear existing cards before adding new ones
 
         for (Card card : cards) {
-            CardView cardView = new CardView(card);
+            ImageView imageView = card.createThumbnailImageView(); // or card.createThumbnailImageView() based on your requirement
+            CardView cardView = new CardView(imageView);
             cardView.setSpacingBetweenCards(spacingBetweenCards);
             flowPaneCards.getChildren().add(cardView);
         }
     }
+
 }

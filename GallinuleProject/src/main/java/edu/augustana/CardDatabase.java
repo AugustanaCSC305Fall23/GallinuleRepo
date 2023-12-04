@@ -88,8 +88,11 @@ public class CardDatabase {
     }
 
     public static void main(String[] args) throws CsvValidationException, IOException {
-        File csvFile = new File("src/main/resources/DEMO1.csv");
-        addCardsFromCSVFile(csvFile);
+        File csvFile1 = new File("src/main/resources/DEMO1.csv");
+        File csvFile2 = new File("src/main/resources/DEMO2.csv");
+
+        addCardsFromCSVFile(csvFile1);
+        addCardsFromCSVFile(csvFile2);
 
     }
 
