@@ -37,8 +37,8 @@ public class LessonPlan extends PopupControl implements Serializable {
 
     public String getOutlineText(){ return "placeholder"; }
 
-    public static void savePlan(LessonPlan plan) {
-        String fileName = plan.title+".gymCourse";
+    public void savePlan(LessonPlan plan) {
+        String fileName = this.title+".gymCourse";
         try (FileOutputStream fileOutputStream = new FileOutputStream(fileName);
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             objectOutputStream.writeObject(plan);

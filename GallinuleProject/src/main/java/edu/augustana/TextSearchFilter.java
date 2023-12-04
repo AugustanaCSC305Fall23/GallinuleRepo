@@ -8,9 +8,11 @@ import java.util.stream.Collectors;
 public class TextSearchFilter implements CardFilter {
 
     private final List<Card> allCards;
+    private String searchCriteria;
 
-    public TextSearchFilter(List<Card> allCards) {
+    public TextSearchFilter(List<Card> allCards, String searchCriteria) {
         this.allCards = allCards;
+        this.searchCriteria = searchCriteria;
     }
 
     @Override
@@ -30,9 +32,13 @@ public class TextSearchFilter implements CardFilter {
     }
 
     private List<Card> applyFilter(List<Card> cards, String filter) {
-        return cards.stream()
-                .filter(card -> cardContainsProperty(card, filter))
-                .collect(Collectors.toList());
+        if (searchCriteria.isEmpty()) {
+            return cards; // Show all cards if the search field is empty
+        } else {
+            return cards.stream()
+                    .filter(card -> cardContainsProperty(card, filter))
+                    .collect(Collectors.toList());
+        }
     }
 
     private boolean cardContainsProperty(Card card, String filter) {
@@ -49,7 +55,7 @@ public class TextSearchFilter implements CardFilter {
         );
 
         List<List<String>> listPropertiesToSearch = Arrays.asList(
-                card.getLevel(),
+                card.getLevels(),
                 card.getEquipments(),
                 card.getKeywords()
         );

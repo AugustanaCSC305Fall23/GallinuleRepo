@@ -67,7 +67,7 @@ public class Card implements Serializable {
         return modelSex;
     }
 
-    public List<String> getLevel() {
+    public List<String> getLevels() {
         return level;
     }
 

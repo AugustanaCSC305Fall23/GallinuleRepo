@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -23,7 +24,9 @@ public class ViewAllCard {
     private ComboBox<String> modelFilter;
 
     private List<Card> allCards;
+
     private TextSearchFilter cardSearch;
+
 
     @FXML
     void initialize() {
@@ -31,110 +34,46 @@ public class ViewAllCard {
         loadAllCards();
     }
 
+    @FXML
     private void initializeComboBoxes() {
         genderFilter.getItems().add("ALL");
         genderFilter.getItems().addAll("Male", "Female", "Neutral");
         eventFilter.getItems().addAll(CardDatabase.getDB().getEventList());
-        levelFilter.getItems().addAll("ALL", "Beginner", "Advance Beginner", "Intermediate", "Advance");
-        modelFilter.getItems().addAll("Male", "Female");
+        levelFilter.getItems().addAll(LevelFilter.getFullLevelNames());
+        modelFilter.getItems().addAll("ALL", "Male", "Female");
+        genderFilter.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
+        eventFilter.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
+        searchTextField.textProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
+        levelFilter.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
+        modelFilter.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
+
     }
 
     private void loadAllCards() {
         allCards = CardDatabase.getAllCards();
-        cardSearch = new TextSearchFilter(allCards);
+        cardSearch = new TextSearchFilter(allCards, searchTextField.getText().trim().toLowerCase());
         populateFlowPane(allCards);
     }
 
-    @FXML
-    void handleSearch() {
-        String searchCriteria = searchTextField.getText().trim().toLowerCase();
 
-        if (searchCriteria.isEmpty()) {
-            populateFlowPane(allCards); // Show all cards if the search field is empty
-        } else {
-            List<Card> searchResults = cardSearch.search(searchCriteria);
-            populateFlowPane(searchResults);
-        }
-    }
-
-    @FXML
-    void handleEventFilter() {
-        String selectedEvent = eventFilter.getValue(); // Get the selected event from the ComboBox
-
-        if (selectedEvent != null && !selectedEvent.isEmpty()) {
-            // Apply the event filter
-            CardFilter eventFilter = new EventFilter(selectedEvent);
-            List<Card> filteredCards = eventFilter.filter(allCards);
-            populateFlowPane(filteredCards);
-        } else {
-            // If no event is selected, show all cards
-            populateFlowPane(allCards);
-        }
-    }
-
-    @FXML
-    void handleLevelFilter() {
-        String selectedLevel = levelFilter.getValue(); // Get the selected level from the ComboBox
-
-        if (selectedLevel != null && !selectedLevel.isEmpty() && !selectedLevel.equals("ALL")) {
-            // Apply the level filter
-            CardFilter levelFilter = new LevelFilter(selectedLevel);
-            List<Card> filteredCards = levelFilter.filter(allCards);
-            populateFlowPane(filteredCards);
-        } else {
-            // If "ALL" or no level is selected, show all cards
-            populateFlowPane(allCards);
-        }
-    }
-
-    @FXML
-    void handleGenderFilter() {
-        String selectedGender = genderFilter.getValue(); // Get the selected gender from the ComboBox
-        String genderMapping = getGenderMapping(selectedGender);
-
-        if (genderMapping != null) {
-            // Apply the gender filter
-            CardFilter genderFilter = new GenderFilter(genderMapping);
-            List<Card> filteredCards = genderFilter.filter(allCards);
-            populateFlowPane(filteredCards);
-        } else {
-            // If "All" or no gender is selected, show all cards
-            populateFlowPane(allCards);
-        }
-    }
-
-    @FXML
-    void handleModelFilter() {
-        String selectedModelSex = modelFilter.getValue(); // Get the selected model's sex from the ComboBox
-
-        if (selectedModelSex != null && !selectedModelSex.isEmpty() && !selectedModelSex.equals("All")) {
-            // Apply the model's sex filter
-            CardFilter modelFilter = new ModelSexFilter(selectedModelSex);
-            List<Card> filteredCards = modelFilter.filter(allCards);
-            populateFlowPane(filteredCards);
-        } else {
-            // If "All" or no model's sex is selected, show all cards
-            populateFlowPane(allCards);
-        }
+    void updateFilteredVisibleCards() {
+        CardFilter titleFilter = new TextSearchFilter(allCards, searchTextField.getText().trim().toLowerCase());
+        CardFilter genderFilter1 = new GenderFilter(genderFilter.getValue());
+        CardFilter modelSexFilter = new ModelSexFilter(modelFilter.getValue());
+        CardFilter levelFilter1 = new LevelFilter(levelFilter.getValue());
+        CardFilter eventFilter1 = new EventFilter(eventFilter.getValue());
+        CardFilter combinedAndFilter = new CombinedAndFilter( genderFilter1, modelSexFilter, levelFilter1, eventFilter1, titleFilter );
+        List<Card> filteredCards = combinedAndFilter.filter(allCards);
+        System.out.println("updating, found filtered cards: " + filteredCards.size() );
+        Platform.runLater(() -> populateFlowPane(filteredCards));
     }
 
 
-    private String getGenderMapping(String selectedGender) {
-        if ("Male".equals(selectedGender)) {
-            return "M";
-        } else if ("Female".equals(selectedGender)) {
-            return "F";
-        } else if ("Neutral".equals(selectedGender)) {
-            return "N";
-        } else {
-            return null; // Return null for other cases or "All"
-        }
-    }
 
     private void populateFlowPane(List<Card> cards) {
         double spacingBetweenCards = 10.0;
 
-        flowPaneCards.getChildren().clear(); // Clear existing cards before adding new ones
+        flowPaneCards.getChildren().clear();
 
         for (Card card : cards) {
             ImageView imageView = card.createThumbnailImageView(); // or card.createThumbnailImageView() based on your requirement

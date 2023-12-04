@@ -11,15 +11,39 @@ public class GenderFilter implements CardFilter {
         this.selectedGender = selectedGender;
     }
 
+    private String getGenderCodeChar(String selectedGender) {
+
+        if ("Male".equals(selectedGender)) {
+            return "M";
+        } else if ("Female".equals(selectedGender)) {
+            return "F";
+        } else if ("Neutral".equals(selectedGender)) {
+            return "N";
+        } else {
+            return null; // Return null for other cases or "All"
+        }
+    }
+
     @Override
     public List<Card> filter(List<Card> cards) {
         return filterByGender(cards);
     }
 
     private List<Card> filterByGender(List<Card> cards) {
-        return cards.stream()
-                .filter(card -> card.getGender().equalsIgnoreCase(selectedGender))
-                .collect(Collectors.toList());
+
+        String genderCodeChar = getGenderCodeChar(selectedGender);
+        System.out.println("gender Mapping: \"" + genderCodeChar + "\"" );
+
+        if (genderCodeChar != null) {
+            return cards.stream()
+                    .filter(card -> (card.getGender().equalsIgnoreCase(genderCodeChar)
+                                      || card.getGender().equalsIgnoreCase("N")))
+                    .collect(Collectors.toList());
+        } else{
+            return cards;
+        }
     }
+
+
 }
 
