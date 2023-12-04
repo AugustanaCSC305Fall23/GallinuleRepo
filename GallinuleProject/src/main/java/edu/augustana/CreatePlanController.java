@@ -9,6 +9,7 @@ import javafx.scene.layout.TilePane;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CreatePlanController implements Initializable {
@@ -23,6 +24,8 @@ public class CreatePlanController implements Initializable {
     private TilePane tilePane2;
 
     @FXML
+    private ListView<String> equipmentList;
+    @FXML
     private Button testButton;
 
     @FXML
@@ -33,18 +36,19 @@ public class CreatePlanController implements Initializable {
     @FXML
     private ComboBox<String> secondCombo;
     @FXML
-    private ListView<String> equipmentList;
-    @FXML
     private Label addRowButton;
 
     @FXML
     private TextField titleBar;
 
+    @FXML
+    private ComboBox<Object> filterBox;
+
     private static LessonPlan currentLessonPlan;
 
     private List<Card> allCards;
 
-    private List<String> equipment;
+    private String equipment;
 
     private String codeCheck;
 
@@ -61,10 +65,11 @@ public class CreatePlanController implements Initializable {
         allCards = CardDatabase.getAllCards();
         currentLessonPlan = new LessonPlan();
         populateListView(searchCardList, allCards);
-        populateEventRows(searchCardList, tilePane1);
+        populateEventRows(searchCardList, tilePane1); //remove parameters. unnecessary (note for myself)
         populateEventRows(searchCardList, tilePane2);
         populateEventBox(firstCombo);
         populateEventBox(secondCombo);
+        populateFilterBox();
     }
 
     private void populateEventBox(ComboBox<String> box) {
@@ -75,6 +80,29 @@ public class CreatePlanController implements Initializable {
     @FXML
     private void handleTitleChange(){
         currentLessonPlan.renameLesson(titleBar.getText());
+    }
+
+    private void populateFilterBox(){
+        CheckBox favorite = new CheckBox();
+        Separator line = new Separator();
+        ComboBox<String> genderFilter = new ComboBox<String>();
+        ComboBox<String> eventFilter = new ComboBox<String>();
+        ComboBox<String> levelFilter = new ComboBox<String>();
+        ComboBox<String> modelFilter = new ComboBox<String>();
+
+        favorite.setText("Only favorites?");
+        genderFilter.setPromptText("Gender");
+        eventFilter.setPromptText("Event");
+        levelFilter.setPromptText("Level");
+        modelFilter.setPromptText("Card Model");
+
+
+        genderFilter.getItems().addAll("ALL", "Male", "Female", "Neutral");
+        eventFilter.getItems().addAll(CardDatabase.getDB().getEventList());
+        levelFilter.getItems().addAll("ALL", "Beginner", "Advance Beginner", "Intermediate", "Advance");
+        modelFilter.getItems().addAll("Male", "Female");
+
+        filterBox.getItems().addAll(favorite, line, genderFilter, eventFilter, levelFilter, modelFilter);
     }
 
     private void populateEventRows(ListView<Label> listView, TilePane pane){
@@ -88,12 +116,15 @@ public class CreatePlanController implements Initializable {
             cardHolder.setOnMouseClicked(event -> {
 
                 codeCheck = listView.getSelectionModel().getSelectedItem().getText().substring(0, listView.getSelectionModel().getSelectedItem().getText().indexOf('-'));
+                equipment = CardDatabase.getCardByID(codeCheck).getEquipments().toString();
                 currentLessonPlan.saveCard(CardDatabase.getCardByID(codeCheck));
                 Tooltip img = new Tooltip("");
-                if(!cardHolder.getText().equals("+")){
-                    removeCurrentEquipment(equipmentList, cardHolder.getText().substring(0, cardHolder.getText().indexOf('-')));
+
+                if (CardDatabase.getCardByID(codeCheck).getEquipments().toString().strip().equals("None")){
+                    return;
                 }
-                addCurrentEquipment(equipmentList, codeCheck);
+
+                existingCodeToAdd();
                 cardHolder.setText(listView.getSelectionModel().getSelectedItem().getText());
                 cardHolder.setWrapText(true);
                 cardHolder.setTooltip(img);
@@ -122,39 +153,20 @@ public class CreatePlanController implements Initializable {
 
     }
 
-    private void addCurrentEquipment(ListView<String> equipmentView, String code){
-
-        List<String> equipments = CardDatabase.getCardByID(code).getEquipments();
-        for(String equipment: equipments){
-            if(equipment.strip().equals("None")){
-                return;
-            }
-            if (!equipmentView.getItems().contains(String.format("%s- %s", code, equipment))){
-                equipmentView.getItems().add(String.format("%s- %s", code, equipment));
-            }
-        }
-
-    }
-    private void removeCurrentEquipment(ListView<String> equipmentView, String code){
-        int equipmentIndex = 0;
-        for(String equipment: equipmentView.getItems()){
-
-            if(equipment.substring(0, equipment.indexOf('-')).equals(code)){
-
-                equipmentView.getItems().remove(equipmentIndex);
-
-            }
-            equipmentIndex++;
-        }
 
 
-    }
     @FXML
     private void goBackToStart() {
         try {
             App.setRoot("Start"); // Navigate back to the "CreatePlan" page
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void existingCodeToAdd(){
+        if (!equipmentList.getItems().contains(String.format("%s- %s", codeCheck, equipment))){
+            equipmentList.getItems().add(String.format("%s- %s", codeCheck, equipment));
         }
     }
 

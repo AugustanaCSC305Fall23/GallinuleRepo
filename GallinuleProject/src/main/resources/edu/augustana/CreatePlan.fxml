@@ -29,7 +29,7 @@
                   <ListView fx:id="searchCardList" prefHeight="887.0" prefWidth="232.0" style="-fx-background-color: white;" stylesheets="@Style.css" />
                </content>
             </ScrollPane>
-            <ComboBox layoutY="33.0" prefWidth="150.0" promptText="Filter" style="-fx-background-color: #e3e3e3; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: black;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
+            <ComboBox fx:id="filterBox" layoutY="33.0" prefWidth="150.0" promptText="Filter" style="-fx-background-color: #e3e3e3; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: black;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
          </children>
       </AnchorPane>
    </left>

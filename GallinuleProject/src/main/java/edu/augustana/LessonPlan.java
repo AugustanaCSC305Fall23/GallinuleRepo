@@ -1,5 +1,7 @@
 package edu.augustana;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PopupControl;
 
 
@@ -9,10 +11,8 @@ import java.util.List;
 import java.util.TreeMap;
 
 public class LessonPlan extends PopupControl implements Serializable {
-    private ArrayList<Card> cardSelections;
     private String title;
     private ArrayList<String> events;
-
     private List<Card> savedCards;
 
     public LessonPlan(String title) {
@@ -33,6 +33,8 @@ public class LessonPlan extends PopupControl implements Serializable {
     public void saveCard(Card newCard){
         savedCards.add(newCard);
     }
+
+    public void removeCard(Card removeCard){ savedCards.remove(removeCard); }
 
 
     public String getOutlineText(){ return "placeholder"; }
@@ -63,6 +65,8 @@ public class LessonPlan extends PopupControl implements Serializable {
         }
         return plan;
     }
+
+
     public void renameLesson(String newName){
         title = newName;
     }

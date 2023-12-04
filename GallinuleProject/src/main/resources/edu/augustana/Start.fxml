@@ -41,6 +41,11 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin></Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#switchAboutPage" prefHeight="39.0" prefWidth="199.0" style="-fx-background-color: trans;" styleClass="aboutButton" text="About" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="280.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
          </children>

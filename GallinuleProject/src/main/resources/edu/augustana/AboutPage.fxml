@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="725.0" prefWidth="1275.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.AboutPage">
+   <children>
+      <VBox alignment="CENTER" layoutX="551.0" layoutY="45.0" prefHeight="479.0" prefWidth="205.0" AnchorPane.leftAnchor="400.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Credits:" wrappingWidth="106.1365966796875">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product Designer:">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Samantha Keehn" textAlignment="CENTER" wrappingWidth="160.8033447265625">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </Text>
+            <Text layoutX="29.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Supervisor:">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Forrest Stonedahl" textAlignment="CENTER" wrappingWidth="167.4700927734375">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </Text>
+            <Text layoutX="24.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Developers:">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stephen Kodua Aarshiya Prajapati Mason Love" textAlignment="CENTER" wrappingWidth="160.8033447265625">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+            </Text>
+            <Text layoutX="57.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Acknowledgments:">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Flaticon (icon graphics) @ flaticon.com" textAlignment="CENTER" wrappingWidth="204.8033447265625">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
