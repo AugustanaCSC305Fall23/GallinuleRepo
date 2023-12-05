@@ -1,5 +1,7 @@
 package edu.augustana;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PopupControl;
@@ -14,6 +16,7 @@ public class LessonPlan extends PopupControl implements Serializable {
     private String title;
     private ArrayList<String> events;
     private List<Card> savedCards;
+    private static List<LessonPlan> allLessonPlans = new ArrayList<>();
 
     public LessonPlan(String title) {
         savedCards = new ArrayList<>();
@@ -34,37 +37,28 @@ public class LessonPlan extends PopupControl implements Serializable {
         savedCards.add(newCard);
     }
 
+    public static List<LessonPlan> getAllLessonPlans() {
+        return allLessonPlans;
+    }
+
     public void removeCard(Card removeCard){ savedCards.remove(removeCard); }
 
 
     public String getOutlineText(){ return "placeholder"; }
 
-    public void savePlan(LessonPlan plan) {
-        String fileName = this.title+".gymCourse";
-        try (FileOutputStream fileOutputStream = new FileOutputStream(fileName);
-             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
-            objectOutputStream.writeObject(plan);
-            System.out.println("Course saved to " + fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Error saving the course to " + fileName);
+    public void saveToFile(File lessonPlanFile) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (Writer writer = new FileWriter(lessonPlanFile)) {
+            gson.toJson(this, writer);
         }
     }
 
-    public static LessonPlan loadPlan(String fileName){
-        LessonPlan plan = null;
-        try{
-            ObjectInputStream input = new ObjectInputStream(new FileInputStream((fileName)));
-            plan = (LessonPlan) input.readObject();
-
-        } catch(IOException e){
-            System.err.println("Error opening the course " + fileName);
-        } catch(ClassNotFoundException cnfe){
-            System.err.println("Object read is not a LessonPlan");
-
-        }
-        return plan;
+    public static LessonPlan loadFromFile(File LessonPlanFile) throws IOException {
+        FileReader reader = new FileReader(LessonPlanFile);
+        Gson gson = new Gson();
+        return gson.fromJson(reader,LessonPlan.class);
     }
+
 
 
     public void renameLesson(String newName){
