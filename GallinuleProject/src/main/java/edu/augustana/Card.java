@@ -108,10 +108,8 @@ public class Card implements Serializable {
     }
 
     public ImageView createHighResolutionImageView() {
-        String filename = "file:CardPacks/" + getPackFolder() + "Pack" + "/" + getImg();
-        System.out.println(filename);
+        String filename = "file:CardPacks/" + getPackFolder() + "/" + getImg();
         Image img = new Image(filename);
-
         ImageView imgView = new ImageView(img);
         imgView.setFitHeight(CARD_SIZE);
         imgView.setFitWidth(CARD_SIZE);
@@ -119,53 +117,14 @@ public class Card implements Serializable {
     }
 
     public ImageView createThumbnailImageView() {
-        String folderName = "StressTest";
+        String folderName = getPackFolder();
         String thumbnailFilename = getImg().replace(".png", ".jpg");
         String thumbnailPath = "file:CardPacks/" + folderName + "/thumbs/" + thumbnailFilename;
-        System.out.println("Thumbnail Path: " + thumbnailPath);
-
-
-
-//        String folderName = getPackFolder() + "Pack";
-//        String thumbnailFilename = getImg().replace(".png", ".jpg");
-//        String thumbnailPath = "file:CardPacks/" + folderName + "/thumbs/" + thumbnailFilename;
-//        System.out.println("Thumbnail Path: " + thumbnailPath);
-
         Image thumbnail = new Image(thumbnailPath);
-
         ImageView thumbnailView = new ImageView(thumbnail);
         thumbnailView.setFitHeight(CARD_SIZE);
         thumbnailView.setFitWidth(CARD_SIZE);
         return thumbnailView;
     }
-
-//    public ImageView createThumbnailImageView() {
-//        String folderName = "StressTest";
-//        String thumbnailFilename = getImg().replace(".png", ".jpg");
-//
-//        try {
-//            String thumbnailPath = "file:CardPacks/" + folderName + "/thumbs/" + thumbnailFilename;
-//            System.out.println("Attempting to load thumbnail image: " + thumbnailPath);
-//
-//            Image thumbnail = new Image(thumbnailPath);
-//
-//            if (thumbnail.isError()) {
-//                System.err.println("Error loading thumbnail image: " + thumbnailPath);
-//                return null;
-//            }
-//
-//            System.out.println("Successfully loaded thumbnail image: " + thumbnailPath);
-//
-//            ImageView thumbnailView = new ImageView(thumbnail);
-//            thumbnailView.setFitHeight(CARD_SIZE);
-//            thumbnailView.setFitWidth(CARD_SIZE);
-//            return thumbnailView;
-//        } catch (Exception e) {
-//            System.err.println("Error loading thumbnail image: " + e.getMessage());
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
-
 
 }

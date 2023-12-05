@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
@@ -20,6 +21,10 @@ import java.util.ResourceBundle;
 public class CreatePlanController implements Initializable {
 
     @FXML
+    public TextField searchTextField;
+
+
+    @FXML
     private ListView<Label> searchCardList;
 
     @FXML
@@ -29,19 +34,19 @@ public class CreatePlanController implements Initializable {
     private TilePane tilePane2;
 
     @FXML
+    private TilePane tilePane3;
+
+    @FXML
     private ListView<String> equipmentList;
-    @FXML
-    private Button testButton;
 
     @FXML
-    private Button previewButton;
+    private ComboBox<String> eventCombo1;
 
     @FXML
-    private ComboBox<String> firstCombo;
+    private ComboBox<String> eventCombo2;
+
     @FXML
-    private ComboBox<String> secondCombo;
-    @FXML
-    private Label addRowButton;
+    private ComboBox<String> eventCombo3;
 
     @FXML
     private TextField titleBar;
@@ -56,6 +61,10 @@ public class CreatePlanController implements Initializable {
     private String equipment;
 
     private String codeCheck;
+
+    @FXML
+    private Button previewButton;
+
 
     private static File currentLessonPlanFile = null;
 
@@ -73,6 +82,12 @@ public class CreatePlanController implements Initializable {
     }
 
 
+    //filter objects
+    private ComboBox<String> genderFilter = new ComboBox<String>();
+    private ComboBox<String> eventFilter = new ComboBox<String>();
+    private ComboBox<String> levelFilter = new ComboBox<String>();
+    private ComboBox<String> modelFilter = new ComboBox<String>();
+
     public static File getCurrentLessonPlanFile() {
         return currentLessonPlanFile;
     }
@@ -86,35 +101,44 @@ public class CreatePlanController implements Initializable {
         currentLessonPlanFile = chosenFile;
     }
 
+    private TextSearchFilter textSearchFilter;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allCards = CardDatabase.getAllCards();
+        textSearchFilter = new TextSearchFilter(allCards, "");
         currentLessonPlan = new LessonPlan();
-        populateListView(searchCardList, allCards);
-        populateEventRows(searchCardList, tilePane1); //remove parameters. unnecessary (note for myself)
-        populateEventRows(searchCardList, tilePane2);
-        populateEventBox(firstCombo);
-        populateEventBox(secondCombo);
+        populateListView(allCards);
+        populateEventRows(tilePane1); //remove parameters. unnecessary (note for myself)
+        populateEventRows(tilePane2);
+        populateEventRows(tilePane3);
+        populateEventBox(eventCombo1);
+        populateEventBox(eventCombo2);
+        populateEventBox(eventCombo3);
         populateFilterBox();
+
+        // Add event handler for Enter key in searchCardList
+        searchTextField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                handleSearch();
+            }
+        });
     }
 
     private void populateEventBox(ComboBox<String> box) {
-        box.getItems().addAll(CardDatabase.getDB().getEventList() );
+        box.getItems().addAll(CardDatabase.getDB().getEventList());
 
     }
 
     @FXML
-    private void handleTitleChange(){
+    private void handleTitleChange() {
         currentLessonPlan.renameLesson(titleBar.getText());
     }
 
-    private void populateFilterBox(){
+    private void populateFilterBox() {
         CheckBox favorite = new CheckBox();
         Separator line = new Separator();
-        ComboBox<String> genderFilter = new ComboBox<String>();
-        ComboBox<String> eventFilter = new ComboBox<String>();
-        ComboBox<String> levelFilter = new ComboBox<String>();
-        ComboBox<String> modelFilter = new ComboBox<String>();
+
 
         favorite.setText("Only favorites?");
         genderFilter.setPromptText("Gender");
@@ -131,9 +155,10 @@ public class CreatePlanController implements Initializable {
         filterBox.getItems().addAll(favorite, line, genderFilter, eventFilter, levelFilter, modelFilter);
     }
 
-    private void populateEventRows(ListView<Label> listView, TilePane pane){
 
-        for(int i = 0; i < 8; i++){
+    private void populateEventRows(TilePane pane){
+
+        for (int i = 0; i < 8; i++) {
             Label cardHolder = new Label("+");
             cardHolder.setPrefHeight(100);
             cardHolder.setPrefWidth(80);
@@ -141,20 +166,20 @@ public class CreatePlanController implements Initializable {
 
             cardHolder.setOnMouseClicked(event -> {
 
-                codeCheck = listView.getSelectionModel().getSelectedItem().getText().substring(0, listView.getSelectionModel().getSelectedItem().getText().indexOf('-'));
+                codeCheck = searchCardList.getSelectionModel().getSelectedItem().getText().substring(0, searchCardList.getSelectionModel().getSelectedItem().getText().indexOf('-'));
                 equipment = CardDatabase.getCardByID(codeCheck).getEquipments().toString();
                 currentLessonPlan.saveCard(CardDatabase.getCardByID(codeCheck));
                 Tooltip img = new Tooltip("");
 
-                if (CardDatabase.getCardByID(codeCheck).getEquipments().toString().strip().equals("None")){
+                if (CardDatabase.getCardByID(codeCheck).getEquipments().toString().strip().equals("None")) {
                     return;
                 }
 
                 existingCodeCheckToAdd();
-                cardHolder.setText(listView.getSelectionModel().getSelectedItem().getText());
+                cardHolder.setText(searchCardList.getSelectionModel().getSelectedItem().getText());
                 cardHolder.setWrapText(true);
                 cardHolder.setTooltip(img);
-                img.setGraphic(listView.getSelectionModel().getSelectedItem().getTooltip().getGraphic());
+                img.setGraphic(searchCardList.getSelectionModel().getSelectedItem().getTooltip().getGraphic());
 
             });
 
@@ -164,9 +189,14 @@ public class CreatePlanController implements Initializable {
     }
 
 
-    private void populateListView(ListView<Label> listView, List<Card> allCards){
 
-        for (Card card : allCards){
+
+
+
+    private void populateListView(List<Card> cards){
+
+
+        for (Card card : cards) {
             ImageView imageView = card.createThumbnailImageView(); // we use thumbnail
             CardView cardView = new CardView(imageView);
             Tooltip img = new Tooltip("");
@@ -177,13 +207,38 @@ public class CreatePlanController implements Initializable {
             cardSample.setPrefWidth(215);
             cardSample.setTooltip(img);
             img.setGraphic(cardView);
-            listView.getItems().add(cardSample);
+            searchCardList.getItems().add(cardSample);
         }
+
+    }
+
+    private void handleSearch() {
+        String searchCriteria = searchTextField.getText(); // Get the text from the search field
+        textSearchFilter.setSearchCriteria(searchCriteria);
+
+        List<Card> filteredCards = textSearchFilter.search(searchCriteria);
+
+        // Clear and repopulate the listView with the filtered cards
+        searchCardList.getItems().clear();
+        populateListView(filteredCards);
 
     }
 
 
 
+
+    private void existingCodeCheckToAdd() {
+        if (!equipmentList.getItems().contains(String.format("%s- %s", codeCheck, equipment))) {
+            equipmentList.getItems().add(String.format("%s- %s", codeCheck, equipment));
+        }
+    }
+
+    public static LessonPlan getCurrentLessonPlan() {
+        return currentLessonPlan;
+    }
+
+
+    //FXML code
     @FXML
     private void goBackToStart() {
         try {
@@ -193,13 +248,10 @@ public class CreatePlanController implements Initializable {
         }
     }
 
-    private void existingCodeCheckToAdd(){
-        if (!equipmentList.getItems().contains(String.format("%s- %s", codeCheck, equipment))){
-            equipmentList.getItems().add(String.format("%s- %s", codeCheck, equipment));
-        }
-    }
 
-    public static LessonPlan getCurrentLessonPlan(){ return currentLessonPlan; }
+
+
+
 
     public void saveCurrentPlanToFile(ActionEvent actionEvent) throws IOException {
         if (currentLessonPlanFile == null) {
