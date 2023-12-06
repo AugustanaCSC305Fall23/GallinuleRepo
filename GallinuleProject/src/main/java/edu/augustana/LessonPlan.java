@@ -16,7 +16,6 @@ public class LessonPlan extends PopupControl implements Serializable {
     private String title;
     private ArrayList<String> events;
     private List<Card> savedCards;
-    private static List<LessonPlan> allLessonPlans = new ArrayList<>();
 
     public LessonPlan(String title) {
         savedCards = new ArrayList<>();
@@ -29,6 +28,10 @@ public class LessonPlan extends PopupControl implements Serializable {
         this.title = "Untitled";
     }
 
+    public void setTitle(String title){
+        this.title = title;
+    }
+
     public TreeMap<String, Card> getCardsGroupedByEvent(){
         return null;
     }
@@ -37,9 +40,7 @@ public class LessonPlan extends PopupControl implements Serializable {
         savedCards.add(newCard);
     }
 
-    public static List<LessonPlan> getAllLessonPlans() {
-        return allLessonPlans;
-    }
+
 
     public void removeCard(Card removeCard){ savedCards.remove(removeCard); }
 

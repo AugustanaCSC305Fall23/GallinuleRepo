@@ -68,6 +68,7 @@ public class CreatePlanController implements Initializable {
 
     private static File currentLessonPlanFile = null;
 
+    private AllPlansList allPlansList = new AllPlansList();
 
     @FXML
     private void switchToPreview() throws IOException {
@@ -76,8 +77,17 @@ public class CreatePlanController implements Initializable {
 
 
         // Add the current lesson plan to the list
-        LessonPlan.getAllLessonPlans().add(currentLessonPlan);
+        String newTitle = currentLessonPlan.getTitle();
+        int count = 1;
 
+        while (AllPlansList.getAllLessonPlans().contains(newTitle)) {
+            newTitle = currentLessonPlan.getTitle() + "(" + count + ")";
+            count++;
+        }
+
+        AllPlansList.getAllLessonPlans().add(newTitle);
+        currentLessonPlan.setTitle(newTitle);
+        allPlansList.saveToFile();
         App.setRoot("Preview");
     }
 

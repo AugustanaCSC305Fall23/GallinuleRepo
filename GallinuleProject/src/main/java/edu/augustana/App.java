@@ -18,6 +18,8 @@ public class App extends Application {
 
     private static Scene scene;
 
+    private AllPlansList allPlansList;
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -41,6 +43,11 @@ public class App extends Application {
         CardDatabase.addCardsFromCSVFile(new File("CardPacks/Demo2/Demo2.csv"));
 
         launch();
+    }
+
+    @Override
+    public void stop() throws IOException{
+        allPlansList.saveToFile();
     }
 
 }
