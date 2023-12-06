@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -7,7 +8,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.TilePane;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -58,6 +62,25 @@ public class CreatePlanController implements Initializable {
 
     private String codeCheck;
 
+    @FXML
+    private Button previewButton;
+
+
+    private static File currentLessonPlanFile = null;
+
+
+    @FXML
+    private void switchToPreview() throws IOException {
+
+        handleTitleChange();
+
+
+        // Add the current lesson plan to the list
+        LessonPlan.getAllLessonPlans().add(currentLessonPlan);
+
+        App.setRoot("Preview");
+    }
+
 
     //filter objects
     private ComboBox<String> genderFilter = new ComboBox<String>();
@@ -65,6 +88,18 @@ public class CreatePlanController implements Initializable {
     private ComboBox<String> levelFilter = new ComboBox<String>();
     private ComboBox<String> modelFilter = new ComboBox<String>();
 
+    public static File getCurrentLessonPlanFile() {
+        return currentLessonPlanFile;
+    }
+
+    public static void loadCurrentPlanFromFile(File LessonPlanFile) throws IOException {
+        currentLessonPlan = LessonPlan.loadFromFile(LessonPlanFile);
+        currentLessonPlanFile = LessonPlanFile;
+    }
+    public void saveCurrentPlanToFile(File chosenFile) throws IOException {
+        currentLessonPlan.saveToFile(chosenFile);
+        currentLessonPlanFile = chosenFile;
+    }
 
     private TextSearchFilter textSearchFilter;
 
@@ -154,6 +189,10 @@ public class CreatePlanController implements Initializable {
     }
 
 
+
+
+
+
     private void populateListView(List<Card> cards){
 
 
@@ -209,10 +248,38 @@ public class CreatePlanController implements Initializable {
         }
     }
 
-    @FXML
-    private void switchToPreview() throws IOException {
-        handleTitleChange();
-        App.setRoot("Preview");
+
+
+
+
+
+    public void saveCurrentPlanToFile(ActionEvent actionEvent) throws IOException {
+        if (currentLessonPlanFile == null) {
+            menuActionSaveAs();
+        } else {
+            saveCurrentPlanToFile(currentLessonPlanFile);
+        }
     }
+
+    private void menuActionSaveAs() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Lesson Plan File");
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Lesson Plan (*.gymplan)", "*.gymplan");
+        fileChooser.getExtensionFilters().add(filter);
+        Window mainWindow = previewButton.getScene().getWindow(); // Assuming previewButton is part of your UI
+        File chosenFile = fileChooser.showSaveDialog(mainWindow);
+
+        if (chosenFile != null) {
+            try {
+
+                currentLessonPlan.saveToFile(chosenFile);
+
+                currentLessonPlanFile = chosenFile;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
 
