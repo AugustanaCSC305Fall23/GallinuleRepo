@@ -50,13 +50,40 @@ public class App extends Application {
 
     public static void main(String[] args) throws CsvValidationException, IOException {
 
-        CardDatabase.addCardsFromCSVFile(new File("CardPacks/Demo1/Demo1.csv"));
-        CardDatabase.addCardsFromCSVFile(new File("CardPacks/Demo2/Demo2.csv"));
+        addCardsFromCardPacksDirectory("CardPacks");
 
         currentOpenCourseFile = new File("Courses/Untitled.gymCourse");
         currentOpenCourse = Course.loadCourse(currentOpenCourseFile);
         //currentOpenCourse = new Course("Untitled", new ArrayList<>()); // or load it from last saved location?
         launch();
+    }
+
+
+    public static void addCardsFromCardPacksDirectory(String cardPacksDirectory) throws CsvValidationException, IOException {
+        File directory = new File(cardPacksDirectory);
+
+        // Check if the given directory exists
+        if (directory.exists() && directory.isDirectory()) {
+            processDirectory(directory);
+        } else {
+            System.out.println("Invalid directory: " + cardPacksDirectory);
+        }
+    }
+
+    private static void processDirectory(File directory) throws CsvValidationException, IOException {
+        File[] files = directory.listFiles();
+
+        // Iterate through all files in the directory
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile() && file.getName().toLowerCase().endsWith(".csv")) {
+                    CardDatabase.addCardsFromCSVFile(file);
+                } else if (file.isDirectory()) {
+                    // Recursively process subdirectories
+                    processDirectory(file);
+                }
+            }
+        }
     }
 
     public static Course getCurrentOpenCourse() {
