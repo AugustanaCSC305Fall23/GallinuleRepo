@@ -113,6 +113,10 @@ public class StartController implements Initializable {
     }
 
     @FXML
+    private void switchToCoursePage() throws IOException{
+        loadPage("CoursePage");
+    }
+    @FXML
     public void loadPage(String page) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(App.class.getResource(page + ".fxml"));

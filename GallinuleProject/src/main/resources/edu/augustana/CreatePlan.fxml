@@ -34,7 +34,7 @@
          <children>
             <VBox layoutX="8.0" layoutY="7.0" prefHeight="47.0" prefWidth="208.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="7.0">
                <children>
-                  <Button fx:id="backToStartButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#goBackToStart" style="-fx-background-color: trans; -fx-border-radius: 30; -fx-border-color: ff0099; -fx-border-width: 2;" text="Back">
+                  <Button fx:id="helpBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" style="-fx-background-color: trans; -fx-border-radius: 30; -fx-border-color: ff0099; -fx-border-width: 2;" text="?">
                   <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

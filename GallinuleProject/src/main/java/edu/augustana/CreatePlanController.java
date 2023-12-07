@@ -2,13 +2,18 @@ package edu.augustana;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
@@ -54,7 +59,7 @@ public class CreatePlanController implements Initializable {
     @FXML
     private ComboBox<Object> filterBox;
 
-    private static LessonPlan currentLessonPlan;
+    public static LessonPlan currentLessonPlan;
 
     private List<Card> allCards;
 
@@ -65,34 +70,40 @@ public class CreatePlanController implements Initializable {
     @FXML
     private Button previewButton;
 
+    @FXML
+    private Button helpBtn;
+
 
     private static File currentLessonPlanFile = null;
-
-    private AllPlansList allPlansList = new AllPlansList();
-
     @FXML
-    private void switchToPreview() throws IOException {
+    public void switchToPreview() throws IOException {
 
-        handleTitleChange();
-
-
-        // Add the current lesson plan to the list
-        String newTitle = currentLessonPlan.getTitle();
-        int count = 1;
-
-        while (AllPlansList.getAllLessonPlans().contains(newTitle)) {
-            newTitle = currentLessonPlan.getTitle() + "(" + count + ")";
-            count++;
-        }
-
-        AllPlansList.getAllLessonPlans().add(newTitle);
-        currentLessonPlan.setTitle(newTitle);
-        allPlansList.saveToFile();
+        //handleTitleChange();
+      //  sendToPreview();
         App.setRoot("Preview");
     }
 
+//    public void sendToPreview() throws IOException {
+//        // Load the Preview FXML file and create a new scene
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("Preview.fxml"));
+//        Parent previewParent = loader.load();
+//        Scene previewScene = new Scene(previewParent);
+//
+//        // Get the Preview controller instance
+//        PreviewController previewController = loader.getController();
+//
+//        // Pass the currentLessonPlan to the Preview controller via constructor
+//        previewController.setLessonPlan(currentLessonPlan);
+//
+//        // Get the current stage and set the new scene
+//        Stage currentStage = (Stage) previewButton.getScene().getWindow();
+//        currentStage.setScene(previewScene);
+//        currentStage.show();
+//    }
 
-    //filter objects
+
+
+
     private ComboBox<String> genderFilter = new ComboBox<String>();
     private ComboBox<String> eventFilter = new ComboBox<String>();
     private ComboBox<String> levelFilter = new ComboBox<String>();
@@ -127,6 +138,13 @@ public class CreatePlanController implements Initializable {
         populateEventBox(eventCombo3);
         populateFilterBox();
 
+        Tooltip tooltip = new Tooltip("This the Crete Plan Page."+"\n" + "Double click on " +
+                "'Untitled' Title bar to change the Title. "+
+                "\n"+ "Click on the cards you want in your plan and the cards stock you want to place it in" +"\n");
+        helpBtn.setTooltip(tooltip);
+
+        titleBar.textProperty().addListener((obs, oldV, newV) -> currentLessonPlan.setTitle(newV));
+
         // Add event handler for Enter key in searchCardList
         searchTextField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -140,10 +158,10 @@ public class CreatePlanController implements Initializable {
 
     }
 
-    @FXML
-    private void handleTitleChange() {
-        currentLessonPlan.renameLesson(titleBar.getText());
-    }
+//    @FXML
+//    private void handleTitleChange() {
+//        currentLessonPlan.renameLesson(titleBar.getText());
+//    }
 
     private void populateFilterBox() {
         CheckBox favorite = new CheckBox();
@@ -222,6 +240,8 @@ public class CreatePlanController implements Initializable {
 
     }
 
+
+
     private void handleSearch() {
         String searchCriteria = searchTextField.getText(); // Get the text from the search field
         textSearchFilter.setSearchCriteria(searchCriteria);
@@ -249,34 +269,38 @@ public class CreatePlanController implements Initializable {
 
 
     //FXML code
-    @FXML
-    private void goBackToStart() {
-        try {
-            App.setRoot("Start"); // Navigate back to the "CreatePlan" page
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 
 
 
 
     public void saveCurrentPlanToFile(ActionEvent actionEvent) throws IOException {
-        if (currentLessonPlanFile == null) {
-            menuActionSaveAs();
-        } else {
-            saveCurrentPlanToFile(currentLessonPlanFile);
+
+        String newTitle = currentLessonPlan.getTitle();
+
+
+        if (App.getCurrentOpenCourse().getAllPlanTitles().contains(newTitle)) {
+
+            int count = 1;
+            while (App.getCurrentOpenCourse().getAllPlanTitles().contains(newTitle + "(" + count + ")")) {
+                count++;
+            }
+            newTitle = newTitle + "(" + count + ")";
+            currentLessonPlan.setTitle(newTitle);
         }
+        new Alert(Alert.AlertType.INFORMATION, "Your Lesson plan has been saved!").show();
+
+        App.getCurrentOpenCourse().getLessons().add(currentLessonPlan);
+
     }
+
+
 
     private void menuActionSaveAs() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Lesson Plan File");
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Lesson Plan (*.gymplan)", "*.gymplan");
         fileChooser.getExtensionFilters().add(filter);
-        Window mainWindow = previewButton.getScene().getWindow(); // Assuming previewButton is part of your UI
+        Window mainWindow = previewButton.getScene().getWindow();
         File chosenFile = fileChooser.showSaveDialog(mainWindow);
 
         if (chosenFile != null) {

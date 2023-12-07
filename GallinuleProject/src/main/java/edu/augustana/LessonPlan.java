@@ -2,17 +2,13 @@ package edu.augustana;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.PopupControl;
-
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-public class LessonPlan extends PopupControl implements Serializable {
+public class LessonPlan implements Serializable {
     private String title;
     private ArrayList<String> events;
     private List<Card> savedCards;
@@ -62,9 +58,11 @@ public class LessonPlan extends PopupControl implements Serializable {
 
 
 
-    public void renameLesson(String newName){
-        title = newName;
-    }
     public List<Card> getSavedCards(){ return savedCards; }
     public String getTitle(){ return title; }
+
+    @Override
+    public String toString() {
+        return getTitle();
+    }
 }

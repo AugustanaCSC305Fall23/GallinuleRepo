@@ -32,7 +32,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="269.0" style="-fx-background-color: transparent;" styleClass="navbaritems" text="Courses" textFill="WHITE">
+                  <Button mnemonicParsing="false" onMouseClicked="#switchToCoursePage" prefHeight="60.0" prefWidth="269.0" style="-fx-background-color: transparent;" styleClass="navbaritems" text="Courses" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>

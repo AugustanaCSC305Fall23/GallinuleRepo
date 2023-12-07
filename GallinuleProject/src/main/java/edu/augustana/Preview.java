@@ -3,6 +3,7 @@ package edu.augustana;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -45,7 +46,12 @@ public class Preview implements Initializable {
 
     private final int cardsPerSection = 4;
 
+    private LessonPlan currentLessonPlan;
 
+
+    public Preview(){
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Fetch all cards and populate the preview
@@ -84,6 +90,7 @@ public class Preview implements Initializable {
     @FXML
     private void printPlan() {
         printer.printFile(printAnchor);
+        new Alert(Alert.AlertType.INFORMATION, "Your Plan has been sent to print succesfully!").show();
     }
 
     @FXML

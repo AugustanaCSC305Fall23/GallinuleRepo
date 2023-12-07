@@ -36,7 +36,7 @@
       <ListView fx:id="lessonPlanListView" prefHeight="528.0" prefWidth="1057.0" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <Button fx:id="loadButton" mnemonicParsing="false" text="Load Button" BorderPane.alignment="CENTER">
+      <Button fx:id="loadButton" mnemonicParsing="false" onAction="#openLessonPlan" text="Load Button" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets top="20.0" />
          </BorderPane.margin>

@@ -15,13 +15,13 @@ public class ViewAllCard {
     @FXML
     private TextField searchTextField;
     @FXML
-    private ComboBox<String> genderFilter;
+    private ComboBox<String> genderFilterCB;
     @FXML
     private ComboBox<String> eventFilter;
     @FXML
-    private ComboBox<String> levelFilter;
+    private ComboBox<String> levelFilterCB;
     @FXML
-    private ComboBox<String> modelFilter;
+    private ComboBox<String> modelFilterCB;
 
     private List<Card> allCards;
 
@@ -36,16 +36,16 @@ public class ViewAllCard {
 
     @FXML
     private void initializeComboBoxes() {
-        genderFilter.getItems().add("ALL");
-        genderFilter.getItems().addAll("Male", "Female", "Neutral");
+        genderFilterCB.getItems().add("ALL");
+        genderFilterCB.getItems().addAll("Male", "Female", "Neutral");
         eventFilter.getItems().addAll(CardDatabase.getDB().getEventList());
-        levelFilter.getItems().addAll(LevelFilter.getFullLevelNames());
-        modelFilter.getItems().addAll("ALL", "Male", "Female");
-        genderFilter.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
+        levelFilterCB.getItems().addAll(LevelFilter.getFullLevelNames());
+        modelFilterCB.getItems().addAll("ALL", "Male", "Female");
+        genderFilterCB.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
         eventFilter.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
         searchTextField.textProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
-        levelFilter.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
-        modelFilter.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
+        levelFilterCB.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
+        modelFilterCB.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
 
     }
 
@@ -58,9 +58,9 @@ public class ViewAllCard {
 
     void updateFilteredVisibleCards() {
         CardFilter titleFilter = new TextSearchFilter(allCards, searchTextField.getText().trim().toLowerCase());
-        CardFilter genderFilter1 = new GenderFilter(genderFilter.getValue());
-        CardFilter modelSexFilter = new ModelSexFilter(modelFilter.getValue());
-        CardFilter levelFilter1 = new LevelFilter(levelFilter.getValue());
+        CardFilter genderFilter1 = new GenderFilter(genderFilterCB.getValue());
+        CardFilter modelSexFilter = new ModelSexFilter(modelFilterCB.getValue());
+        CardFilter levelFilter1 = new LevelFilter(levelFilterCB.getValue());
         CardFilter eventFilter1 = new EventFilter(eventFilter.getValue());
         CardFilter combinedAndFilter = new CombinedAndFilter( genderFilter1, modelSexFilter, levelFilter1, eventFilter1, titleFilter );
         List<Card> filteredCards = combinedAndFilter.filter(allCards);

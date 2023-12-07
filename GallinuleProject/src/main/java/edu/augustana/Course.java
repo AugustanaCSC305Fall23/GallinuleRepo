@@ -1,7 +1,11 @@
 package edu.augustana;
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Course implements Serializable {
@@ -29,36 +33,40 @@ public class Course implements Serializable {
         return lessons;
     }
 
+    public List<String> getAllPlanTitles(){
+        List<String> allTitles= new ArrayList<>();
+        for (LessonPlan plan: lessons){
+            allTitles.add(plan.getTitle());
+        }
+        return allTitles;
+    }
+
     public void setLessons(List<LessonPlan> lessons) {
         this.lessons = lessons;
     }
 
-
-    public static void saveCourse(Course course) {
-        String fileName = course.getTitle()+".gymCourse";
-        try (FileOutputStream fileOutputStream = new FileOutputStream(fileName);
-             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
-            objectOutputStream.writeObject(course);
-            System.out.println("Course saved to " + fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Error saving the course to " + fileName);
-        }
+    public void addPlan(LessonPlan plan) {
+        lessons.add(plan);
     }
 
-    public static Course loadCourse(String fileName){
-        Course course = null;
-        try{
-            ObjectInputStream input = new ObjectInputStream(new FileInputStream((fileName)));
-            course = (Course) input.readObject();
+    public void removePlan(LessonPlan plan) {
+        lessons.remove(plan);
+    }
 
-        } catch(IOException e){
-            System.err.println("Error opening the course " + fileName);
-        } catch(ClassNotFoundException cnfe){
-            System.err.println("Object read is not a Course");
 
-        }
-        return course;
+    public void saveCourse( File fileToSave) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String courseJSON = gson.toJson(this);
+        PrintWriter writer = new PrintWriter(new FileWriter(fileToSave));
+        writer.println(courseJSON);
+        writer.close();
+
+    }
+
+    public static Course loadCourse(File fileToLoad) throws FileNotFoundException {
+        FileReader reader = new FileReader(fileToLoad);
+        Gson gson = new Gson();
+        return gson.fromJson(reader, Course.class);
     }
 
 }
