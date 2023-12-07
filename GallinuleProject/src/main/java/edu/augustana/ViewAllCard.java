@@ -51,7 +51,7 @@ public class ViewAllCard {
 
     private void loadAllCards() {
         allCards = CardDatabase.getAllCards();
-        cardSearch = new TextSearchFilter(allCards, searchTextField.getText().trim().toLowerCase());
+        //cardSearch = new TextSearchFilter(allCards, searchTextField.getText().trim().toLowerCase());
         populateFlowPane(allCards);
     }
 
@@ -64,7 +64,6 @@ public class ViewAllCard {
         CardFilter eventFilter1 = new EventFilter(eventFilter.getValue());
         CardFilter combinedAndFilter = new CombinedAndFilter( genderFilter1, modelSexFilter, levelFilter1, eventFilter1, titleFilter );
         List<Card> filteredCards = combinedAndFilter.filter(allCards);
-        System.out.println("updating, found filtered cards: " + filteredCards.size() );
         Platform.runLater(() -> populateFlowPane(filteredCards));
     }
 
