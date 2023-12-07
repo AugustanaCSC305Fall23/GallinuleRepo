@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 public class CardView extends StackPane {
     ImageView imageView;
 
-    private static final double ZOOM_FACTOR = 1.07;
+    private static final double ZOOM_FACTOR = 1.005;
 
     public CardView(ImageView imageView) {
         this.imageView = imageView;

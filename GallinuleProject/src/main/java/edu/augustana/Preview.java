@@ -136,7 +136,7 @@ public class Preview implements Initializable {
     @FXML
     private void printPlan() {
         printer.printFile(printAnchor);
-        new Alert(Alert.AlertType.INFORMATION, "Your Plan has been sent to print succesfully!").show();
+        new Alert(Alert.AlertType.INFORMATION, "Your Plan has been sent to print successfully!").show();
     }
 
     @FXML

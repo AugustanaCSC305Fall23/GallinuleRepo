@@ -54,8 +54,6 @@ public class CreatePlanController implements Initializable {
     @FXML
     private ComboBox<String> eventCombo3;
 
-//    private List<ComboBox<String>> comboBoxList = ArrayList<>();
-
     @FXML
     private TextField titleBar;
 
@@ -77,34 +75,17 @@ public class CreatePlanController implements Initializable {
     private Button helpBtn;
 
 
+    
+
+
     private static File currentLessonPlanFile = null;
+
+
     @FXML
     public void switchToPreview() throws IOException {
-
-        //handleTitleChange();
-      //  sendToPreview();
+        ;
         App.setRoot("Preview");
     }
-
-//    public void sendToPreview() throws IOException {
-//        // Load the Preview FXML file and create a new scene
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("Preview.fxml"));
-//        Parent previewParent = loader.load();
-//        Scene previewScene = new Scene(previewParent);
-//
-//        // Get the Preview controller instance
-//        PreviewController previewController = loader.getController();
-//
-//        // Pass the currentLessonPlan to the Preview controller via constructor
-//        previewController.setLessonPlan(currentLessonPlan);
-//
-//        // Get the current stage and set the new scene
-//        Stage currentStage = (Stage) previewButton.getScene().getWindow();
-//        currentStage.setScene(previewScene);
-//        currentStage.show();
-//    }
-
-
 
     //HashMap lists
     private List<String> event1;
@@ -160,6 +141,8 @@ public class CreatePlanController implements Initializable {
             }
         });
     }
+
+
 
     private void populateEventBox(ComboBox<String> box) {
 //        comboBoxList.add(eventCombo1);
@@ -224,10 +207,6 @@ public class CreatePlanController implements Initializable {
         });
     }
 
-//    @FXML
-//    private void handleTitleChange() {
-//        currentLessonPlan.renameLesson(titleBar.getText());
-//    }
 
     private void populateFilterBox() {
         CheckBox favorite = new CheckBox();

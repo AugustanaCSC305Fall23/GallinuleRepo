@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 /**
@@ -22,6 +21,10 @@ public class App extends Application {
 
     private static Course currentOpenCourse;
     private static File currentOpenCourseFile;
+
+    public static File getCurrentOpenCourseFile() {
+        return currentOpenCourseFile;
+    }
 
 
     @Override
