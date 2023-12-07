@@ -19,6 +19,14 @@ public class PreviewController implements Initializable {
 
     @FXML
     private VBox previewVBox;
+//    private LessonPlan currentLessonPlan;
+//
+//    public PreviewController(LessonPlan lessonPlan) {
+//        this.currentLessonPlan = lessonPlan;
+//    }
+//    public void setLessonPlan(LessonPlan lessonPlan) {
+//        this.currentLessonPlan = lessonPlan;
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -4,19 +4,20 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import javafx.scene.control.PopupControl;
 
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 
-public class LessonPlan extends PopupControl implements Serializable {
+public class LessonPlan implements Serializable {
     private String title;
     private List<Card> savedCards;
+
     private HashMap<String, List<String>> lessonMap = new HashMap<>();
     private static List<LessonPlan> allLessonPlans = new ArrayList<>();
     private boolean textOnlyPrint;
+
 
     public LessonPlan(String title) {
 
@@ -30,6 +31,10 @@ public class LessonPlan extends PopupControl implements Serializable {
         this.title = "Untitled";
     }
 
+    public void setTitle(String title){
+        this.title = title;
+    }
+
     public TreeMap<String, Card> getCardsGroupedByEvent(){
         return null;
     }
@@ -38,9 +43,7 @@ public class LessonPlan extends PopupControl implements Serializable {
         savedCards.add(newCard);
     }
 
-    public static List<LessonPlan> getAllLessonPlans() {
-        return allLessonPlans;
-    }
+
 
     public void setTextOnlyPrint(boolean change){
         textOnlyPrint = change;
@@ -72,9 +75,19 @@ public class LessonPlan extends PopupControl implements Serializable {
         return lessonMap;
     }
 
-    public void renameLesson(String newName){
-        title = newName;
-    }
     public List<Card> getSavedCards(){ return savedCards; }
     public String getTitle(){ return title; }
+
+    public void renameLesson(String newTitle){
+        title = newTitle;
+    }
+
+    public static List<LessonPlan> getAllLessonPlans(){
+        return allLessonPlans;
+    }
+
+    @Override
+    public String toString() {
+        return getTitle();
+    }
 }

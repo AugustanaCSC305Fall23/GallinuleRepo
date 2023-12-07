@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -66,6 +67,15 @@ public class Preview implements Initializable {
 
 
 
+    private final int cardsPerSection = 4;
+
+    private LessonPlan currentLessonPlan;
+
+
+
+    public Preview(){
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Fetch all cards and populate the preview
@@ -132,6 +142,8 @@ public class Preview implements Initializable {
             }
         }
         printer.printFile(printList);
+        new Alert(Alert.AlertType.INFORMATION, "Your Plan has been sent to print successfully!").show();
+
     }
 
     @FXML

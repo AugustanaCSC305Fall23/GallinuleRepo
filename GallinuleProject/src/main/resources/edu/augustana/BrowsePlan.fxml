@@ -8,6 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1275.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.LessonPlanController">
@@ -33,13 +34,28 @@
       <Insets bottom="50.0" left="10.0" right="200.0" />
    </padding>
    <center>
-      <ListView fx:id="lessonPlanListView" prefHeight="528.0" prefWidth="1057.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="lessonPlanListView" prefHeight="542.0" prefWidth="1065.0" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <Button fx:id="loadButton" mnemonicParsing="false" text="Load Button" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets top="20.0" />
-         </BorderPane.margin>
-      </Button>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="loadButton" mnemonicParsing="false" onAction="#openLessonPlan" text="Load Plan">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="editPlanBtn" mnemonicParsing="false" onAction="#openEditPage" text="Edit Plan">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="delPlanBtn" mnemonicParsing="false" onAction="#deletePlan" text="Delete Plan">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="saveAsBtn" mnemonicParsing="false" onAction="#menuActionSaveAs" text="Save As File" />
+         </children>
+      </HBox>
    </bottom>
 </BorderPane>

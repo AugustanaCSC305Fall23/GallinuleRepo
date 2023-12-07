@@ -10,8 +10,6 @@ public class TextSearchFilter implements CardFilter {
     public void setSearchCriteria(String searchCriteria) {
         this.searchCriteria = searchCriteria;
     }
-
-
     private final List<Card> allCards;
     private String searchCriteria;
 
@@ -72,6 +70,6 @@ public class TextSearchFilter implements CardFilter {
     }
 
     private List<Card> filterBySearchCriteria(List<Card> cards) {
-        return cards;
+        return search(searchCriteria);
     }
 }
