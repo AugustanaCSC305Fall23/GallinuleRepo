@@ -1,11 +1,10 @@
 package edu.augustana;
 
-import javafx.fxml.FXML;
 import javafx.print.*;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
-import java.io.IOException;
+import java.util.List;
 
 public class PrintGymFile {
 
