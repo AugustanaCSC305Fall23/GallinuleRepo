@@ -127,4 +127,5 @@ public class Card implements Serializable {
         return thumbnailView;
     }
 
+
 }

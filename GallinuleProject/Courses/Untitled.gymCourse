@@ -23,7 +23,8 @@
             "shoulder flexibility, "
           ]
         }
-      ]
+      ],
+      "lessonMap": {}
     },
     {
       "title": "Lesson2",
@@ -66,7 +67,8 @@
             "back salto, mailbox, "
           ]
         }
-      ]
+      ],
+      "lessonMap": {}
     },
     {
       "title": "Untitled(1)",
@@ -128,7 +130,8 @@
             "glide swing, slider, c shape, "
           ]
         }
-      ]
+      ],
+      "lessonMap": {}
     },
     {
       "title": "PlanPlan",
@@ -228,7 +231,8 @@
             "blocks, cartwheel, panel mat, lever, lunge, "
           ]
         }
-      ]
+      ],
+      "lessonMap": {}
     }
   ]
 }

@@ -5,15 +5,20 @@ import com.google.gson.GsonBuilder;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 
 public class LessonPlan implements Serializable {
     private String title;
-    private ArrayList<String> events;
     private List<Card> savedCards;
 
+    private HashMap<String, List<String>> lessonMap = new HashMap<>();
+    private static List<LessonPlan> allLessonPlans = new ArrayList<>();
+
+
     public LessonPlan(String title) {
+
         savedCards = new ArrayList<>();
 
         this.title = title;
@@ -56,7 +61,9 @@ public class LessonPlan implements Serializable {
         return gson.fromJson(reader,LessonPlan.class);
     }
 
-
+    public java.util.HashMap<String, List<String>> getLessonMap() {
+        return lessonMap;
+    }
 
     public List<Card> getSavedCards(){ return savedCards; }
     public String getTitle(){ return title; }

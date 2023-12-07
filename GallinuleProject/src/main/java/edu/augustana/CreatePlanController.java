@@ -18,9 +18,10 @@ import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CreatePlanController implements Initializable {
@@ -52,6 +53,8 @@ public class CreatePlanController implements Initializable {
 
     @FXML
     private ComboBox<String> eventCombo3;
+
+//    private List<ComboBox<String>> comboBoxList = ArrayList<>();
 
     @FXML
     private TextField titleBar;
@@ -103,6 +106,11 @@ public class CreatePlanController implements Initializable {
 
 
 
+    //HashMap lists
+    private List<String> event1;
+    private List<String> event2;
+    private List<String> event3;
+    //filter objects
 
     private ComboBox<String> genderFilter = new ComboBox<String>();
     private ComboBox<String> eventFilter = new ComboBox<String>();
@@ -154,8 +162,66 @@ public class CreatePlanController implements Initializable {
     }
 
     private void populateEventBox(ComboBox<String> box) {
+//        comboBoxList.add(eventCombo1);
+//        comboBoxList.add(eventCombo2);
+//        comboBoxList.add(eventCombo3);
         box.getItems().addAll(CardDatabase.getDB().getEventList());
+        eventBoxListener(box);
+    }
 
+    private void eventBoxListener(ComboBox<String> box){
+        box.setOnAction(event -> {
+
+        if(box.equals(eventCombo1)){
+            System.out.println("Combo1 changed");
+            if(currentLessonPlan.getLessonMap().containsKey(box.getValue())){
+                if(currentLessonPlan.getLessonMap().containsKey(box.getValue() + "2")){
+                    currentLessonPlan.getLessonMap().remove(eventCombo1.getValue());
+                    currentLessonPlan.getLessonMap().put(box.getValue() + "3", new ArrayList<String>());
+                } else {
+                    currentLessonPlan.getLessonMap().remove(eventCombo1.getValue());
+                    currentLessonPlan.getLessonMap().put(box.getValue() +"2", new ArrayList<String>());
+                }
+            } else {
+                System.out.println("properly removed");
+                currentLessonPlan.getLessonMap().remove(eventCombo1.getValue());
+                currentLessonPlan.getLessonMap().put(box.getValue(), new ArrayList<String>());
+            }
+        } else if(box.equals(eventCombo2)){
+            System.out.println("Combo2 changed");
+            if(currentLessonPlan.getLessonMap().containsKey(box.getValue())){
+                if(currentLessonPlan.getLessonMap().containsKey(box.getValue() + "2")){
+                    currentLessonPlan.getLessonMap().remove(eventCombo2.getValue());
+                    currentLessonPlan.getLessonMap().put(box.getValue() + "3", new ArrayList<String>());
+                } else {
+                    currentLessonPlan.getLessonMap().remove(eventCombo2.getValue());
+                    currentLessonPlan.getLessonMap().put(box.getValue() +"2", new ArrayList<String>());
+                }
+            } else {
+                System.out.println("properly removed");
+                currentLessonPlan.getLessonMap().remove(eventCombo2.getValue());
+                currentLessonPlan.getLessonMap().put(box.getValue(), new ArrayList<String>());
+            }
+        } else if(box.equals(eventCombo3)){
+            System.out.println("Combo3 changed");
+            if(currentLessonPlan.getLessonMap().containsKey(box.getValue())){
+                if(currentLessonPlan.getLessonMap().containsKey(box.getValue() + "2")){
+                    currentLessonPlan.getLessonMap().remove(eventCombo3.getValue());
+                    currentLessonPlan.getLessonMap().put(box.getValue() + "3", new ArrayList<String>());
+                } else {
+                    currentLessonPlan.getLessonMap().remove(eventCombo3.getValue());
+                    currentLessonPlan.getLessonMap().put(box.getValue() +"2", new ArrayList<String>());
+                }
+            } else {
+                System.out.println("properly removed");
+                currentLessonPlan.getLessonMap().remove(eventCombo3.getValue());
+                currentLessonPlan.getLessonMap().put(box.getValue(), new ArrayList<String>());
+            }
+        }
+
+
+
+        });
     }
 
 //    @FXML
@@ -192,24 +258,7 @@ public class CreatePlanController implements Initializable {
             cardHolder.setPrefWidth(80);
             cardHolder.getStyleClass().add("eventRow");
 
-            cardHolder.setOnMouseClicked(event -> {
-
-                codeCheck = searchCardList.getSelectionModel().getSelectedItem().getText().substring(0, searchCardList.getSelectionModel().getSelectedItem().getText().indexOf('-'));
-                equipment = CardDatabase.getCardByID(codeCheck).getEquipments().toString();
-                currentLessonPlan.saveCard(CardDatabase.getCardByID(codeCheck));
-                Tooltip img = new Tooltip("");
-
-                if (CardDatabase.getCardByID(codeCheck).getEquipments().toString().strip().equals("None")) {
-                    return;
-                }
-
-                existingCodeCheckToAdd();
-                cardHolder.setText(searchCardList.getSelectionModel().getSelectedItem().getText());
-                cardHolder.setWrapText(true);
-                cardHolder.setTooltip(img);
-                img.setGraphic(searchCardList.getSelectionModel().getSelectedItem().getTooltip().getGraphic());
-
-            });
+            cardHolderListener(cardHolder);
 
             pane.getChildren().add(cardHolder);
 
@@ -217,6 +266,41 @@ public class CreatePlanController implements Initializable {
     }
 
 
+
+    private void cardHolderListener(Label cardHolder){
+        eventCombo1.setValue("ALL");
+        eventCombo2.setValue("Floor");
+        eventCombo3.setValue("Beam");
+
+        currentLessonPlan.getLessonMap().put("ALL", new ArrayList<String>());
+        currentLessonPlan.getLessonMap().put("Floor", new ArrayList<String>());
+        currentLessonPlan.getLessonMap().put("Beam", new ArrayList<String>());
+        cardHolder.setOnMouseClicked(event -> {
+            codeCheck = searchCardList.getSelectionModel().getSelectedItem().getText().substring(0, searchCardList.getSelectionModel().getSelectedItem().getText().indexOf('-'));
+            if(cardHolder.getParent() == tilePane1){
+                currentLessonPlan.getLessonMap().get(eventCombo1.getValue()).add(codeCheck);
+            } else if(cardHolder.getParent() == tilePane2){
+                currentLessonPlan.getLessonMap().get(eventCombo2.getValue()).add(codeCheck);
+            } else if(cardHolder.getParent() == tilePane3){
+                currentLessonPlan.getLessonMap().get(eventCombo3.getValue()).add(codeCheck);
+            }
+
+            equipment = CardDatabase.getCardByID(codeCheck).getEquipments().toString();
+            currentLessonPlan.saveCard(CardDatabase.getCardByID(codeCheck));
+            Tooltip img = new Tooltip("");
+
+            if (CardDatabase.getCardByID(codeCheck).getEquipments().toString().strip().equals("None")) {
+                return;
+            }
+
+            existingCodeCheckToAdd();
+            cardHolder.setText(searchCardList.getSelectionModel().getSelectedItem().getText());
+            cardHolder.setWrapText(true);
+            cardHolder.setTooltip(img);
+            img.setGraphic(searchCardList.getSelectionModel().getSelectedItem().getTooltip().getGraphic());
+
+        });
+    }
 
 
 
@@ -266,6 +350,12 @@ public class CreatePlanController implements Initializable {
     public static LessonPlan getCurrentLessonPlan() {
         return currentLessonPlan;
     }
+
+
+
+//    public List<ComboBox<String>> getEventCombos(){
+//        return comboBoxList;
+//    }
 
 
     //FXML code

@@ -76,9 +76,10 @@ public class ViewAllCard {
         flowPaneCards.getChildren().clear();
 
         for (Card card : cards) {
-            ImageView imageView = card.createThumbnailImageView(); // or card.createThumbnailImageView() based on your requirement
+            ImageView imageView = card.createThumbnailImageView();
             CardView cardView = new CardView(imageView);
             cardView.setSpacingBetweenCards(spacingBetweenCards);
+
             flowPaneCards.getChildren().add(cardView);
         }
     }
