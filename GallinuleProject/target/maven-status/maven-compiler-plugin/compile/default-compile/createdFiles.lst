@@ -1,4 +1,5 @@
 edu\augustana\AboutPage.class
 module-info.class
+edu\augustana\PreviewTextOnlyController.class
 edu\augustana\LessonPlanController.class
 edu\augustana\CombinedAndFilter.class

@@ -23,7 +23,8 @@ public class CreatePlanController implements Initializable {
 
     @FXML
     public TextField searchTextField;
-
+    @FXML
+    private CheckBox textOnlyCheck;
 
     @FXML
     private ListView<Label> searchCardList;
@@ -57,6 +58,8 @@ public class CreatePlanController implements Initializable {
     @FXML
     private ComboBox<Object> filterBox;
 
+    private boolean textOnly;
+
     private static LessonPlan currentLessonPlan;
 
     private List<Card> allCards;
@@ -74,14 +77,18 @@ public class CreatePlanController implements Initializable {
 
     @FXML
     private void switchToPreview() throws IOException {
-
+        setTextOnly();
         handleTitleChange();
 
 
         // Add the current lesson plan to the list
         LessonPlan.getAllLessonPlans().add(currentLessonPlan);
+        if(currentLessonPlan.getTextOnly()){
+            App.setRoot("PreviewTextOnly");
+        } else {
+            App.setRoot("Preview");
+        }
 
-        App.setRoot("Preview");
     }
     //HashMap lists
     private List<String> event1;
@@ -130,6 +137,14 @@ public class CreatePlanController implements Initializable {
         });
     }
 
+
+
+    public void setTextOnly(){
+
+        currentLessonPlan.setTextOnlyPrint(textOnlyCheck.isSelected());
+
+    }
+
     private void populateEventBox(ComboBox<String> box) {
 //        comboBoxList.add(eventCombo1);
 //        comboBoxList.add(eventCombo2);
@@ -145,7 +160,6 @@ public class CreatePlanController implements Initializable {
             System.out.println("Combo1 changed");
             if(currentLessonPlan.getLessonMap().containsKey(box.getValue())){
                 if(currentLessonPlan.getLessonMap().containsKey(box.getValue() + "2")){
-                    currentLessonPlan.getLessonMap().remove(eventCombo1.getValue());
                     currentLessonPlan.getLessonMap().put(box.getValue() + "3", new ArrayList<String>());
                 } else {
                     currentLessonPlan.getLessonMap().remove(eventCombo1.getValue());

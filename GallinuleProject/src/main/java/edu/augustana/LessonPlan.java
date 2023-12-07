@@ -2,8 +2,6 @@ package edu.augustana;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import javafx.scene.control.PopupControl;
 
 
@@ -18,6 +16,7 @@ public class LessonPlan extends PopupControl implements Serializable {
     private List<Card> savedCards;
     private HashMap<String, List<String>> lessonMap = new HashMap<>();
     private static List<LessonPlan> allLessonPlans = new ArrayList<>();
+    private boolean textOnlyPrint;
 
     public LessonPlan(String title) {
 
@@ -41,6 +40,14 @@ public class LessonPlan extends PopupControl implements Serializable {
 
     public static List<LessonPlan> getAllLessonPlans() {
         return allLessonPlans;
+    }
+
+    public void setTextOnlyPrint(boolean change){
+        textOnlyPrint = change;
+    }
+
+    public boolean getTextOnly(){
+        return textOnlyPrint;
     }
 
     public void removeCard(Card removeCard){ savedCards.remove(removeCard); }

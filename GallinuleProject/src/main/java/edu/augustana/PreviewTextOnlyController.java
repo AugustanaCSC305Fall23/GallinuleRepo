@@ -4,13 +4,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -19,9 +20,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class Preview implements Initializable {
+public class PreviewTextOnlyController implements Initializable {
     public Button backButton;
     @FXML
     private AnchorPane printAnchor;
@@ -58,6 +58,8 @@ public class Preview implements Initializable {
     @FXML
     private Label titleLabel3;
 
+    @FXML
+    private VBox motherVBox;
 
     private List<VBox> printList = new ArrayList<>();
 
@@ -71,9 +73,7 @@ public class Preview implements Initializable {
         // Fetch all cards and populate the preview
         HashMap<String, List<String>> finishedCards = CreatePlanController.getCurrentLessonPlan().getLessonMap();
         titleLabel.setText(CreatePlanController.getCurrentLessonPlan().getTitle());
-        titleLabel2.setText(CreatePlanController.getCurrentLessonPlan().getTitle());
-        titleLabel3.setText(CreatePlanController.getCurrentLessonPlan().getTitle());
-//        previewLabel1.setText(
+
         populatePreview(finishedCards);
 
         // Set up the print button action
@@ -83,55 +83,26 @@ public class Preview implements Initializable {
 
     public void populatePreview(HashMap<String, List<String>> finishedCards) {
         final int[] count = {0};
-        List<FlowPane> tempListTile = new ArrayList<>();
-        List<Label> tempListEvent = new ArrayList<>(); //future use
-
-        tempListTile.add(previewTile1);
-        tempListTile.add(previewTile2);
-        tempListTile.add(previewTile3);
-        tempListEvent.add(eventLabel1);
-        tempListEvent.add(eventLabel2);
-        tempListEvent.add(eventLabel3);
-
+        motherVBox.setAlignment(Pos.TOP_CENTER);
+        List<VBox> populateList = new ArrayList<>();
         finishedCards.forEach((key, value) -> {
-
+            VBox temp = new VBox();
+            temp.setAlignment(Pos.TOP_CENTER);
+            Text tempText = new Text(key);
+            tempText.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
+            temp.getChildren().add(tempText);
             for (String code : value) {
-                VBox previewCardHolder = new VBox();
-
-                ImageView imageView = CardDatabase.getCardByID(code).createHighResolutionImageView();
-                CardView cardImg = new CardView(imageView);
-                cardImg.setFitWidth(250);
-                cardImg.setFitHeight(205);
-                Label eventText = new Label(CardDatabase.getCardByID(code).getEquipments().toString());
-                previewCardHolder.getChildren().add(cardImg);
-                previewCardHolder.getChildren().add(eventText);
-
-//                Text cardTitle = new Text(CardDatabase.getCardByID(code).getTitle());
-//                Label eventText = new Label(CardDatabase.getCardByID(code).getEquipments().toString());
-//                previewCardHolder.getChildren().add(cardTitle);
-//                previewCardHolder.getChildren().add(eventText);
-
-
-                previewCardHolder.setMinHeight(200);
-                previewCardHolder.setMinWidth(200);
-                previewCardHolder.setAlignment(Pos.CENTER);
-                previewCardHolder.getStyleClass().add("placeholder");
-                tempListTile.get(count[0]).getChildren().add(previewCardHolder);
-//                tempListEvent.get(count.get()).setText();
+                temp.getChildren().add(new Text(CardDatabase.getCardByID(code).getTitle() + " - " + CardDatabase.getCardByID(code).getEquipments()));
             }
             count[0]++;
+            populateList.add(temp);
         });
+        motherVBox.getChildren().addAll(populateList);
     }
 
     @FXML
     private void printPlan() {
-        printList = new ArrayList<>();
-        for(Node page: printAnchor.getChildren()){
-            if (page instanceof VBox) {
-                printList.add((VBox) page);
-            }
-        }
-        printer.printFile(printList);
+        printer.printFileTextOnly(printAnchor);
     }
 
     @FXML
