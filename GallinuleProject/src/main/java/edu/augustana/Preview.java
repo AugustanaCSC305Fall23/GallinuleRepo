@@ -102,7 +102,7 @@ public class Preview implements Initializable {
             tempVBox.getChildren().add(tempTitle);
 
             //each event
-            Text tempEvent = new Text(key.substring(0, key.length()-1));
+            Text tempEvent = new Text(key.substring(0, key.indexOf("-")));
             tempEvent.setFont(Font.font(25));
             tempVBox.getChildren().add(tempEvent);
 
