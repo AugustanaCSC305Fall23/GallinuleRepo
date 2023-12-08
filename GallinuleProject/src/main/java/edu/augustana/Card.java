@@ -120,7 +120,6 @@ public class Card implements Serializable {
         String folderName = getPackFolder();
         String thumbnailFilename = getImg().replace(".png", ".jpg");
         String thumbnailPath = "file:CardPacks/" + folderName + "/thumbs/" + thumbnailFilename;
-        System.out.println("Image thumbnail name : " + thumbnailPath);
         Image thumbnail = new Image(thumbnailPath);
         ImageView thumbnailView = new ImageView(thumbnail);
         thumbnailView.setFitHeight(CARD_SIZE);
