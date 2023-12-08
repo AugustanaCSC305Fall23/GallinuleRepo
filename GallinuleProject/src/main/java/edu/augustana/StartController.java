@@ -56,8 +56,8 @@ public class StartController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try { //start on the dashboard
-            switchWelcome();
+        try { //start on the CreatePlanScreen
+            switchCreatePlan();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -2,12 +2,16 @@ package edu.augustana;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -22,6 +26,10 @@ import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class CreatePlanController implements Initializable {
+    @FXML
+    private AnchorPane changeBorderAnchor;
+    @FXML
+    private BorderPane motherPane;
     @FXML
     private Button addNewRowButton;
     @FXML
@@ -126,7 +134,6 @@ public class CreatePlanController implements Initializable {
         populateListView(allCards);
         motherVBox.setAlignment(Pos.TOP_LEFT);
         createEventBox();
-
 
 
         populateFilterBox();
@@ -358,8 +365,6 @@ public class CreatePlanController implements Initializable {
 
     }
 
-
-
     private void menuActionSaveAs() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Lesson Plan File");
@@ -379,6 +384,5 @@ public class CreatePlanController implements Initializable {
             }
         }
     }
-
 }
 
