@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="printBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1275.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Preview">
+<BorderPane fx:id="printBorder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1275.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PreviewTextOnlyController">
    <bottom>
       <VBox prefHeight="97.0" prefWidth="1275.0" BorderPane.alignment="CENTER">
          <children>
@@ -21,9 +23,21 @@
    </bottom>
    <center>
       <ScrollPane fx:id="printScroll" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <content>
-            <VBox fx:id="motherVBox" prefHeight="1850.0" prefWidth="1255.0" />
-         </content>
+        <content>
+          <AnchorPane fx:id="printAnchor" minHeight="0.0" minWidth="0.0" prefHeight="1821.0" prefWidth="1255.0">
+               <children>
+                  <VBox fx:id="motherVBox" alignment="TOP_CENTER" layoutX="20.0" layoutY="19.0" prefHeight="1502.0" prefWidth="1200.0">
+                     <children>
+                        <Label fx:id="titleLabel" alignment="CENTER" prefHeight="53.0" prefWidth="775.0" text="Title">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </content>
       </ScrollPane>
    </center>
 </BorderPane>

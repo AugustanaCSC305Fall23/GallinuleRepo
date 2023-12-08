@@ -2,6 +2,7 @@ package edu.augustana;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javafx.scene.control.PopupControl;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class LessonPlan implements Serializable {
 
     private HashMap<String, List<String>> lessonMap = new HashMap<>();
     private static List<LessonPlan> allLessonPlans = new ArrayList<>();
+    private boolean textOnlyPrint;
 
 
     public LessonPlan(String title) {
@@ -43,6 +45,14 @@ public class LessonPlan implements Serializable {
 
 
 
+    public void setTextOnlyPrint(boolean change){
+        textOnlyPrint = change;
+    }
+
+    public boolean getTextOnly(){
+        return textOnlyPrint;
+    }
+
     public void removeCard(Card removeCard){ savedCards.remove(removeCard); }
 
 
@@ -68,6 +78,13 @@ public class LessonPlan implements Serializable {
     public List<Card> getSavedCards(){ return savedCards; }
     public String getTitle(){ return title; }
 
+    public void renameLesson(String newTitle){
+        title = newTitle;
+    }
+
+    public static List<LessonPlan> getAllLessonPlans(){
+        return allLessonPlans;
+    }
 
     @Override
     public String toString() {

@@ -12,16 +12,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.SingleCardView">
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane fx:id="printAnchor" prefHeight="348.0" prefWidth="638.0" BorderPane.alignment="CENTER">
          <children>
             <HBox layoutX="50.0" layoutY="40.0" prefHeight="308.0" prefWidth="445.0">
                <children>
-                  <HBox fx:id="printBox" prefHeight="331.0" prefWidth="445.0">
+                  <HBox fx:id="printBox" prefHeight="308.0" prefWidth="480.0">
                      <children>
-                        <ImageView fx:id="CardImgView" fitHeight="281.0" fitWidth="352.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox prefHeight="308.0" prefWidth="81.0">
+                        <VBox fx:id="printVbox" prefHeight="308.0" prefWidth="424.0">
+                           <children>
+                              <ImageView fx:id="CardImgView" fitHeight="310.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="308.0" prefWidth="192.0">
                            <children>
                               <Label text="Equipments:">
                                  <font>
@@ -31,7 +35,7 @@
                                     <Insets left="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <ListView fx:id="equipmentLV" prefHeight="200.0" prefWidth="200.0">
+                              <ListView fx:id="equipmentLV" prefHeight="181.0" prefWidth="72.0">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>

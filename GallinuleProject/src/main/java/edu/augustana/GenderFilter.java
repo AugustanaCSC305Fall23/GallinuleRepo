@@ -32,8 +32,6 @@ public class GenderFilter implements CardFilter {
     private List<Card> filterByGender(List<Card> cards) {
 
         String genderCodeChar = getGenderCodeChar(selectedGender);
-        System.out.println("gender Mapping: \"" + genderCodeChar + "\"" );
-
         if (genderCodeChar != null) {
             return cards.stream()
                     .filter(card -> (card.getGender().equalsIgnoreCase(genderCodeChar)

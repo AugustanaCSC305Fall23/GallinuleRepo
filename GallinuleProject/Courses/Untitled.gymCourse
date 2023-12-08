@@ -2,31 +2,6 @@
   "title": "Untitled",
   "lessons": [
     {
-      "title": "Untitled",
-      "savedCards": [
-        {
-          "code": "S30",
-          "event": "ALL",
-          "category": "Shapes",
-          "title": "Open Shoulder Drill",
-          "packFolder": "DEMO1",
-          "img": "2.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "ALL"
-          ],
-          "equipments": [
-            "Stick/Band"
-          ],
-          "keywords": [
-            "shoulder flexibility, "
-          ]
-        }
-      ],
-      "lessonMap": {}
-    },
-    {
       "title": "Lesson2",
       "savedCards": [
         {
@@ -68,7 +43,8 @@
           ]
         }
       ],
-      "lessonMap": {}
+      "lessonMap": {},
+      "textOnlyPrint": false
     },
     {
       "title": "New Test Plan",
@@ -201,7 +177,8 @@
           "H13 ",
           "W4"
         ]
-      }
+      },
+      "textOnlyPrint": false
     },
     {
       "title": "Untitled(2)",
@@ -334,7 +311,276 @@
           "W4",
           "H13 "
         ]
-      }
+      },
+      "textOnlyPrint": false
+    },
+    {
+      "title": "Untitled",
+      "savedCards": [
+        {
+          "code": "W4",
+          "event": "Floor",
+          "category": "Walkovers",
+          "title": "Front Walkover Over a Barrel",
+          "packFolder": "DEMO1",
+          "img": "5.png",
+          "gender": "F",
+          "modelSex": "F",
+          "level": [
+            "AB I"
+          ],
+          "equipments": [
+            "Barrel, elevated surface"
+          ],
+          "keywords": [
+            "walkover, split handstand, barrel, "
+          ]
+        },
+        {
+          "code": "BS9",
+          "event": "Floor",
+          "category": "Backward Salto",
+          "title": "Backward Flip Over Mailbox",
+          "packFolder": "DEMO1",
+          "img": "4.png",
+          "gender": "N",
+          "modelSex": "F",
+          "level": [
+            "AB"
+          ],
+          "equipments": [
+            "Mailbox"
+          ],
+          "keywords": [
+            "back salto, mailbox, "
+          ]
+        },
+        {
+          "code": "C3",
+          "event": "Floor",
+          "category": "Cartwheel Progressions",
+          "title": "Over a Mat with Foam Block",
+          "packFolder": "DEMO1",
+          "img": "8.png",
+          "gender": "N",
+          "modelSex": "F",
+          "level": [
+            "I"
+          ],
+          "equipments": [
+            "Panel Mat, Foam Block"
+          ],
+          "keywords": [
+            "blocks, cartwheel, panel mat, lever, lunge, "
+          ]
+        }
+      ],
+      "lessonMap": {
+        "Beam": [
+          "C3"
+        ],
+        "ALL": [
+          "W4"
+        ],
+        "Floor": [
+          "BS9"
+        ]
+      },
+      "textOnlyPrint": false
+    },
+    {
+      "title": "Print tester",
+      "savedCards": [
+        {
+          "code": "ER1",
+          "event": "Floor",
+          "category": "Endo Roll",
+          "title": "Endo Roll on Mat",
+          "packFolder": "DEMO2",
+          "img": "2.png",
+          "gender": "N",
+          "modelSex": "M",
+          "level": [
+            "I A"
+          ],
+          "equipments": [
+            "Panel Mat"
+          ],
+          "keywords": [
+            "Forward Roll, Endo, Straddle, Press, Presshandstand, Stalder, Cast Handstand"
+          ]
+        },
+        {
+          "code": "H8",
+          "event": "Floor",
+          "category": "Handstand",
+          "title": "Handstand Forward Roll",
+          "packFolder": "DEMO2",
+          "img": "4.png",
+          "gender": "N",
+          "modelSex": "M",
+          "level": [
+            "AB I"
+          ],
+          "equipments": [
+            "Floor"
+          ],
+          "keywords": [
+            "Handstand, Forward Roll, "
+          ]
+        },
+        {
+          "code": "FS4",
+          "event": "Floor",
+          "category": "Dive Roll",
+          "title": "Drive Roll",
+          "packFolder": "DEMO2",
+          "img": "1.png",
+          "gender": "N",
+          "modelSex": "M",
+          "level": [
+            "AB, I"
+          ],
+          "equipments": [
+            "8 incher, Soft Mat"
+          ],
+          "keywords": [
+            "Dive Roll, Punch"
+          ]
+        },
+        {
+          "code": "RO8",
+          "event": "Floor",
+          "category": "Round Off",
+          "title": "Round Off Jump Back to Hollow",
+          "packFolder": "DEMO2",
+          "img": "5.png",
+          "gender": "N",
+          "modelSex": "M",
+          "level": [
+            "I A"
+          ],
+          "equipments": [
+            "8 incher, Soft Mat"
+          ],
+          "keywords": [
+            "Round off, Backhandspring, Rebound, Hollow"
+          ]
+        },
+        {
+          "code": "PH3",
+          "event": "Pommel Horse",
+          "category": "Mushroom",
+          "title": "Jump Through Circles",
+          "packFolder": "DEMO2",
+          "img": "8.png",
+          "gender": "M",
+          "modelSex": "M",
+          "level": [
+            "AB I"
+          ],
+          "equipments": [
+            "Mushroom"
+          ],
+          "keywords": [
+            "Mushroom, Circles, 1/4 turns"
+          ]
+        },
+        {
+          "code": "RO8",
+          "event": "Floor",
+          "category": "Round Off",
+          "title": "Round Off Jump Back to Hollow",
+          "packFolder": "DEMO2",
+          "img": "5.png",
+          "gender": "N",
+          "modelSex": "M",
+          "level": [
+            "I A"
+          ],
+          "equipments": [
+            "8 incher, Soft Mat"
+          ],
+          "keywords": [
+            "Round off, Backhandspring, Rebound, Hollow"
+          ]
+        },
+        {
+          "code": "H10A",
+          "event": "Floor",
+          "category": "Press",
+          "title": "Straddle Press Drill",
+          "packFolder": "DEMO2",
+          "img": "3.png",
+          "gender": "N",
+          "modelSex": "M",
+          "level": [
+            "I A"
+          ],
+          "equipments": [
+            "Panel Mat/Resi"
+          ],
+          "keywords": [
+            "Straddle, Press, Presshandstand, Stalder, Cast Handstand"
+          ]
+        },
+        {
+          "code": "RO8",
+          "event": "Floor",
+          "category": "Round Off",
+          "title": "Round Off Jump Back to Hollow",
+          "packFolder": "DEMO2",
+          "img": "5.png",
+          "gender": "N",
+          "modelSex": "M",
+          "level": [
+            "I A"
+          ],
+          "equipments": [
+            "8 incher, Soft Mat"
+          ],
+          "keywords": [
+            "Round off, Backhandspring, Rebound, Hollow"
+          ]
+        },
+        {
+          "code": "PH13",
+          "event": "Pommel Horse",
+          "category": "Pommel Horse",
+          "title": "Around the Worlds",
+          "packFolder": "DEMO2",
+          "img": "7.png",
+          "gender": "M",
+          "modelSex": "M",
+          "level": [
+            "I A"
+          ],
+          "equipments": [
+            "Pommel Horse without handles"
+          ],
+          "keywords": [
+            "Shoulder Strength, Pommel Horse"
+          ]
+        }
+      ],
+      "lessonMap": {
+        "Beam2": [
+          "PH3",
+          "RO8",
+          "H10A"
+        ],
+        "Horizontal Bar3": [
+          "RO8",
+          "PH13"
+        ],
+        "ALL1": [
+          "ER1",
+          "H8",
+          "FS4",
+          "RO8"
+        ]
+      },
+      "textOnlyPrint": false
     }
   ]
 }

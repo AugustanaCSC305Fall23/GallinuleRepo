@@ -12,10 +12,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SingleCardView extends BorderPane implements Initializable {
@@ -29,7 +32,7 @@ public class SingleCardView extends BorderPane implements Initializable {
     private Button printBtn;
 
     @FXML
-    private ImageView cardImgView;
+    private ImageView cardImgView ;
 
     @FXML
     private ListView equipmentLV;
@@ -39,6 +42,7 @@ public class SingleCardView extends BorderPane implements Initializable {
     private PrintGymFile printer = new PrintGymFile();
     @FXML
     private AnchorPane printAnchor;
+    @FXML private VBox printVBox;
 
     public SingleCardView() {
         // Use the parameterized constructor with a null card initially
@@ -49,18 +53,24 @@ public class SingleCardView extends BorderPane implements Initializable {
         this.card = card;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SingleCardView.fxml"));
-//        FXMLLoader fxmlLoader = new FXMLLoader();
-//        fxmlLoader.setLocation(getClass().getResource("SingleCardView.fxml"));
+        // Set the controller to this instance
+        fxmlLoader.setController(this);
+        try {
+            // Load the FXML content and initialize the UI components
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException("Unable to load file", exception);
+        }
 
-        //fxmlLoader.setRoot(this);
-        //fxmlLoader.setController(this);
-//        try {
-//            fxmlLoader.load();
-//        } catch (IOException exception) {
-//            throw new RuntimeException("Unable to load file", exception);
-//        }
 
+
+        // Retrieve the root from the FXMLLoader
+        BorderPane root = fxmlLoader.getRoot();
+
+        // Set the root as the content of this BorderPane
+        this.setCenter(root);
     }
+
 
     public void setCard(Card card){
         this.card = card;
@@ -81,7 +91,9 @@ public class SingleCardView extends BorderPane implements Initializable {
 
     @FXML
     private void printCard() {
-        printer.printFile(printAnchor);
+        List<VBox> VboxToPrint = new ArrayList<>();
+        VboxToPrint.add(printVBox);
+        printer.printFile(VboxToPrint);
         new Alert(Alert.AlertType.INFORMATION, "Your Card has been sent to print successfully!").show();
     }
 
@@ -105,9 +117,6 @@ public class SingleCardView extends BorderPane implements Initializable {
         stage.close();
     }
 
-    public Button getCloseBtn() {
-        return closeBtn;
-    }
 
     public BorderPane getRootBorderPane() {
         return this;
@@ -116,7 +125,7 @@ public class SingleCardView extends BorderPane implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setCard(card);
-        cardImgView.setImage(card.createHighResolutionImageView().getImage());
+        cardImgView = card.createHighResolutionImageView();
         equipmentLV.setItems(FXCollections.observableArrayList(card.getEquipments()));
         if (App.getFavorites().contains(card)) {
             favoriteBtn.setSelected(true);

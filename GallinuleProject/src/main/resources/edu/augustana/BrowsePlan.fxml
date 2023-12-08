@@ -44,11 +44,6 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="addNewPlanBtn" mnemonicParsing="false" onAction="#switchToCreatePage" text="Add New Plan">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Button>
             <Button fx:id="editPlanBtn" mnemonicParsing="false" onAction="#openEditPage" text="Edit Plan">
                <HBox.margin>
                   <Insets right="20.0" />

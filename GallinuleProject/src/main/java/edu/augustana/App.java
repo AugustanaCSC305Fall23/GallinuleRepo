@@ -59,8 +59,8 @@ public class App extends Application {
 
         addCardsFromCardPacksDirectory("CardPacks");
 
-      //  favorites = FavoriteSet.loadFromFile();
-        favorites = new FavoriteSet();
+        favorites = FavoriteSet.loadFromFile();
+       // favorites = new FavoriteSet();
 
         currentOpenCourseFile = new File("Courses/Untitled.gymCourse");
         currentOpenCourse = Course.loadCourse(currentOpenCourseFile);
