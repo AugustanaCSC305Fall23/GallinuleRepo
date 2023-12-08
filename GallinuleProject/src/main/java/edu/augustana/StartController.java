@@ -42,15 +42,22 @@ public class StartController implements Initializable {
     @FXML
     private Text AppTitle;
 
+    private static LessonPlan holdUntilDiscardLessonPlan;
+
     private int x = 0;
 
+    public static LessonPlan getHoldUntilDiscardLessonPlan(){
+        return holdUntilDiscardLessonPlan;
+    }
 
-
+    public static void setHoldUntilDiscardLessonPlan(LessonPlan newLP){
+        holdUntilDiscardLessonPlan = newLP;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try { //start on the dashboard
-            switchCreatePlan();
+            switchWelcome();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -119,10 +126,11 @@ public class StartController implements Initializable {
     @FXML
     public void loadPage(String page) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(App.class.getResource(page + ".fxml"));
-        Parent root = loader.load();
-        bp.setCenter(root);
+            FXMLLoader loader = new FXMLLoader(App.class.getResource(page + ".fxml"));
+            Parent root = loader.load();
+            bp.setCenter(root);
 
     }
+
 
 }

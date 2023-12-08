@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -25,7 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Preview implements Initializable {
     public Button backButton;
     @FXML
-    private AnchorPane printAnchor;
+    private VBox motherVBox;
     private LessonPlan lessonPlan;
     @FXML
     private FlowPane flowPaneCards;
@@ -36,12 +37,6 @@ public class Preview implements Initializable {
     private Label previewLabel2;
     @FXML
     private Button printButton;
-    @FXML
-    private FlowPane previewTile1;
-    @FXML
-    private FlowPane previewTile2;
-    @FXML
-    private FlowPane previewTile3;
     @FXML
     private Label eventLabel1;
 
@@ -80,9 +75,7 @@ public class Preview implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Fetch all cards and populate the preview
         HashMap<String, List<String>> finishedCards = CreatePlanController.getCurrentLessonPlan().getLessonMap();
-        titleLabel.setText(CreatePlanController.getCurrentLessonPlan().getTitle());
-        titleLabel2.setText(CreatePlanController.getCurrentLessonPlan().getTitle());
-        titleLabel3.setText(CreatePlanController.getCurrentLessonPlan().getTitle());
+
 //        previewLabel1.setText(
         populatePreview(finishedCards);
 
@@ -92,19 +85,30 @@ public class Preview implements Initializable {
     }
 
     public void populatePreview(HashMap<String, List<String>> finishedCards) {
-        final int[] count = {0};
-        List<FlowPane> tempListTile = new ArrayList<>();
-        List<Label> tempListEvent = new ArrayList<>(); //future use
-
-        tempListTile.add(previewTile1);
-        tempListTile.add(previewTile2);
-        tempListTile.add(previewTile3);
-        tempListEvent.add(eventLabel1);
-        tempListEvent.add(eventLabel2);
-        tempListEvent.add(eventLabel3);
-
+        motherVBox.setAlignment(Pos.TOP_CENTER);
+        List<VBox> populateList = new ArrayList<>();
         finishedCards.forEach((key, value) -> {
+            if(finishedCards.get(key).isEmpty()){
+                return; //only creates pages for filled rows
+            }
+            //each page
+            VBox tempVBox = new VBox();
+            tempVBox.setAlignment(Pos.TOP_CENTER);
 
+            //each title
+            Text tempTitle = new Text(CreatePlanController.getCurrentLessonPlan().getTitle());
+            tempTitle.setFont(Font.font(36));
+            tempTitle.setText(CreatePlanController.getCurrentLessonPlan().getTitle());
+            tempVBox.getChildren().add(tempTitle);
+
+            //each event
+            Text tempEvent = new Text(key.substring(0, key.length()-1));
+            tempEvent.setFont(Font.font(25));
+            tempVBox.getChildren().add(tempEvent);
+
+            //place to display the cards
+            FlowPane cardShelf = new FlowPane();
+            tempVBox.getChildren().add(cardShelf);
             for (String code : value) {
                 VBox previewCardHolder = new VBox();
 
@@ -112,31 +116,24 @@ public class Preview implements Initializable {
                 CardView cardImg = new CardView(imageView);
                 cardImg.setFitWidth(250);
                 cardImg.setFitHeight(205);
-                Label eventText = new Label(CardDatabase.getCardByID(code).getEquipments().toString());
+                Label equipmentText = new Label(CardDatabase.getCardByID(code).getEquipments().toString());
                 previewCardHolder.getChildren().add(cardImg);
-                previewCardHolder.getChildren().add(eventText);
-
-//                Text cardTitle = new Text(CardDatabase.getCardByID(code).getTitle());
-//                Label eventText = new Label(CardDatabase.getCardByID(code).getEquipments().toString());
-//                previewCardHolder.getChildren().add(cardTitle);
-//                previewCardHolder.getChildren().add(eventText);
-
-
+                previewCardHolder.getChildren().add(equipmentText);
                 previewCardHolder.setMinHeight(200);
                 previewCardHolder.setMinWidth(200);
                 previewCardHolder.setAlignment(Pos.CENTER);
                 previewCardHolder.getStyleClass().add("placeholder");
-                tempListTile.get(count[0]).getChildren().add(previewCardHolder);
-//                tempListEvent.get(count.get()).setText();
+                cardShelf.getChildren().add(previewCardHolder);
             }
-            count[0]++;
+            populateList.add(tempVBox);
         });
+        motherVBox.getChildren().addAll(populateList);
     }
 
     @FXML
     private void printPlan() {
         printList = new ArrayList<>();
-        for(Node page: printAnchor.getChildren()){
+        for(Node page: motherVBox.getChildren()){
             if (page instanceof VBox) {
                 printList.add((VBox) page);
             }

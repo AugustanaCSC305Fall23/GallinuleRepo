@@ -2,35 +2,34 @@ package edu.augustana;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class CreatePlanController implements Initializable {
-
+    @FXML
+    private Button addNewRowButton;
     @FXML
     public TextField searchTextField;
     @FXML
     private CheckBox textOnlyCheck;
-
+    @FXML
+    private VBox motherVBox;
     @FXML
     private ListView<Label> searchCardList;
 
@@ -77,9 +76,9 @@ public class CreatePlanController implements Initializable {
     private Button helpBtn;
 
 
-    
+    int rowCount = 1;
 
-
+    String beforeEventChange;
     private static File currentLessonPlanFile = null;
 
 
@@ -97,11 +96,6 @@ public class CreatePlanController implements Initializable {
             App.setRoot("Preview");
         }
     }
-
-    //HashMap lists
-    private List<String> event1;
-    private List<String> event2;
-    private List<String> event3;
     //filter objects
 
     private ComboBox<String> genderFilter = new ComboBox<String>();
@@ -130,12 +124,11 @@ public class CreatePlanController implements Initializable {
         textSearchFilter = new TextSearchFilter(allCards, "");
         currentLessonPlan = new LessonPlan();
         populateListView(allCards);
-        populateEventRows(tilePane1); //remove parameters. unnecessary (note for myself)
-        populateEventRows(tilePane2);
-        populateEventRows(tilePane3);
-        populateEventBox(eventCombo1);
-        populateEventBox(eventCombo2);
-        populateEventBox(eventCombo3);
+        motherVBox.setAlignment(Pos.TOP_LEFT);
+        createEventBox();
+
+
+
         populateFilterBox();
 
         Tooltip tooltip = new Tooltip("This the Crete Plan Page."+"\n" + "Double click on " +
@@ -153,6 +146,35 @@ public class CreatePlanController implements Initializable {
         });
     }
 
+    private void createEventBox() {
+        VBox tempVBox = new VBox();
+        tempVBox.setAlignment(Pos.BOTTOM_LEFT);
+        tempVBox.setPrefHeight(150);
+        //event selector
+        ComboBox<String> tempCombo = new ComboBox<String>();
+        tempCombo.setPrefWidth(220);
+        tempCombo.setPrefHeight(40);
+        tempCombo.getStyleClass().add("comboBox");
+        tempCombo.setValue("ALL"+rowCount);
+        currentLessonPlan.getLessonMap().put("ALL"+rowCount, new ArrayList<String>());
+        populateEventBox(tempCombo);
+        //event row
+        TilePane tempTile = new TilePane();
+        tempTile.setPrefWidth(645);
+        tempTile.setPrefHeight(100);
+        tempTile.getStyleClass().add("cardHolder");
+        populateEventRows(tempTile, tempCombo);
+
+        tempVBox.getChildren().add(tempCombo);
+        tempVBox.getChildren().add(tempTile);
+        motherVBox.getChildren().add(tempVBox);
+    }
+    @FXML
+    public void addNewRow(){
+        rowCount++;
+        createEventBox();
+    }
+
     public void setTextOnly(){
 
         currentLessonPlan.setTextOnlyPrint(textOnlyCheck.isSelected());
@@ -160,65 +182,27 @@ public class CreatePlanController implements Initializable {
     }
 
     private void populateEventBox(ComboBox<String> box) {
-//        comboBoxList.add(eventCombo1);
-//        comboBoxList.add(eventCombo2);
-//        comboBoxList.add(eventCombo3);
-        box.getItems().addAll(CardDatabase.getDB().getEventList());
-        eventBoxListener(box);
+        List<String> eventList = CardDatabase.getDB().getEventList();
+        for(String event: eventList){
+            event = String.format("%s%d", event, rowCount);
+            box.getItems().add(event);
+        }
+        box.setOnMouseClicked(event -> {
+            beforeEventChange = box.getValue();
+        });
+
+        box.setOnAction(event -> {
+            currentLessonPlan.getLessonMap().put(box.getValue(), currentLessonPlan.getLessonMap().get(beforeEventChange));
+            currentLessonPlan.getLessonMap().remove(beforeEventChange);
+        });
+
     }
 
     private void eventBoxListener(ComboBox<String> box){
-        box.setOnAction(event -> {
-
-        if(box.equals(eventCombo1)){
-            System.out.println("Combo1 changed");
-            if(currentLessonPlan.getLessonMap().containsKey(box.getValue())){
-                if(currentLessonPlan.getLessonMap().containsKey(box.getValue() + "2")){
-                    currentLessonPlan.getLessonMap().put(box.getValue() + "3", new ArrayList<String>());
-                } else {
-                    currentLessonPlan.getLessonMap().remove(eventCombo1.getValue());
-                    currentLessonPlan.getLessonMap().put(box.getValue() +"2", new ArrayList<String>());
-                }
-            } else {
-                System.out.println("properly removed");
-                currentLessonPlan.getLessonMap().remove(eventCombo1.getValue());
-                currentLessonPlan.getLessonMap().put(box.getValue(), new ArrayList<String>());
-            }
-        } else if(box.equals(eventCombo2)){
-            System.out.println("Combo2 changed");
-            if(currentLessonPlan.getLessonMap().containsKey(box.getValue())){
-                if(currentLessonPlan.getLessonMap().containsKey(box.getValue() + "2")){
-                    currentLessonPlan.getLessonMap().remove(eventCombo2.getValue());
-                    currentLessonPlan.getLessonMap().put(box.getValue() + "3", new ArrayList<String>());
-                } else {
-                    currentLessonPlan.getLessonMap().remove(eventCombo2.getValue());
-                    currentLessonPlan.getLessonMap().put(box.getValue() +"2", new ArrayList<String>());
-                }
-            } else {
-                System.out.println("properly removed");
-                currentLessonPlan.getLessonMap().remove(eventCombo2.getValue());
-                currentLessonPlan.getLessonMap().put(box.getValue(), new ArrayList<String>());
-            }
-        } else if(box.equals(eventCombo3)){
-            System.out.println("Combo3 changed");
-            if(currentLessonPlan.getLessonMap().containsKey(box.getValue())){
-                if(currentLessonPlan.getLessonMap().containsKey(box.getValue() + "2")){
-                    currentLessonPlan.getLessonMap().remove(eventCombo3.getValue());
-                    currentLessonPlan.getLessonMap().put(box.getValue() + "3", new ArrayList<String>());
-                } else {
-                    currentLessonPlan.getLessonMap().remove(eventCombo3.getValue());
-                    currentLessonPlan.getLessonMap().put(box.getValue() +"2", new ArrayList<String>());
-                }
-            } else {
-                System.out.println("properly removed");
-                currentLessonPlan.getLessonMap().remove(eventCombo3.getValue());
-                currentLessonPlan.getLessonMap().put(box.getValue(), new ArrayList<String>());
-            }
-        }
 
 
 
-        });
+
     }
 
 
@@ -243,41 +227,32 @@ public class CreatePlanController implements Initializable {
     }
 
 
-    private void populateEventRows(TilePane pane){
+    private void populateEventRows(TilePane pane, ComboBox<String> eventCombo){
 
         for (int i = 0; i < 8; i++) {
+            VBox removeHolder = new VBox();
+            removeHolder.setAlignment(Pos.TOP_CENTER);
             Label cardHolder = new Label("+");
             cardHolder.setPrefHeight(100);
             cardHolder.setPrefWidth(80);
             cardHolder.getStyleClass().add("eventRow");
+            removeHolder.getChildren().add(cardHolder);
 
-            cardHolderListener(cardHolder);
+            cardHolderListener(cardHolder, eventCombo, removeHolder);
 
-            pane.getChildren().add(cardHolder);
+            pane.getChildren().add(removeHolder);
 
         }
     }
 
 
 
-    private void cardHolderListener(Label cardHolder){
-        eventCombo1.setValue("ALL");
-        eventCombo2.setValue("Floor");
-        eventCombo3.setValue("Beam");
+    private void cardHolderListener(Label cardHolder, ComboBox<String> eventBox, VBox removeHolder){
 
-        currentLessonPlan.getLessonMap().put("ALL", new ArrayList<String>());
-        currentLessonPlan.getLessonMap().put("Floor", new ArrayList<String>());
-        currentLessonPlan.getLessonMap().put("Beam", new ArrayList<String>());
         cardHolder.setOnMouseClicked(event -> {
             codeCheck = searchCardList.getSelectionModel().getSelectedItem().getText().substring(0, searchCardList.getSelectionModel().getSelectedItem().getText().indexOf('-'));
-            if(cardHolder.getParent() == tilePane1){
-                currentLessonPlan.getLessonMap().get(eventCombo1.getValue()).add(codeCheck);
-            } else if(cardHolder.getParent() == tilePane2){
-                currentLessonPlan.getLessonMap().get(eventCombo2.getValue()).add(codeCheck);
-            } else if(cardHolder.getParent() == tilePane3){
-                currentLessonPlan.getLessonMap().get(eventCombo3.getValue()).add(codeCheck);
-            }
 
+            currentLessonPlan.getLessonMap().get(eventBox.getValue()).add(codeCheck);
             equipment = CardDatabase.getCardByID(codeCheck).getEquipments().toString();
             currentLessonPlan.saveCard(CardDatabase.getCardByID(codeCheck));
             Tooltip img = new Tooltip("");
@@ -291,6 +266,19 @@ public class CreatePlanController implements Initializable {
             cardHolder.setWrapText(true);
             cardHolder.setTooltip(img);
             img.setGraphic(searchCardList.getSelectionModel().getSelectedItem().getTooltip().getGraphic());
+            cardHolder.setDisable(true);
+            double sceneX = cardHolder.getLayoutX();
+            double sceneY = cardHolder.getLayoutY();
+
+            Button removeButton = new Button("remove");
+            removeButton.getStyleClass().add("eventRow");
+            removeHolder.getChildren().add(removeButton);
+            removeButton.setOnMouseClicked(event2 -> {
+                cardHolder.setDisable(false);
+                removeHolder.getChildren().remove(removeButton);
+                currentLessonPlan.getLessonMap().get(eventBox.getValue()).remove(cardHolder.getText().substring(0, cardHolder.getText().indexOf("-")));
+                cardHolder.setText("+");
+            });
 
         });
     }

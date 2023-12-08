@@ -39,6 +39,7 @@
         -fx-border-radius: 10;
         -fx-text-alignment: center;
         -fx-alignment: center;
+        -fx-background-color: transparent;
 }
 
 .eventRow:hover{
@@ -48,4 +49,10 @@
 .placeholder{
     -fx-border-radius: 5;
     -fx-border-color: black;
+}
+
+.comboBox{
+    -fx-border-radius: 30;
+    -fx-background-color: transparent;
+    -fx-border-color: #f09
 }

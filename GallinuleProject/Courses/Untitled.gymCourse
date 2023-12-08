@@ -313,6 +313,80 @@
         ]
       },
       "textOnlyPrint": false
+    },
+    {
+      "title": "Untitled",
+      "savedCards": [
+        {
+          "code": "W4",
+          "event": "Floor",
+          "category": "Walkovers",
+          "title": "Front Walkover Over a Barrel",
+          "packFolder": "DEMO1",
+          "img": "5.png",
+          "gender": "F",
+          "modelSex": "F",
+          "level": [
+            "AB I"
+          ],
+          "equipments": [
+            "Barrel, elevated surface"
+          ],
+          "keywords": [
+            "walkover, split handstand, barrel, "
+          ]
+        },
+        {
+          "code": "BS9",
+          "event": "Floor",
+          "category": "Backward Salto",
+          "title": "Backward Flip Over Mailbox",
+          "packFolder": "DEMO1",
+          "img": "4.png",
+          "gender": "N",
+          "modelSex": "F",
+          "level": [
+            "AB"
+          ],
+          "equipments": [
+            "Mailbox"
+          ],
+          "keywords": [
+            "back salto, mailbox, "
+          ]
+        },
+        {
+          "code": "C3",
+          "event": "Floor",
+          "category": "Cartwheel Progressions",
+          "title": "Over a Mat with Foam Block",
+          "packFolder": "DEMO1",
+          "img": "8.png",
+          "gender": "N",
+          "modelSex": "F",
+          "level": [
+            "I"
+          ],
+          "equipments": [
+            "Panel Mat, Foam Block"
+          ],
+          "keywords": [
+            "blocks, cartwheel, panel mat, lever, lunge, "
+          ]
+        }
+      ],
+      "lessonMap": {
+        "Beam": [
+          "C3"
+        ],
+        "ALL": [
+          "W4"
+        ],
+        "Floor": [
+          "BS9"
+        ]
+      },
+      "textOnlyPrint": false
     }
   ]
 }

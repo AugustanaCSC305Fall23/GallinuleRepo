@@ -2,7 +2,9 @@ package edu.augustana;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -59,6 +61,7 @@ public class LessonPlanController implements Initializable {
             CreatePlanController controller = new CreatePlanController();
             controller.switchToPreview();
         }
+
     }
 
     @FXML
@@ -67,8 +70,8 @@ public class LessonPlanController implements Initializable {
         if (selectedLessonPlan != null) {
 
             CreatePlanController.currentLessonPlan = selectedLessonPlan;
-            App.setRoot("CreatePlan");
 
+            App.setRoot("CreatePlan");
         } else {
             new Alert(Alert.AlertType.WARNING, "Please select a plan to edit first!").show();
         }

@@ -82,19 +82,18 @@ public class PreviewTextOnlyController implements Initializable {
     }
 
     public void populatePreview(HashMap<String, List<String>> finishedCards) {
-        final int[] count = {0};
         motherVBox.setAlignment(Pos.TOP_CENTER);
         List<VBox> populateList = new ArrayList<>();
         finishedCards.forEach((key, value) -> {
             VBox temp = new VBox();
             temp.setAlignment(Pos.TOP_CENTER);
-            Text tempText = new Text(key);
+            Text tempText = new Text(key.substring(0, key.length()-1));
             tempText.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
             temp.getChildren().add(tempText);
             for (String code : value) {
                 temp.getChildren().add(new Text(CardDatabase.getCardByID(code).getTitle() + " - " + CardDatabase.getCardByID(code).getEquipments()));
             }
-            count[0]++;
+
             populateList.add(temp);
         });
         motherVBox.getChildren().addAll(populateList);
