@@ -131,7 +131,7 @@ public class CreatePlanController implements Initializable {
 
         populateFilterBox();
 
-        Tooltip tooltip = new Tooltip("This the Crete Plan Page."+"\n" + "Double click on " +
+        Tooltip tooltip = new Tooltip("This the Create Plan Page."+"\n" + "Double click on " +
                 "'Untitled' Title bar to change the Title. "+
                 "\n"+ "Click on the cards you want in your plan and the cards stock you want to place it in" +"\n");
         helpBtn.setTooltip(tooltip);
@@ -155,8 +155,8 @@ public class CreatePlanController implements Initializable {
         tempCombo.setPrefWidth(220);
         tempCombo.setPrefHeight(40);
         tempCombo.getStyleClass().add("comboBox");
-        tempCombo.setValue("ALL"+rowCount);
-        currentLessonPlan.getLessonMap().put("ALL"+rowCount, new ArrayList<String>());
+        tempCombo.setValue("ALL-"+rowCount);
+        currentLessonPlan.getLessonMap().put("ALL-"+rowCount, new ArrayList<String>());
         populateEventBox(tempCombo);
         //event row
         TilePane tempTile = new TilePane();
@@ -184,7 +184,7 @@ public class CreatePlanController implements Initializable {
     private void populateEventBox(ComboBox<String> box) {
         List<String> eventList = CardDatabase.getDB().getEventList();
         for(String event: eventList){
-            event = String.format("%s%d", event, rowCount);
+            event = String.format("%s-%d", event, rowCount);
             box.getItems().add(event);
         }
         box.setOnMouseClicked(event -> {
@@ -195,13 +195,6 @@ public class CreatePlanController implements Initializable {
             currentLessonPlan.getLessonMap().put(box.getValue(), currentLessonPlan.getLessonMap().get(beforeEventChange));
             currentLessonPlan.getLessonMap().remove(beforeEventChange);
         });
-
-    }
-
-    private void eventBoxListener(ComboBox<String> box){
-
-
-
 
     }
 
@@ -278,6 +271,7 @@ public class CreatePlanController implements Initializable {
                 removeHolder.getChildren().remove(removeButton);
                 currentLessonPlan.getLessonMap().get(eventBox.getValue()).remove(cardHolder.getText().substring(0, cardHolder.getText().indexOf("-")));
                 cardHolder.setText("+");
+                equipmentList.getItems().remove(codeCheck + "- " + CardDatabase.getCardByID(codeCheck).getEquipments());
             });
 
         });
