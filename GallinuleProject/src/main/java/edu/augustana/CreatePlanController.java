@@ -136,7 +136,7 @@ public class CreatePlanController implements Initializable {
 
         populateFilterBox();
 
-        Tooltip tooltip = new Tooltip("This the Crete Plan Page."+"\n" + "Double click on " +
+        Tooltip tooltip = new Tooltip("This the Create Plan Page."+"\n" + "Double click on " +
                 "'Untitled' Title bar to change the Title. "+
                 "\n"+ "Click on the cards you want in your plan and the cards stock you want to place it in" +"\n");
         helpBtn.setTooltip(tooltip);
@@ -149,6 +149,24 @@ public class CreatePlanController implements Initializable {
                 handleSearch();
             }
         });
+
+        genderFilter.setOnAction(event -> {
+            applyGenderFilter(genderFilter.getValue());
+        });
+
+        eventFilter.setOnAction(event -> {
+            applyEventFilter(eventFilter.getValue());
+        });
+
+        levelFilter.setOnAction(event -> {
+            applyLevelFilter(levelFilter.getValue());
+        });
+
+        modelFilter.setOnAction(event -> {
+            applyModelSexFilter(modelFilter.getValue());
+        });
+
+
     }
 
     private void createEventBox() {
@@ -160,8 +178,8 @@ public class CreatePlanController implements Initializable {
         tempCombo.setPrefWidth(220);
         tempCombo.setPrefHeight(40);
         tempCombo.getStyleClass().add("comboBox");
-        tempCombo.setValue("ALL"+rowCount);
-        currentLessonPlan.getLessonMap().put("ALL"+rowCount, new ArrayList<String>());
+        tempCombo.setValue("ALL-"+rowCount);
+        currentLessonPlan.getLessonMap().put("ALL-"+rowCount, new ArrayList<String>());
         populateEventBox(tempCombo);
         //event row
         TilePane tempTile = new TilePane();
@@ -189,7 +207,7 @@ public class CreatePlanController implements Initializable {
     private void populateEventBox(ComboBox<String> box) {
         List<String> eventList = CardDatabase.getDB().getEventList();
         for(String event: eventList){
-            event = String.format("%s%d", event, rowCount);
+            event = String.format("%s-%d", event, rowCount);
             box.getItems().add(event);
         }
         box.setOnMouseClicked(event -> {
@@ -200,13 +218,6 @@ public class CreatePlanController implements Initializable {
             currentLessonPlan.getLessonMap().put(box.getValue(), currentLessonPlan.getLessonMap().get(beforeEventChange));
             currentLessonPlan.getLessonMap().remove(beforeEventChange);
         });
-
-    }
-
-    private void eventBoxListener(ComboBox<String> box){
-
-
-
 
     }
 
@@ -283,6 +294,7 @@ public class CreatePlanController implements Initializable {
                 removeHolder.getChildren().remove(removeButton);
                 currentLessonPlan.getLessonMap().get(eventBox.getValue()).remove(cardHolder.getText().substring(0, cardHolder.getText().indexOf("-")));
                 cardHolder.setText("+");
+                equipmentList.getItems().remove(codeCheck + "- " + CardDatabase.getCardByID(codeCheck).getEquipments());
             });
 
         });
@@ -391,5 +403,40 @@ public class CreatePlanController implements Initializable {
         }
     }
 
-}
+    private void applyCardFilter(CardFilter filter) {
+        List<Card> filteredCards = filter.filter(allCards);
+        // Clear and repopulate the listView with the filtered cards
+        searchCardList.getItems().clear();
+        populateListView(filteredCards);
+    }
 
+    private void applyGenderFilter(String selectedGender) {
+        if (selectedGender != null) {
+            GenderFilter genderFilter = new GenderFilter(selectedGender);
+            applyCardFilter(genderFilter);
+        }
+
+    }
+
+    private void applyEventFilter(String selectedEvent) {
+        if (selectedEvent != null) {
+            EventFilter eventFilter = new EventFilter(selectedEvent);
+            applyCardFilter(eventFilter);
+        }
+    }
+
+    private void applyLevelFilter(String selectedLevel) {
+        if (selectedLevel != null) {
+            LevelFilter levelFilter = new LevelFilter(selectedLevel);
+            applyCardFilter(levelFilter);
+        }
+    }
+
+    private void applyModelSexFilter(String selectedModelSex) {
+        if (selectedModelSex != null) {
+            ModelSexFilter modelSexFilter = new ModelSexFilter(selectedModelSex);
+            applyCardFilter(modelSexFilter);
+        }
+    }
+
+}

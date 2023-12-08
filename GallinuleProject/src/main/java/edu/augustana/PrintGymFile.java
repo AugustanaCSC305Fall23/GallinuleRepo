@@ -52,7 +52,7 @@ public class PrintGymFile {
             boolean showDialog = job.showPrintDialog(null);
 
             if (showDialog) {
-                PageLayout pageLayout = job.getPrinter().createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.HARDWARE_MINIMUM);
+                PageLayout pageLayout = job.getPrinter().createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT);
 
                 // Create a copy of the content to avoid modifying the original
                 AnchorPane scaledContent = createScaledContentTextOnly(anchorPane, pageLayout);
@@ -70,7 +70,12 @@ public class PrintGymFile {
 
     // Create a scaled copy of the content to fit on A4
     public AnchorPane createScaledContentTextOnly(AnchorPane content, PageLayout pageLayout) {
-        double scaleFactor = calculateScaleFactorTextOnly(content, pageLayout);
+        double scaleFactorX = pageLayout.getPrintableWidth() / content.getBoundsInParent().getWidth();
+        double scaleFactorY = pageLayout.getPrintableHeight() / content.getBoundsInParent().getHeight();
+
+        // Use the minimum scale factor to maintain aspect ratio
+        double scaleFactor = Math.min(scaleFactorX, scaleFactorY);
+
         AnchorPane scaledContent = new AnchorPane(content.getChildren().toArray(new javafx.scene.Node[0]));
         scaledContent.getTransforms().add(new javafx.scene.transform.Scale(scaleFactor, scaleFactor));
         return scaledContent;
@@ -87,7 +92,12 @@ public class PrintGymFile {
 
     // Create a scaled copy of the content to fit on A4
     public VBox createScaledContent(VBox content, PageLayout pageLayout) {
-        double scaleFactor = calculateScaleFactor(content, pageLayout);
+        double scaleFactorX = pageLayout.getPrintableWidth() / content.getBoundsInParent().getWidth();
+        double scaleFactorY = pageLayout.getPrintableHeight() / content.getBoundsInParent().getHeight();
+
+        // Use the minimum scale factor to maintain aspect ratio
+        double scaleFactor = Math.min(scaleFactorX, scaleFactorY);
+
         VBox scaledContent = new VBox(content.getChildren().toArray(new javafx.scene.Node[0]));
         scaledContent.getTransforms().add(new javafx.scene.transform.Scale(scaleFactor, scaleFactor));
         return scaledContent;
@@ -101,6 +111,8 @@ public class PrintGymFile {
         // Use the minimum scale factor to maintain aspect ratio
         return Math.max(scaleX, scaleY);
     }
+
+
 
 
 }
