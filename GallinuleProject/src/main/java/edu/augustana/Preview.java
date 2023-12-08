@@ -75,6 +75,8 @@ public class Preview implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Fetch all cards and populate the preview
         HashMap<String, List<String>> finishedCards = CreatePlanController.getCurrentLessonPlan().getLessonMap();
+
+//        previewLabel1.setText(
         populatePreview(finishedCards);
 
         // Set up the print button action
@@ -108,21 +110,30 @@ public class Preview implements Initializable {
             FlowPane cardShelf = new FlowPane();
             tempVBox.getChildren().add(cardShelf);
             for (String code : value) {
-                VBox previewCardHolder = new VBox();
+                Card card = CardDatabase.getCardByID(code);
 
-                ImageView imageView = CardDatabase.getCardByID(code).createHighResolutionImageView();
-                CardView cardImg = new CardView(imageView);
-                cardImg.setFitWidth(250);
-                cardImg.setFitHeight(205);
-                Label equipmentText = new Label(CardDatabase.getCardByID(code).getEquipments().toString());
-                previewCardHolder.getChildren().add(cardImg);
-                previewCardHolder.getChildren().add(equipmentText);
-                previewCardHolder.setMinHeight(200);
-                previewCardHolder.setMinWidth(200);
-                previewCardHolder.setAlignment(Pos.CENTER);
-                previewCardHolder.getStyleClass().add("placeholder");
-                cardShelf.getChildren().add(previewCardHolder);
+                if (card != null) {
+                    VBox previewCardHolder = new VBox();
+
+                    ImageView imageView = card.createHighResolutionImageView();
+                    CardView cardImg = new CardView(imageView);
+                    cardImg.setFitWidth(250);
+                    cardImg.setFitHeight(205);
+
+                    Label equipmentText = new Label(card.getEquipments().toString());
+
+                    previewCardHolder.getChildren().add(cardImg);
+                    previewCardHolder.getChildren().add(equipmentText);
+                    previewCardHolder.setMinHeight(200);
+                    previewCardHolder.setMinWidth(200);
+                    previewCardHolder.setAlignment(Pos.CENTER);
+                    previewCardHolder.getStyleClass().add("placeholder");
+                    cardShelf.getChildren().add(previewCardHolder);
+                } else {
+                    System.out.println("Card with code " + code + " not found in the database.");
+                }
             }
+
             populateList.add(tempVBox);
         });
         motherVBox.getChildren().addAll(populateList);

@@ -103,9 +103,6 @@ public class SingleCardView extends BorderPane implements Initializable {
         }
 
     }
-
-
-
     @FXML
     private void handleCloseButtonAction(ActionEvent event) {
 

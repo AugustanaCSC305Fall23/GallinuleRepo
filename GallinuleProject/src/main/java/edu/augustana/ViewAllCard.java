@@ -55,6 +55,7 @@ public class ViewAllCard {
         eventFilter.getItems().addAll(CardDatabase.getDB().getEventList());
         levelFilterCB.getItems().addAll(LevelFilter.getFullLevelNames());
         modelFilterCB.getItems().addAll("ALL", "Male", "Female");
+
         genderFilterCB.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
         eventFilter.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
         searchTextField.textProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
@@ -84,6 +85,7 @@ public class ViewAllCard {
 
 
     private void populateFlowPane(List<Card> cards) {
+
         double spacingBetweenCards = 10.0;
 
         flowPaneCards.getChildren().clear();

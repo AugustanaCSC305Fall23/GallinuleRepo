@@ -61,7 +61,7 @@ public class App extends Application {
         addCardsFromCardPacksDirectory("CardPacks");
 
         favorites = FavoriteSet.loadFromFile();
-       // favorites = new FavoriteSet();
+        // favorites = new FavoriteSet();
 
         currentOpenCourseFile = new File("Courses/Untitled.gymCourse");
         currentOpenCourse = Course.loadCourse(currentOpenCourseFile);
@@ -107,13 +107,10 @@ public class App extends Application {
         currentOpenCourseFile = courseFile;
         currentOpenCourse = Course.loadCourse(courseFile);
     }
-
     public static void saveCourseToFile(File courseFile, List<LessonPlan> lessonPlans) throws IOException {
         currentOpenCourseFile = courseFile;
         currentOpenCourse.setLessons(lessonPlans);
         currentOpenCourse.saveCourse(courseFile);
     }
-
-
 
 }

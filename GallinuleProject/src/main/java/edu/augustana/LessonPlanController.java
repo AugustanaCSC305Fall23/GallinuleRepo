@@ -2,9 +2,7 @@ package edu.augustana;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -52,16 +50,17 @@ public class LessonPlanController implements Initializable {
 
     @FXML
     private void openLessonPlan() throws IOException {
+
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
-            // Set the current lesson plan
+
             CreatePlanController.currentLessonPlan = selectedLessonPlan;
 
-            // Navigate to the "Preview" page
-            App.setRoot("Preview");
+            CreatePlanController controller = new CreatePlanController();
+            controller.loadPlanPreview();
         }
-    }
 
+    }
 
     @FXML
     private void openEditPage() throws IOException {
@@ -77,18 +76,17 @@ public class LessonPlanController implements Initializable {
     }
 
     @FXML
-    private void deletePlan() throws IOException {
+    private void deletePlan() throws IOException  {
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
-            lessonPlanListView.getItems().remove(selectedLessonPlan);  // Remove from UI
-            App.getCurrentOpenCourse().removePlan(selectedLessonPlan); // Remove from data structure
-            App.saveCourseToFile(App.getCurrentOpenCourseFile(), App.getCurrentOpenCourse().getLessons()); // Save changes to file
+            lessonPlanListView.getItems().remove(selectedLessonPlan);
+            App.getCurrentOpenCourse().removePlan(selectedLessonPlan);
+            App.saveCourseToFile(App.getCurrentOpenCourseFile(), App.getCurrentOpenCourse().getLessons());
+
         } else {
             new Alert(Alert.AlertType.WARNING, "Please select a plan to delete first!").show();
         }
     }
-
-
 
     @FXML
     private void menuActionSave(ActionEvent event) {
@@ -117,8 +115,9 @@ public class LessonPlanController implements Initializable {
             } catch (IOException e) {
                 new Alert(Alert.AlertType.ERROR, "Error saving gym course file: " + chosenFile).show();
             }
+
+
         }
     }
-
 
 }
