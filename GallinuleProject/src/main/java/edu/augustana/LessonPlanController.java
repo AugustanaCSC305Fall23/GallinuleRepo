@@ -77,19 +77,17 @@ public class LessonPlanController implements Initializable {
     }
 
     @FXML
-    private void deletePlan() {
+    private void deletePlan() throws IOException {
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
-            // Remove from UI
-            lessonPlanListView.getItems().remove(selectedLessonPlan);
-
-            // Remove from underlying data structure
-            App.getCurrentOpenCourse().removePlan(selectedLessonPlan);
-
+            lessonPlanListView.getItems().remove(selectedLessonPlan);  // Remove from UI
+            App.getCurrentOpenCourse().removePlan(selectedLessonPlan); // Remove from data structure
+            App.saveCourseToFile(App.getCurrentOpenCourseFile(), App.getCurrentOpenCourse().getLessons()); // Save changes to file
         } else {
             new Alert(Alert.AlertType.WARNING, "Please select a plan to delete first!").show();
         }
     }
+
 
 
     @FXML
@@ -115,13 +113,12 @@ public class LessonPlanController implements Initializable {
     private void saveCurrentMovieLogToFile(File chosenFile) {
         if (chosenFile != null) {
             try {
-                App.saveCourseToFile(chosenFile);
+                App.saveCourseToFile(chosenFile, lessonPlanListView.getItems());
             } catch (IOException e) {
                 new Alert(Alert.AlertType.ERROR, "Error saving gym course file: " + chosenFile).show();
             }
-
-
         }
     }
+
 
 }

@@ -1,4 +1,55 @@
 {
   "title": "Untitled",
-  "lessons": []
+  "lessons": [
+    {
+      "title": "Try",
+      "savedCards": [
+        {
+          "code": "H10A",
+          "event": "Floor",
+          "category": "Press",
+          "title": "Straddle Press Drill",
+          "packFolder": "DEMO2",
+          "img": "3.png",
+          "gender": "N",
+          "modelSex": "M",
+          "level": [
+            "I A"
+          ],
+          "equipments": [
+            "Panel Mat/Resi"
+          ],
+          "keywords": [
+            "Straddle, Press, Presshandstand, Stalder, Cast Handstand"
+          ]
+        },
+        {
+          "code": "H10A",
+          "event": "Floor",
+          "category": "Press",
+          "title": "Straddle Press Drill",
+          "packFolder": "DEMO2",
+          "img": "3.png",
+          "gender": "N",
+          "modelSex": "M",
+          "level": [
+            "I A"
+          ],
+          "equipments": [
+            "Panel Mat/Resi"
+          ],
+          "keywords": [
+            "Straddle, Press, Presshandstand, Stalder, Cast Handstand"
+          ]
+        }
+      ],
+      "lessonMap": {
+        "ALL-1": [
+          "H10A",
+          "H10A"
+        ]
+      },
+      "textOnlyPrint": false
+    }
+  ]
 }

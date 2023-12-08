@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -106,9 +107,13 @@ public class App extends Application {
         currentOpenCourseFile = courseFile;
         currentOpenCourse = Course.loadCourse(courseFile);
     }
-    public static void saveCourseToFile(File courseFile) throws IOException {
+
+    public static void saveCourseToFile(File courseFile, List<LessonPlan> lessonPlans) throws IOException {
         currentOpenCourseFile = courseFile;
-        currentOpenCourse.saveCourse( courseFile);
+        currentOpenCourse.setLessons(lessonPlans);
+        currentOpenCourse.saveCourse(courseFile);
     }
+
+
 
 }
