@@ -2,388 +2,51 @@
   "title": "Untitled",
   "lessons": [
     {
-      "title": "Lesson2",
+      "title": "steve test",
       "savedCards": [
         {
-          "code": "S30",
-          "event": "ALL",
-          "category": "Shapes",
-          "title": "Open Shoulder Drill",
-          "packFolder": "DEMO1",
-          "img": "2.png",
+          "code": "H10A",
+          "event": "Floor",
+          "category": "Press",
+          "title": "Straddle Press Drill",
+          "packFolder": "DEMO2",
+          "img": "3.png",
           "gender": "N",
-          "modelSex": "F",
+          "modelSex": "M",
           "level": [
-            "ALL"
+            "I A"
           ],
           "equipments": [
-            "Stick/Band"
+            "Panel Mat/Resi"
           ],
           "keywords": [
-            "shoulder flexibility, "
+            "Straddle, Press, Presshandstand, Stalder, Cast Handstand"
           ]
         },
         {
-          "code": "BS9",
+          "code": "H10A",
           "event": "Floor",
-          "category": "Backward Salto",
-          "title": "Backward Flip Over Mailbox",
-          "packFolder": "DEMO1",
-          "img": "4.png",
+          "category": "Press",
+          "title": "Straddle Press Drill",
+          "packFolder": "DEMO2",
+          "img": "3.png",
           "gender": "N",
-          "modelSex": "F",
+          "modelSex": "M",
           "level": [
-            "AB"
+            "I A"
           ],
           "equipments": [
-            "Mailbox"
+            "Panel Mat/Resi"
           ],
           "keywords": [
-            "back salto, mailbox, "
-          ]
-        }
-      ],
-      "lessonMap": {},
-      "textOnlyPrint": false
-    },
-    {
-      "title": "New Test Plan",
-      "savedCards": [
-        {
-          "code": "S30",
-          "event": "ALL",
-          "category": "Shapes",
-          "title": "Open Shoulder Drill",
-          "packFolder": "DEMO1",
-          "img": "2.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "ALL"
-          ],
-          "equipments": [
-            "Stick/Band"
-          ],
-          "keywords": [
-            "shoulder flexibility, "
-          ]
-        },
-        {
-          "code": "BS9",
-          "event": "Floor",
-          "category": "Backward Salto",
-          "title": "Backward Flip Over Mailbox",
-          "packFolder": "DEMO1",
-          "img": "4.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "AB"
-          ],
-          "equipments": [
-            "Mailbox"
-          ],
-          "keywords": [
-            "back salto, mailbox, "
-          ]
-        },
-        {
-          "code": "H13 ",
-          "event": "Floor",
-          "category": "Handstand",
-          "title": "Handstand Forward Roll Drill",
-          "packFolder": "DEMO1",
-          "img": "7.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "AB I"
-          ],
-          "equipments": [
-            "Wedge/Tall Panel Mat"
-          ],
-          "keywords": [
-            "handstand, forward roll, candle, straight arm"
-          ]
-        },
-        {
-          "code": "W4",
-          "event": "Floor",
-          "category": "Walkovers",
-          "title": "Front Walkover Over a Barrel",
-          "packFolder": "DEMO1",
-          "img": "5.png",
-          "gender": "F",
-          "modelSex": "F",
-          "level": [
-            "AB I"
-          ],
-          "equipments": [
-            "Barrel, elevated surface"
-          ],
-          "keywords": [
-            "walkover, split handstand, barrel, "
-          ]
-        },
-        {
-          "code": "R6",
-          "event": "Floor",
-          "category": "Round Off Progression",
-          "title": "Off A Spring Board",
-          "packFolder": "DEMO1",
-          "img": "9.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "I"
-          ],
-          "equipments": [
-            "Panel Mat, Junior Board"
-          ],
-          "keywords": [
-            "round off, junior board, blocking, snap up, rebound, hollow, hurdle, lunge, lever"
-          ]
-        },
-        {
-          "code": "F2",
-          "event": "Floor",
-          "category": "Forward Salto Progression",
-          "title": "Forward Roll on Tumble Track",
-          "packFolder": "DEMO1",
-          "img": "10.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "AB I"
-          ],
-          "equipments": [
-            "Tumble Track, Wedge Mat"
-          ],
-          "keywords": [
-            "forward salto, set, tuck"
+            "Straddle, Press, Presshandstand, Stalder, Cast Handstand"
           ]
         }
       ],
       "lessonMap": {
-        "Beam": [
-          "R6",
-          "F2"
-        ],
-        "ALL": [
-          "S30",
-          "BS9"
-        ],
-        "Floor": [
-          "H13 ",
-          "W4"
-        ]
-      },
-      "textOnlyPrint": false
-    },
-    {
-      "title": "Untitled(2)",
-      "savedCards": [
-        {
-          "code": "S30",
-          "event": "ALL",
-          "category": "Shapes",
-          "title": "Open Shoulder Drill",
-          "packFolder": "DEMO1",
-          "img": "2.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "ALL"
-          ],
-          "equipments": [
-            "Stick/Band"
-          ],
-          "keywords": [
-            "shoulder flexibility, "
-          ]
-        },
-        {
-          "code": "BS9",
-          "event": "Floor",
-          "category": "Backward Salto",
-          "title": "Backward Flip Over Mailbox",
-          "packFolder": "DEMO1",
-          "img": "4.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "AB"
-          ],
-          "equipments": [
-            "Mailbox"
-          ],
-          "keywords": [
-            "back salto, mailbox, "
-          ]
-        },
-        {
-          "code": "W4",
-          "event": "Floor",
-          "category": "Walkovers",
-          "title": "Front Walkover Over a Barrel",
-          "packFolder": "DEMO1",
-          "img": "5.png",
-          "gender": "F",
-          "modelSex": "F",
-          "level": [
-            "AB I"
-          ],
-          "equipments": [
-            "Barrel, elevated surface"
-          ],
-          "keywords": [
-            "walkover, split handstand, barrel, "
-          ]
-        },
-        {
-          "code": "H13 ",
-          "event": "Floor",
-          "category": "Handstand",
-          "title": "Handstand Forward Roll Drill",
-          "packFolder": "DEMO1",
-          "img": "7.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "AB I"
-          ],
-          "equipments": [
-            "Wedge/Tall Panel Mat"
-          ],
-          "keywords": [
-            "handstand, forward roll, candle, straight arm"
-          ]
-        },
-        {
-          "code": "B41A",
-          "event": "Uneven Bars",
-          "category": "Bars",
-          "title": "Glide Swing with Slider",
-          "packFolder": "DEMO1",
-          "img": "11.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "AB I"
-          ],
-          "equipments": [
-            "Low Bar, slider"
-          ],
-          "keywords": [
-            "glide swing, slider, c shape, "
-          ]
-        },
-        {
-          "code": "R6",
-          "event": "Floor",
-          "category": "Round Off Progression",
-          "title": "Off A Spring Board",
-          "packFolder": "DEMO1",
-          "img": "9.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "I"
-          ],
-          "equipments": [
-            "Panel Mat, Junior Board"
-          ],
-          "keywords": [
-            "round off, junior board, blocking, snap up, rebound, hollow, hurdle, lunge, lever"
-          ]
-        }
-      ],
-      "lessonMap": {
-        "Beam": [
-          "B41A",
-          "R6"
-        ],
-        "ALL": [
-          "S30",
-          "BS9"
-        ],
-        "Floor": [
-          "W4",
-          "H13 "
-        ]
-      },
-      "textOnlyPrint": false
-    },
-    {
-      "title": "Untitled",
-      "savedCards": [
-        {
-          "code": "W4",
-          "event": "Floor",
-          "category": "Walkovers",
-          "title": "Front Walkover Over a Barrel",
-          "packFolder": "DEMO1",
-          "img": "5.png",
-          "gender": "F",
-          "modelSex": "F",
-          "level": [
-            "AB I"
-          ],
-          "equipments": [
-            "Barrel, elevated surface"
-          ],
-          "keywords": [
-            "walkover, split handstand, barrel, "
-          ]
-        },
-        {
-          "code": "BS9",
-          "event": "Floor",
-          "category": "Backward Salto",
-          "title": "Backward Flip Over Mailbox",
-          "packFolder": "DEMO1",
-          "img": "4.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "AB"
-          ],
-          "equipments": [
-            "Mailbox"
-          ],
-          "keywords": [
-            "back salto, mailbox, "
-          ]
-        },
-        {
-          "code": "C3",
-          "event": "Floor",
-          "category": "Cartwheel Progressions",
-          "title": "Over a Mat with Foam Block",
-          "packFolder": "DEMO1",
-          "img": "8.png",
-          "gender": "N",
-          "modelSex": "F",
-          "level": [
-            "I"
-          ],
-          "equipments": [
-            "Panel Mat, Foam Block"
-          ],
-          "keywords": [
-            "blocks, cartwheel, panel mat, lever, lunge, "
-          ]
-        }
-      ],
-      "lessonMap": {
-        "Beam": [
-          "C3"
-        ],
-        "ALL": [
-          "W4"
-        ],
-        "Floor": [
-          "BS9"
+        "ALL-1": [
+          "H10A",
+          "H10A"
         ]
       },
       "textOnlyPrint": false

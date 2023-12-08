@@ -2,11 +2,23 @@ package edu.augustana;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
+import javafx.stage.PopupWindow;
+import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 public class ViewAllCard {
@@ -27,11 +39,13 @@ public class ViewAllCard {
 
     private TextSearchFilter cardSearch;
 
+    private Stage stage;
 
     @FXML
     void initialize() {
         initializeComboBoxes();
         loadAllCards();
+
     }
 
     @FXML
@@ -41,6 +55,7 @@ public class ViewAllCard {
         eventFilter.getItems().addAll(CardDatabase.getDB().getEventList());
         levelFilterCB.getItems().addAll(LevelFilter.getFullLevelNames());
         modelFilterCB.getItems().addAll("ALL", "Male", "Female");
+
         genderFilterCB.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
         eventFilter.valueProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
         searchTextField.textProperty().addListener((obs, oldVal, newVal) -> updateFilteredVisibleCards());
@@ -70,6 +85,7 @@ public class ViewAllCard {
 
 
     private void populateFlowPane(List<Card> cards) {
+
         double spacingBetweenCards = 10.0;
 
         flowPaneCards.getChildren().clear();
@@ -79,8 +95,35 @@ public class ViewAllCard {
             CardView cardView = new CardView(imageView);
             cardView.setSpacingBetweenCards(spacingBetweenCards);
 
+            cardView.setOnMouseClicked(event -> {
+                try {
+                    showSingleCardPopup(card);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
             flowPaneCards.getChildren().add(cardView);
         }
     }
+
+    private void showSingleCardPopup(Card card) throws IOException {
+        //Popup popup = new Popup();
+        SingleCardView singleCardView = new SingleCardView(card);
+
+        // Use singleCardBorderPane in your Scene or wherever you need it
+        Scene scene = new Scene(singleCardView.getRootBorderPane());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.centerOnScreen();
+
+        stage.show();
+
+//        popup.getContent().add(singleCardView);
+//        popup.show(stage);
+    }
+
+
 
 }

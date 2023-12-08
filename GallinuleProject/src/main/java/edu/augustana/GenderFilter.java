@@ -30,18 +30,14 @@ public class GenderFilter implements CardFilter {
     }
 
     private List<Card> filterByGender(List<Card> cards) {
-
         String genderCodeChar = getGenderCodeChar(selectedGender);
         if (genderCodeChar != null) {
             return cards.stream()
-                    .filter(card -> (card.getGender().equalsIgnoreCase(genderCodeChar)
-                                      || card.getGender().equalsIgnoreCase("N")))
+                    .filter(card -> genderCodeChar.equalsIgnoreCase(card.getGender()) || "N".equalsIgnoreCase(selectedGender))
                     .collect(Collectors.toList());
-        } else{
+        } else {
             return cards;
         }
     }
-
-
 }
 

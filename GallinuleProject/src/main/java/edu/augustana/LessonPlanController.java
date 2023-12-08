@@ -2,9 +2,7 @@ package edu.augustana;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -59,7 +57,7 @@ public class LessonPlanController implements Initializable {
             CreatePlanController.currentLessonPlan = selectedLessonPlan;
 
             CreatePlanController controller = new CreatePlanController();
-            controller.switchToPreview();
+            controller.loadPlanPreview();
         }
 
     }
@@ -78,11 +76,12 @@ public class LessonPlanController implements Initializable {
     }
 
     @FXML
-    private void deletePlan() {
+    private void deletePlan() throws IOException  {
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
             lessonPlanListView.getItems().remove(selectedLessonPlan);
             App.getCurrentOpenCourse().removePlan(selectedLessonPlan);
+            App.saveCourseToFile(App.getCurrentOpenCourseFile(), App.getCurrentOpenCourse().getLessons());
 
         } else {
             new Alert(Alert.AlertType.WARNING, "Please select a plan to delete first!").show();
@@ -112,7 +111,7 @@ public class LessonPlanController implements Initializable {
     private void saveCurrentMovieLogToFile(File chosenFile) {
         if (chosenFile != null) {
             try {
-                App.saveCourseToFile(chosenFile);
+                App.saveCourseToFile(chosenFile, lessonPlanListView.getItems());
             } catch (IOException e) {
                 new Alert(Alert.AlertType.ERROR, "Error saving gym course file: " + chosenFile).show();
             }

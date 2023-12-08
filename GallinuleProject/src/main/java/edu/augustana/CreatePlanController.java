@@ -104,6 +104,11 @@ public class CreatePlanController implements Initializable {
             App.setRoot("Preview");
         }
     }
+
+    @FXML
+    void loadPlanPreview() throws IOException {
+        App.setRoot("Preview");
+    }
     //filter objects
 
     private ComboBox<String> genderFilter = new ComboBox<String>();
@@ -151,6 +156,24 @@ public class CreatePlanController implements Initializable {
                 handleSearch();
             }
         });
+
+        genderFilter.setOnAction(event -> {
+            applyGenderFilter(genderFilter.getValue());
+        });
+
+        eventFilter.setOnAction(event -> {
+            applyEventFilter(eventFilter.getValue());
+        });
+
+        levelFilter.setOnAction(event -> {
+            applyLevelFilter(levelFilter.getValue());
+        });
+
+        modelFilter.setOnAction(event -> {
+            applyModelSexFilter(modelFilter.getValue());
+        });
+
+
     }
 
     private void createEventBox() {
@@ -250,7 +273,10 @@ public class CreatePlanController implements Initializable {
     private void cardHolderListener(Label cardHolder, ComboBox<String> eventBox, VBox removeHolder){
 
         cardHolder.setOnMouseClicked(event -> {
-            codeCheck = searchCardList.getSelectionModel().getSelectedItem().getText().substring(0, searchCardList.getSelectionModel().getSelectedItem().getText().indexOf('-'));
+            Label selectedLabel = searchCardList.getSelectionModel().getSelectedItem();
+            if (selectedLabel != null) {
+                codeCheck = searchCardList.getSelectionModel().getSelectedItem().getText().substring(0, searchCardList.getSelectionModel().getSelectedItem().getText().indexOf('-'));
+            }
 
             currentLessonPlan.getLessonMap().get(eventBox.getValue()).add(codeCheck);
             equipment = CardDatabase.getCardByID(codeCheck).getEquipments().toString();
@@ -384,5 +410,42 @@ public class CreatePlanController implements Initializable {
             }
         }
     }
-}
 
+    private void applyCardFilter(CardFilter filter) {
+        List<Card> filteredCards = filter.filter(allCards);
+        // Clear and repopulate the listView with the filtered cards
+        searchCardList.getItems().clear();
+        populateListView(filteredCards);
+    }
+
+
+    private void applyGenderFilter(String selectedGender) {
+        if (selectedGender != null) {
+            GenderFilter genderFilter = new GenderFilter(selectedGender);
+            applyCardFilter(genderFilter);
+        }
+
+    }
+
+    private void applyEventFilter(String selectedEvent) {
+        if (selectedEvent != null) {
+            EventFilter eventFilter = new EventFilter(selectedEvent);
+            applyCardFilter(eventFilter);
+        }
+    }
+
+    private void applyLevelFilter(String selectedLevel) {
+        if (selectedLevel != null) {
+            LevelFilter levelFilter = new LevelFilter(selectedLevel);
+            applyCardFilter(levelFilter);
+        }
+    }
+
+    private void applyModelSexFilter(String selectedModelSex) {
+        if (selectedModelSex != null) {
+            ModelSexFilter modelSexFilter = new ModelSexFilter(selectedModelSex);
+            applyCardFilter(modelSexFilter);
+        }
+    }
+
+}
