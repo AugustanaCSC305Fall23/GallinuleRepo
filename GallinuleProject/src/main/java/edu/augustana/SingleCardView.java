@@ -92,6 +92,19 @@ public class SingleCardView extends BorderPane implements Initializable {
     }
 
 
+    @FXML
+    void initialize() {
+        setCard(card);
+        cardImgView.setImage(card.createThumbnailImageView().getImage());
+        equipmentLV.setItems(FXCollections.observableArrayList(card.getEquipments()));
+        if (App.getFavorites().contains(card)) {
+            favoriteBtn.setSelected(true);
+            favoriteBtn.setText("♥");
+        }
+
+    }
+
+
 
     @FXML
     private void handleCloseButtonAction(ActionEvent event) {
@@ -108,7 +121,7 @@ public class SingleCardView extends BorderPane implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setCard(card);
-        cardImgView = card.createHighResolutionImageView();
+        cardImgView.setImage(card.createHighResolutionImageView().getImage());
         equipmentLV.setItems(FXCollections.observableArrayList(card.getEquipments()));
         if (App.getFavorites().contains(card)) {
             favoriteBtn.setSelected(true);
