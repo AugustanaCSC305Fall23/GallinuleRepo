@@ -20,7 +20,7 @@
                <children>
                   <HBox fx:id="printBox" prefHeight="308.0" prefWidth="480.0">
                      <children>
-                        <VBox fx:id="printVbox" prefHeight="308.0" prefWidth="424.0">
+                        <VBox fx:id="printVBox" prefHeight="308.0" prefWidth="424.0">
                            <children>
                               <ImageView fx:id="cardImgView" fitHeight="310.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true" />
                            </children>

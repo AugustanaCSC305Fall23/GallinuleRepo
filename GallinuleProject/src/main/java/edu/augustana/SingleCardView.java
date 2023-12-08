@@ -5,13 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -42,7 +39,8 @@ public class SingleCardView extends BorderPane implements Initializable {
     private PrintGymFile printer = new PrintGymFile();
     @FXML
     private AnchorPane printAnchor;
-    @FXML private VBox printVBox;
+    @FXML
+    private VBox printVBox;
 
     public SingleCardView() {
         // Use the parameterized constructor with a null card initially
@@ -62,12 +60,8 @@ public class SingleCardView extends BorderPane implements Initializable {
             throw new RuntimeException("Unable to load file", exception);
         }
 
-
-
-        // Retrieve the root from the FXMLLoader
         BorderPane root = fxmlLoader.getRoot();
 
-        // Set the root as the content of this BorderPane
         this.setCenter(root);
     }
 
@@ -97,6 +91,7 @@ public class SingleCardView extends BorderPane implements Initializable {
         new Alert(Alert.AlertType.INFORMATION, "Your Card has been sent to print successfully!").show();
     }
 
+
     @FXML
     void initialize() {
         setCard(card);
@@ -108,6 +103,7 @@ public class SingleCardView extends BorderPane implements Initializable {
         }
 
     }
+
 
 
     @FXML
