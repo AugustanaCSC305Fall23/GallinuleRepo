@@ -75,8 +75,6 @@ public class Preview implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Fetch all cards and populate the preview
         HashMap<String, List<String>> finishedCards = CreatePlanController.getCurrentLessonPlan().getLessonMap();
-
-//        previewLabel1.setText(
         populatePreview(finishedCards);
 
         // Set up the print button action

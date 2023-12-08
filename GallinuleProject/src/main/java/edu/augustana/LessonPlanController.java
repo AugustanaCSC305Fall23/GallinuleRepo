@@ -52,17 +52,16 @@ public class LessonPlanController implements Initializable {
 
     @FXML
     private void openLessonPlan() throws IOException {
-
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
-
+            // Set the current lesson plan
             CreatePlanController.currentLessonPlan = selectedLessonPlan;
 
-            CreatePlanController controller = new CreatePlanController();
-            controller.loadPlanPreview();
+            // Navigate to the "Preview" page
+            App.setRoot("Preview");
         }
-
     }
+
 
     @FXML
     private void openEditPage() throws IOException {
@@ -81,13 +80,17 @@ public class LessonPlanController implements Initializable {
     private void deletePlan() {
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
+            // Remove from UI
             lessonPlanListView.getItems().remove(selectedLessonPlan);
+
+            // Remove from underlying data structure
             App.getCurrentOpenCourse().removePlan(selectedLessonPlan);
 
         } else {
             new Alert(Alert.AlertType.WARNING, "Please select a plan to delete first!").show();
         }
     }
+
 
     @FXML
     private void menuActionSave(ActionEvent event) {

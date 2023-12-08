@@ -266,7 +266,10 @@ public class CreatePlanController implements Initializable {
     private void cardHolderListener(Label cardHolder, ComboBox<String> eventBox, VBox removeHolder){
 
         cardHolder.setOnMouseClicked(event -> {
-            codeCheck = searchCardList.getSelectionModel().getSelectedItem().getText().substring(0, searchCardList.getSelectionModel().getSelectedItem().getText().indexOf('-'));
+            Label selectedLabel = searchCardList.getSelectionModel().getSelectedItem();
+            if (selectedLabel != null) {
+                codeCheck = searchCardList.getSelectionModel().getSelectedItem().getText().substring(0, searchCardList.getSelectionModel().getSelectedItem().getText().indexOf('-'));
+            }
 
             currentLessonPlan.getLessonMap().get(eventBox.getValue()).add(codeCheck);
             equipment = CardDatabase.getCardByID(codeCheck).getEquipments().toString();

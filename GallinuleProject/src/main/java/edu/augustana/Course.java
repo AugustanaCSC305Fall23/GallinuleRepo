@@ -49,8 +49,8 @@ public class Course implements Serializable {
         lessons.add(plan);
     }
 
-    public void removePlan(LessonPlan plan) {
-        lessons.remove(plan);
+    public void removePlan(LessonPlan lessonPlan) {
+        lessons.remove(lessonPlan);
     }
 
 
