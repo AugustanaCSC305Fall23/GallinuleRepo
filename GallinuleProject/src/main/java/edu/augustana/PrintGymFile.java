@@ -6,8 +6,16 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
+/**
+ * Utility class for printing Gym files.
+ */
 public class PrintGymFile {
 
+    /**
+     * Prints the specified list of VBoxes.
+     *
+     * @param vboxList The list of VBoxes to be printed.
+     */
     public void printFile(List<VBox> vboxList) {
 
         PrinterJob job = PrinterJob.createPrinterJob(Printer.getDefaultPrinter());
@@ -44,6 +52,11 @@ public class PrintGymFile {
         }
     }
 
+    /**
+     * Prints the content of the specified AnchorPane in text-only mode.
+     *
+     * @param anchorPane The AnchorPane to be printed.
+     */
     public void printFileTextOnly(AnchorPane anchorPane) {
 
         PrinterJob job = PrinterJob.createPrinterJob(Printer.getDefaultPrinter());
@@ -68,7 +81,14 @@ public class PrintGymFile {
         }
     }
 
-    // Create a scaled copy of the content to fit on A4
+
+    /**
+     * Creates a scaled copy of the content (AnchorPane) to fit on A4 in text-only mode.
+     *
+     * @param content     The original content to be scaled.
+     * @param pageLayout  The PageLayout specifying the target size and orientation.
+     * @return Scaled AnchorPane.
+     */
     public AnchorPane createScaledContentTextOnly(AnchorPane content, PageLayout pageLayout) {
         double scaleFactorX = pageLayout.getPrintableWidth() / content.getBoundsInParent().getWidth();
         double scaleFactorY = pageLayout.getPrintableHeight() / content.getBoundsInParent().getHeight();
@@ -82,6 +102,13 @@ public class PrintGymFile {
     }
 
     // Calculate the scale factor to fit the content on A4
+    /**
+     * Calculates the scale factor to fit the content on A4 in text-only mode.
+     *
+     * @param content     The original content.
+     * @param pageLayout  The PageLayout specifying the target size and orientation.
+     * @return The calculated scale factor.
+     */
     public double calculateScaleFactorTextOnly(AnchorPane content, PageLayout pageLayout) {
         double scaleX = pageLayout.getPrintableWidth() / content.getBoundsInParent().getWidth();
         double scaleY = pageLayout.getPrintableHeight() / content.getBoundsInParent().getHeight();
@@ -91,6 +118,13 @@ public class PrintGymFile {
     }
 
     // Create a scaled copy of the content to fit on A4
+    /**
+     * Creates a scaled copy of the content (VBox) to fit on A4.
+     *
+     * @param content     The original content to be scaled.
+     * @param pageLayout  The PageLayout specifying the target size and orientation.
+     * @return Scaled VBox.
+     */
     public VBox createScaledContent(VBox content, PageLayout pageLayout) {
         double scaleFactorX = pageLayout.getPrintableWidth() / content.getBoundsInParent().getWidth();
         double scaleFactorY = pageLayout.getPrintableHeight() / content.getBoundsInParent().getHeight();
@@ -104,6 +138,13 @@ public class PrintGymFile {
     }
 
     // Calculate the scale factor to fit the content on A4
+    /**
+     * Calculates the scale factor to fit the content on A4.
+     *
+     * @param content     The original content.
+     * @param pageLayout  The PageLayout specifying the target size and orientation.
+     * @return The calculated scale factor.
+     */
     public double calculateScaleFactor(VBox content, PageLayout pageLayout) {
         double scaleX = pageLayout.getPrintableWidth() / content.getBoundsInParent().getWidth();
         double scaleY = pageLayout.getPrintableHeight() / content.getBoundsInParent().getHeight();

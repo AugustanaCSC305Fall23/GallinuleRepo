@@ -5,24 +5,50 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * A filter implementation that performs text-based filtering on a list of cards.
+ */
 public class TextSearchFilter implements CardFilter {
 
+    /**
+     * Sets the search criteria for filtering.
+     *
+     * @param searchCriteria The search criteria to be applied.
+     */
     public void setSearchCriteria(String searchCriteria) {
         this.searchCriteria = searchCriteria;
     }
     private final List<Card> allCards;
     private String searchCriteria;
 
+    /**
+     * Constructs a TextSearchFilter with the specified list of cards and search criteria.
+     *
+     * @param allCards       The list of all cards to be filtered.
+     * @param searchCriteria The initial search string sent by the user for filtering.
+     */
     public TextSearchFilter(List<Card> allCards, String searchCriteria) {
         this.allCards = allCards;
         this.searchCriteria = searchCriteria;
     }
 
+    /**
+     * Filters the provided list of cards based on the current search criteria.
+     *
+     * @param cards The list of cards to be filtered.
+     * @return The filtered list of cards.
+     */
     @Override
     public List<Card> filter(List<Card> cards) {
         return filterBySearchCriteria(cards);
     }
 
+    /**
+     * Searches and filters cards based on the specified search criteria.
+     *
+     * @param searchCriteria The search criteria for filtering.
+     * @return The filtered list of cards.
+     */
     public List<Card> search(String searchCriteria) {
         String[] keywords = searchCriteria.split(",");
         List<Card> filteredCards = new ArrayList<>(allCards);

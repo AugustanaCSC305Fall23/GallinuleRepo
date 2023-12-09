@@ -25,6 +25,9 @@ public class FavoriteSet {
     }
 
 
+    public Set<String> getFavoriteIDs(){
+        return favoriteIDs;
+    }
 
     public static FavoriteSet loadFromFile() throws IOException {
         FileReader reader = new FileReader(new File(FAVORITES_FILENAME));

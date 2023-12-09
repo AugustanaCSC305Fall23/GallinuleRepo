@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -15,12 +16,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicReference;
@@ -92,17 +95,20 @@ public class CreatePlanController implements Initializable {
 
     @FXML
     void switchToPreview() throws IOException {
+
+
         setTextOnly();
         currentLessonPlan.renameLesson(titleBar.getText());
-
 
         // Add the current lesson plan to the list
         LessonPlan.getAllLessonPlans().add(currentLessonPlan);
         if(currentLessonPlan.getTextOnly()){
-            App.setRoot("PreviewTextOnly");
+                 App.setRoot("PreviewTextOnly");
         } else {
             App.setRoot("Preview");
         }
+
+
     }
 
     @FXML

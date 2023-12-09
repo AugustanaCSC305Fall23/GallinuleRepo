@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -34,6 +35,8 @@ public class ViewAllCard {
     private ComboBox<String> levelFilterCB;
     @FXML
     private ComboBox<String> modelFilterCB;
+    @FXML
+    private CheckBox favcheckBox;
 
     private List<Card> allCards;
 
@@ -72,6 +75,7 @@ public class ViewAllCard {
 
 
     void updateFilteredVisibleCards() {
+        favcheckBox.setSelected(false);
         CardFilter titleFilter = new TextSearchFilter(allCards, searchTextField.getText().trim().toLowerCase());
         CardFilter genderFilter1 = new GenderFilter(genderFilterCB.getValue());
         CardFilter modelSexFilter = new ModelSexFilter(modelFilterCB.getValue());
@@ -80,6 +84,16 @@ public class ViewAllCard {
         CardFilter combinedAndFilter = new CombinedAndFilter( genderFilter1, modelSexFilter, levelFilter1, eventFilter1, titleFilter );
         List<Card> filteredCards = combinedAndFilter.filter(allCards);
         Platform.runLater(() -> populateFlowPane(filteredCards));
+    }
+
+    @FXML
+    void showFavCards() {
+        if (favcheckBox.isSelected()) {
+            List<Card> favCards = App.getFavCards();
+            Platform.runLater(() -> populateFlowPane(favCards));
+        }else{
+            Platform.runLater(()-> populateFlowPane(allCards));
+        }
     }
 
 

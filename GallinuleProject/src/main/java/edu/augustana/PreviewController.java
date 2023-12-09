@@ -15,6 +15,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the "Preview" view, responsible for displaying a preview of cards and their details.
+ */
 public class PreviewController implements Initializable {
 
     @FXML

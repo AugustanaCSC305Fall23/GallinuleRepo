@@ -23,6 +23,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Controller for the "Preview" view, responsible for displaying a preview of lesson plans and their details.
+ */
 public class Preview implements Initializable {
     public Button backButton;
     @FXML
@@ -84,6 +87,11 @@ public class Preview implements Initializable {
 
     }
 
+    /**
+     * Populates the preview with information about each lesson plan.
+     *
+     * @param finishedCards A map containing finished lesson plans and their associated cards.
+     */
     public void populatePreview(HashMap<String, List<String>> finishedCards) {
         motherVBox.setAlignment(Pos.TOP_CENTER);
         List<VBox> populateList = new ArrayList<>();

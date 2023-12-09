@@ -3,6 +3,9 @@ package edu.augustana;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * A filter implementation for filtering cards based on the model's sex .
+ */
 public class ModelSexFilter implements CardFilter {
     private final String selectedModelSex;
 
