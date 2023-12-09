@@ -21,6 +21,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the "PreviewTextOnly" view, responsible for displaying a text-only preview of a lesson plan.
+ */
 public class PreviewTextOnlyController implements Initializable {
     public Button backButton;
     @FXML
@@ -81,6 +84,11 @@ public class PreviewTextOnlyController implements Initializable {
 
     }
 
+    /**
+     * Populates the preview with finished cards.
+     *
+     * @param finishedCards A HashMap containing event names as keys and lists of card codes as values.
+     */
     public void populatePreview(HashMap<String, List<String>> finishedCards) {
         motherVBox.setAlignment(Pos.TOP_CENTER);
         List<VBox> populateList = new ArrayList<>();

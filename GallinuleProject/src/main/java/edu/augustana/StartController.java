@@ -18,6 +18,10 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javafx.scene.text.Text;
 
+/**
+ * Controller class for the start screen of the application.
+ * Manages navigation between different screens using a side menu.
+ */
 public class StartController implements Initializable {
 
 
@@ -46,18 +50,28 @@ public class StartController implements Initializable {
 
     private int x = 0;
 
+    /**
+     * Gets the clicked lesson plan from the search bar held until discard.
+     *
+     * @return The lesson plan held until discard.
+     */
     public static LessonPlan getHoldUntilDiscardLessonPlan(){
         return holdUntilDiscardLessonPlan;
     }
 
+    /**
+     * Sets the lesson plan to be held until discard.
+     *
+     * @param newLP The new lesson plan to be held until discard.
+     */
     public static void setHoldUntilDiscardLessonPlan(LessonPlan newLP){
         holdUntilDiscardLessonPlan = newLP;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try { //start on the dashboard
-            switchWelcome();
+        try { //start on the CreatePlanScreen
+            switchCreatePlan();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -123,6 +137,14 @@ public class StartController implements Initializable {
     private void switchToCoursePage() throws IOException{
         loadPage("CoursePage");
     }
+
+
+    /**
+     * Loads the specified FXML page into the BorderPane's center.
+     *
+     * @param page The name of the FXML page (without the .fxml extension) to load.
+     * @throws IOException If an error occurs while loading the FXML page.
+     */
     @FXML
     public void loadPage(String page) throws IOException {
 

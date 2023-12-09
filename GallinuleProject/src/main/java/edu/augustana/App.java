@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -43,6 +44,15 @@ public class App extends Application {
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+    }
+
+    public static List<Card> getFavCards() {
+        List<Card> favCards = new ArrayList<>();
+        for (String favCardId : favorites.getFavoriteIDs()) {
+            Card card = CardDatabase.getCardByID(favCardId);
+            favCards.add(card);
+        }
+        return favCards;
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

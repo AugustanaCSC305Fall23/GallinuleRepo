@@ -36,7 +36,7 @@
                <children>
 
                   <Button fx:id="helpBtn" alignment="CENTER_RIGHT" mnemonicParsing="false" style="-fx-background-color: trans; -fx-border-radius: 30; -fx-border-color: ff0099; -fx-border-width: 2;" text="help?">
-                  <opaqueInsets>
+                     <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </Button>
