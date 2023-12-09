@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -86,6 +87,9 @@ public class Preview implements Initializable {
         printButton.setOnAction(event -> printPlan());
 
     }
+
+
+ 
 
     /**
      * Populates the preview with information about each lesson plan.

@@ -1,13 +1,12 @@
 package edu.augustana;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -16,17 +15,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class CreatePlanController implements Initializable {
     @FXML
@@ -117,6 +113,7 @@ public class CreatePlanController implements Initializable {
     }
     //filter objects
 
+    private CheckBox favorite = new CheckBox();
     private ComboBox<String> genderFilter = new ComboBox<String>();
     private ComboBox<String> eventFilter = new ComboBox<String>();
     private ComboBox<String> levelFilter = new ComboBox<String>();
@@ -162,6 +159,8 @@ public class CreatePlanController implements Initializable {
                 handleSearch();
             }
         });
+
+        favorite.setOnAction(showFavCards());
 
         genderFilter.setOnAction(event -> {
             applyGenderFilter(genderFilter.getValue());
@@ -236,8 +235,8 @@ public class CreatePlanController implements Initializable {
 
 
     private void populateFilterBox() {
-        CheckBox favorite = new CheckBox();
-        Separator line = new Separator();
+//        CheckBox favorite = new CheckBox();
+//        Separator line = new Separator();
 
 
         favorite.setText("Only favorites?");
@@ -252,7 +251,8 @@ public class CreatePlanController implements Initializable {
         levelFilter.getItems().addAll("ALL", "Beginner", "Advance Beginner", "Intermediate", "Advance");
         modelFilter.getItems().addAll("Male", "Female");
 
-        filterBox.getItems().addAll(favorite, line, genderFilter, eventFilter, levelFilter, modelFilter);
+        //filterBox.getItems().addAll(favorite, line, genderFilter, eventFilter, levelFilter, modelFilter);
+        filterBox.getItems().addAll(favorite, genderFilter, eventFilter, levelFilter, modelFilter);
     }
 
 
@@ -416,6 +416,18 @@ public class CreatePlanController implements Initializable {
             }
         }
     }
+
+
+    EventHandler<ActionEvent> showFavCards() {
+        if (favorite.isSelected()) {
+            List<Card> favCards = App.getFavCards();
+            Platform.runLater(() -> populateListView(favCards));
+        }else{
+            Platform.runLater(()-> populateListView(allCards));
+        }
+        return null;
+    }
+
 
     private void applyCardFilter(CardFilter filter) {
         List<Card> filteredCards = filter.filter(allCards);

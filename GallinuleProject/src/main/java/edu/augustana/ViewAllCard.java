@@ -38,6 +38,7 @@ public class ViewAllCard {
     @FXML
     private CheckBox favcheckBox;
 
+
     private List<Card> allCards;
 
     private TextSearchFilter cardSearch;

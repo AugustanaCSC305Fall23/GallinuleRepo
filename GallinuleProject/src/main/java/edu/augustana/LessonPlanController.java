@@ -62,6 +62,7 @@ public class LessonPlanController implements Initializable {
 
     }
 
+
     @FXML
     private void openEditPage() throws IOException {
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
@@ -85,6 +86,19 @@ public class LessonPlanController implements Initializable {
 
         } else {
             new Alert(Alert.AlertType.WARNING, "Please select a plan to delete first!").show();
+        }
+    }
+
+    @FXML
+    private void duplicatePlan() throws IOException  {
+        LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
+        if (selectedLessonPlan != null) {
+            lessonPlanListView.getItems().add(selectedLessonPlan);
+            App.getCurrentOpenCourse().addPlan(selectedLessonPlan);
+            App.saveCourseToFile(App.getCurrentOpenCourseFile(), App.getCurrentOpenCourse().getLessons());
+
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please select a plan to duplicate first!").show();
         }
     }
 
