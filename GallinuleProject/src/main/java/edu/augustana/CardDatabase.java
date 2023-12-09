@@ -12,8 +12,8 @@ import java.util.*;
 public class CardDatabase {
 
     private static final CardDatabase theSingleDB = new CardDatabase();
-    static final List<Card> allCards = new ArrayList<>();
-    static final Map<String,Card> allCardsMap = new HashMap<>(); //declaration to avoid null references
+    protected static final List<Card> allCards = new ArrayList<>();
+    protected static final Map<String,Card> allCardsMap = new HashMap<>(); //declaration to avoid null references
 
 
     public static void addCardsFromCSVFile(File csvFile) throws CsvValidationException, IOException {
