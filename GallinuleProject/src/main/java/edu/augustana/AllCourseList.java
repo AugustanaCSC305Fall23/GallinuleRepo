@@ -56,7 +56,7 @@ public class AllCourseList {
      *
      * @return The list of all courses.
      */
-    public static List<String> getAllCourses(){
+    public static List<String> getAllCourses() {
         return allCourses;
     }
 
@@ -71,7 +71,7 @@ public class AllCourseList {
         Gson gson = new Gson();
         return gson.fromJson(reader, AllCourseList.class);
     }
-    //send file
+
     /**
      * Saves the list of all courses to a JSON file.
      *
@@ -82,7 +82,6 @@ public class AllCourseList {
         String allPlansJSON = gson.toJson(this);
         PrintWriter writer = new PrintWriter(new FileWriter(new File(ALLCOURSE_FILENAME)));
         writer.println(allPlansJSON);
-//        writer.flush();
         writer.close();
     }
 }
