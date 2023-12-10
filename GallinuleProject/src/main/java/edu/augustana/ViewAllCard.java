@@ -159,5 +159,14 @@ public class ViewAllCard {
 
     }
 
+    /**
+     * Checks if the favorite checkbox is selected.
+     *
+     * @return True if the checkbox is selected, false otherwise.
+     */
+    public boolean isFavoriteSelected() {
+        return favcheckBox.isSelected();
+    }
+
 
 }

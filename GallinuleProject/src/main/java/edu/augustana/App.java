@@ -107,6 +107,7 @@ public class App extends Application {
     public static void main(String[] args) throws CsvValidationException, IOException {
         addCardsFromCardPacksDirectory("CardPacks");
         favorites = FavoriteSet.loadFromFile();
+
         currentOpenCourseFile = new File("Courses/Untitled.gymCourse");
         currentOpenCourse = Course.loadCourse(currentOpenCourseFile);
         launch();

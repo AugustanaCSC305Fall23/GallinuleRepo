@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Course implements Serializable {
     private String title;
-    
+
     private List<LessonPlan> lessons;
 
     /**
