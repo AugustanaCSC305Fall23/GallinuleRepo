@@ -42,7 +42,7 @@ class CardDatabaseTest {
 
 
     }
-    
+
     @Test
     void getCardByID() throws CsvValidationException, IOException {
         CardDatabase.addCardsFromCSVFile(new File("CardPacks/DEMO1/Demo1.csv"));
