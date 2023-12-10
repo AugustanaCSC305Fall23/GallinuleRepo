@@ -2,11 +2,9 @@ package edu.augustana;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -20,18 +18,9 @@ import javafx.stage.Window;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.*;
 
 public class CreatePlanController implements Initializable {
-    @FXML
-    private AnchorPane changeBorderAnchor;
-    @FXML
-    private BorderPane motherPane;
-    @FXML
-    private Button addNewRowButton;
     @FXML
     public TextField searchTextField;
     @FXML
@@ -42,25 +31,7 @@ public class CreatePlanController implements Initializable {
     private ListView<Label> searchCardList;
 
     @FXML
-    private TilePane tilePane1;
-
-    @FXML
-    private TilePane tilePane2;
-
-    @FXML
-    private TilePane tilePane3;
-
-    @FXML
     private ListView<String> equipmentList;
-
-    @FXML
-    private ComboBox<String> eventCombo1;
-
-    @FXML
-    private ComboBox<String> eventCombo2;
-
-    @FXML
-    private ComboBox<String> eventCombo3;
 
     @FXML
     private TextField titleBar;
@@ -69,7 +40,6 @@ public class CreatePlanController implements Initializable {
     private ComboBox<Object> filterBox;
 
     public static LessonPlan currentLessonPlan;
-
 
     private List<Card> allCards;
 
@@ -89,6 +59,7 @@ public class CreatePlanController implements Initializable {
     String beforeEventChange;
     private static File currentLessonPlanFile = null;
 
+    private LessonPlan editingLessonPlan;
 
     @FXML
     void switchToPreview() throws IOException {
@@ -103,6 +74,12 @@ public class CreatePlanController implements Initializable {
         } else {
             App.setRoot("Preview");
         }
+    }
+
+    @FXML
+    void switchToStart() throws IOException {
+        App.setRoot("Start");
+
     }
 
     @FXML
@@ -138,7 +115,24 @@ public class CreatePlanController implements Initializable {
         currentLessonPlan = new LessonPlan();
         populateListView(allCards);
         motherVBox.setAlignment(Pos.TOP_LEFT);
-        createEventBox();
+        System.out.println(editingLessonPlan + "- CreatePlanController");
+        if(editingLessonPlan != null){
+            System.out.println("EDITING - CreatePlanController");
+            System.out.println(editingLessonPlan.getSavedCards());
+            HashMap<String, List<String>> lessonMap = editingLessonPlan.getLessonMap();
+            System.out.println(lessonMap);
+            lessonMap.forEach((key, code) -> {
+
+                createEditingBox(lessonMap, key, editingLessonPlan);
+
+            });
+
+        } else {
+            createEventBox();
+        }
+
+
+
 
 
         populateFilterBox();
@@ -175,6 +169,29 @@ public class CreatePlanController implements Initializable {
 
 
     }
+    private void createEditingBox(Map<String, List<String>> map, String key, LessonPlan editingLessonPlan){
+        VBox tempVBox = new VBox();
+        System.out.println("got into the function");
+        tempVBox.setAlignment(Pos.BOTTOM_LEFT);
+        tempVBox.setPrefHeight(150);
+        //event selector
+        ComboBox<String> tempCombo = new ComboBox<String>();
+        tempCombo.setPrefWidth(220);
+        tempCombo.setPrefHeight(40);
+        tempCombo.getStyleClass().add("comboBox");
+        tempCombo.setValue(key);
+        populateEventBox(tempCombo);
+        TilePane tempTile = new TilePane();
+        tempTile.setPrefWidth(645);
+        tempTile.setPrefHeight(100);
+        tempTile.getStyleClass().add("cardHolder");
+        populateEventRowsEditing(tempTile, tempCombo, map.get(key));
+
+        tempVBox.getChildren().add(tempCombo);
+        tempVBox.getChildren().add(tempTile);
+        motherVBox.getChildren().add(tempVBox);
+
+    }
 
     private void createEventBox() {
         VBox tempVBox = new VBox();
@@ -203,6 +220,11 @@ public class CreatePlanController implements Initializable {
     public void addNewRow(){
         rowCount++;
         createEventBox();
+    }
+
+    public void setEditingPlan(LessonPlan enteredLessonPlan){
+        System.out.println(editingLessonPlan + "setEditingPlan");
+        editingLessonPlan = enteredLessonPlan;
     }
 
     public void setTextOnly(){
@@ -249,7 +271,25 @@ public class CreatePlanController implements Initializable {
         filterBox.getItems().addAll(favorite, line, genderFilter, eventFilter, levelFilter, modelFilter);
     }
 
+    private void populateEventRowsEditing(TilePane pane, ComboBox<String> eventCombo, List<String> loadedCards){
+        for (int i = 0; i < 8; i++) {
+            VBox removeHolder = new VBox();
+            removeHolder.setAlignment(Pos.TOP_CENTER);
+            Label cardHolder = new Label("+");
+            cardHolder.setPrefHeight(100);
+            cardHolder.setPrefWidth(80);
+            cardHolder.getStyleClass().add("eventRow");
+            if(!(i + 1 < loadedCards.size())){
+                cardHolder.setText(loadedCards.get(i));
+            }
+            removeHolder.getChildren().add(cardHolder);
 
+            cardHolderListener(cardHolder, eventCombo, removeHolder);
+
+            pane.getChildren().add(removeHolder);
+
+        }
+    }
     private void populateEventRows(TilePane pane, ComboBox<String> eventCombo){
 
         for (int i = 0; i < 8; i++) {
@@ -292,7 +332,9 @@ public class CreatePlanController implements Initializable {
             cardHolder.setWrapText(true);
             cardHolder.setTooltip(img);
             img.setGraphic(searchCardList.getSelectionModel().getSelectedItem().getTooltip().getGraphic());
-            cardHolder.setDisable(true);
+            if(!(cardHolder.getText().equals("+"))){
+                cardHolder.setDisable(true);
+            }
             double sceneX = cardHolder.getLayoutX();
             double sceneY = cardHolder.getLayoutY();
 
@@ -359,14 +401,6 @@ public class CreatePlanController implements Initializable {
         return currentLessonPlan;
     }
 
-
-
-//    public List<ComboBox<String>> getEventCombos(){
-//        return comboBoxList;
-//    }
-
-
-    //FXML code
 
 
 

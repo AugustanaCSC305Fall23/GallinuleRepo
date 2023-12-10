@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Preview implements Initializable {
     public Button backButton;
@@ -37,34 +36,12 @@ public class Preview implements Initializable {
     private Label previewLabel2;
     @FXML
     private Button printButton;
-    @FXML
-    private Label eventLabel1;
-
-    @FXML
-    private Label eventLabel2;
-
-    @FXML
-    private Label eventLabel3;
-
-    @FXML
-    private Label titleLabel;
-    @FXML
-    private Label titleLabel2;
-
-    @FXML
-    private Label titleLabel3;
 
 
     private List<VBox> printList = new ArrayList<>();
 
 
     private PrintGymFile printer = new PrintGymFile(); // Create an instance of the printing class
-
-
-
-    private final int cardsPerSection = 4;
-
-    private LessonPlan currentLessonPlan;
 
 
 
@@ -76,7 +53,6 @@ public class Preview implements Initializable {
         // Fetch all cards and populate the preview
         HashMap<String, List<String>> finishedCards = CreatePlanController.getCurrentLessonPlan().getLessonMap();
 
-//        previewLabel1.setText(
         populatePreview(finishedCards);
 
         // Set up the print button action
@@ -108,6 +84,7 @@ public class Preview implements Initializable {
 
             //place to display the cards
             FlowPane cardShelf = new FlowPane();
+            cardShelf.setAlignment(Pos.TOP_CENTER);
             tempVBox.getChildren().add(cardShelf);
             for (String code : value) {
                 Card card = CardDatabase.getCardByID(code);

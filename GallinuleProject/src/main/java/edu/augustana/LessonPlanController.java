@@ -66,10 +66,9 @@ public class LessonPlanController implements Initializable {
     private void openEditPage() throws IOException {
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
+            System.out.println(selectedLessonPlan.getSavedCards());
+            StartController.switchCreatePlan(selectedLessonPlan);
 
-            CreatePlanController.currentLessonPlan = selectedLessonPlan;
-
-            App.setRoot("CreatePlan");
         } else {
             new Alert(Alert.AlertType.WARNING, "Please select a plan to edit first!").show();
         }

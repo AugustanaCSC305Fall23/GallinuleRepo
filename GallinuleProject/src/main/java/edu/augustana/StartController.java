@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -24,8 +25,13 @@ public class StartController implements Initializable {
     @FXML
     private ImageView MenuButton;
 
+
+
     @FXML
-    private BorderPane bp;
+    private BorderPane borderPane;
+
+    @FXML
+    private static BorderPane bp;
 
     @FXML
     private VBox mainScreen;
@@ -35,6 +41,9 @@ public class StartController implements Initializable {
 
     @FXML
     private AnchorPane navPane;
+
+    @FXML
+    private Button createplanbutton;
 
     @FXML
     private HBox MenuHolder;
@@ -56,6 +65,7 @@ public class StartController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        bp = borderPane;
         try { //start on the CreatePlanScreen
             switchCreatePlan();
         } catch (IOException e) {
@@ -105,8 +115,22 @@ public class StartController implements Initializable {
     }
 
     @FXML
-    private void switchCreatePlan() throws IOException {
-        loadPage("CreatePlan");
+    static void switchCreatePlan(LessonPlan enteredLessonPlan) throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(StartController.class.getResource("CreatePlan.fxml"));
+            Parent root = fxmlLoader.load();
+            CreatePlanController controller = fxmlLoader.getController();
+            System.out.println(enteredLessonPlan + " - StartController");
+            controller.setEditingPlan(enteredLessonPlan);
+            bp.setCenter(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void switchCreatePlan() throws IOException {
+        switchCreatePlan(new LessonPlan());
     }
 
     @FXML
@@ -131,6 +155,5 @@ public class StartController implements Initializable {
             bp.setCenter(root);
 
     }
-
 
 }
