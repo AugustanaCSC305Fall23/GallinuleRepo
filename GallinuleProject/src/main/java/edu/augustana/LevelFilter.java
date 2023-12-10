@@ -68,5 +68,5 @@ public class LevelFilter implements CardFilter {
         }
         return false;
     }
-    
+
 }
