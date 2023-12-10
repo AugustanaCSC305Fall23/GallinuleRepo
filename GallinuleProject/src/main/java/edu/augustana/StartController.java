@@ -24,7 +24,6 @@ import javafx.scene.text.Text;
  */
 public class StartController implements Initializable {
 
-
     @FXML
     private ImageView MenuButton;
 
@@ -55,7 +54,7 @@ public class StartController implements Initializable {
      *
      * @return The lesson plan held until discard.
      */
-    public static LessonPlan getHoldUntilDiscardLessonPlan(){
+    public static LessonPlan getHoldUntilDiscardLessonPlan() {
         return holdUntilDiscardLessonPlan;
     }
 
@@ -64,10 +63,16 @@ public class StartController implements Initializable {
      *
      * @param newLP The new lesson plan to be held until discard.
      */
-    public static void setHoldUntilDiscardLessonPlan(LessonPlan newLP){
+    public static void setHoldUntilDiscardLessonPlan(LessonPlan newLP) {
         holdUntilDiscardLessonPlan = newLP;
     }
 
+    /**
+     * Initializes the controller with the starting FXML page.
+     *
+     * @param url            The location used to resolve relative paths for the root object.
+     * @param resourceBundle The resources specific to this controller.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try { //start on the CreatePlanScreen
@@ -129,12 +134,12 @@ public class StartController implements Initializable {
     }
 
     @FXML
-    private void switchAboutPage() throws IOException{
+    private void switchAboutPage() throws IOException {
         loadPage("AboutPage");
     }
 
     @FXML
-    private void switchToCoursePage() throws IOException{
+    private void switchToCoursePage() throws IOException {
         loadPage("CoursePage");
     }
 
@@ -148,9 +153,9 @@ public class StartController implements Initializable {
     @FXML
     public void loadPage(String page) throws IOException {
 
-            FXMLLoader loader = new FXMLLoader(App.class.getResource(page + ".fxml"));
-            Parent root = loader.load();
-            bp.setCenter(root);
+        FXMLLoader loader = new FXMLLoader(App.class.getResource(page + ".fxml"));
+        Parent root = loader.load();
+        bp.setCenter(root);
 
     }
 

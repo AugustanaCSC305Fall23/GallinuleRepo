@@ -26,7 +26,7 @@ public class PrintGymFile {
             if (showDialog) {
                 PageLayout pageLayout = job.getPrinter().createPageLayout(Paper.NA_LETTER, PageOrientation.LANDSCAPE, Printer.MarginType.HARDWARE_MINIMUM);
 
-                for(VBox page : vboxList) {
+                for (VBox page : vboxList) {
                     System.out.println("Vbox: " + page);
                     // Create a copy of the content to avoid modifying the original
                     VBox scaledContent = createScaledContent(page, pageLayout);
@@ -85,8 +85,8 @@ public class PrintGymFile {
     /**
      * Creates a scaled copy of the content (AnchorPane) to fit on A4 in text-only mode.
      *
-     * @param content     The original content to be scaled.
-     * @param pageLayout  The PageLayout specifying the target size and orientation.
+     * @param content    The original content to be scaled.
+     * @param pageLayout The PageLayout specifying the target size and orientation.
      * @return Scaled AnchorPane.
      */
     public AnchorPane createScaledContentTextOnly(AnchorPane content, PageLayout pageLayout) {
@@ -101,12 +101,12 @@ public class PrintGymFile {
         return scaledContent;
     }
 
-    // Calculate the scale factor to fit the content on A4
+
     /**
      * Calculates the scale factor to fit the content on A4 in text-only mode.
      *
-     * @param content     The original content.
-     * @param pageLayout  The PageLayout specifying the target size and orientation.
+     * @param content    The original content.
+     * @param pageLayout The PageLayout specifying the target size and orientation.
      * @return The calculated scale factor.
      */
     public double calculateScaleFactorTextOnly(AnchorPane content, PageLayout pageLayout) {
@@ -117,12 +117,11 @@ public class PrintGymFile {
         return Math.max(scaleX, scaleY);
     }
 
-    // Create a scaled copy of the content to fit on A4
     /**
      * Creates a scaled copy of the content (VBox) to fit on A4.
      *
-     * @param content     The original content to be scaled.
-     * @param pageLayout  The PageLayout specifying the target size and orientation.
+     * @param content    The original content to be scaled.
+     * @param pageLayout The PageLayout specifying the target size and orientation.
      * @return Scaled VBox.
      */
     public VBox createScaledContent(VBox content, PageLayout pageLayout) {
@@ -137,12 +136,12 @@ public class PrintGymFile {
         return scaledContent;
     }
 
-    // Calculate the scale factor to fit the content on A4
+
     /**
      * Calculates the scale factor to fit the content on A4.
      *
-     * @param content     The original content.
-     * @param pageLayout  The PageLayout specifying the target size and orientation.
+     * @param content    The original content.
+     * @param pageLayout The PageLayout specifying the target size and orientation.
      * @return The calculated scale factor.
      */
     public double calculateScaleFactor(VBox content, PageLayout pageLayout) {
@@ -152,8 +151,6 @@ public class PrintGymFile {
         // Use the minimum scale factor to maintain aspect ratio
         return Math.max(scaleX, scaleY);
     }
-
-
 
 
 }

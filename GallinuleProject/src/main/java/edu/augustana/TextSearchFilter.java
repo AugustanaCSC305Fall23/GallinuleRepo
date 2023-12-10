@@ -18,6 +18,7 @@ public class TextSearchFilter implements CardFilter {
     public void setSearchCriteria(String searchCriteria) {
         this.searchCriteria = searchCriteria;
     }
+
     private final List<Card> allCards;
     private String searchCriteria;
 

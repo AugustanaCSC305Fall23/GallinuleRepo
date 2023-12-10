@@ -10,7 +10,6 @@
           "category": "Endo Roll",
           "title": "Endo Roll on Mat",
           "packFolder": "DEMO2",
-          "img": "2.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -29,7 +28,6 @@
           "category": "Endo Roll",
           "title": "Endo Roll on Mat",
           "packFolder": "DEMO2",
-          "img": "2.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -48,7 +46,6 @@
           "category": "Endo Roll",
           "title": "Endo Roll on Mat",
           "packFolder": "DEMO2",
-          "img": "2.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -80,7 +77,6 @@
           "category": "Handstand",
           "title": "Handstand Forward Roll",
           "packFolder": "DEMO2",
-          "img": "4.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -99,7 +95,6 @@
           "category": "Handstand",
           "title": "Handstand Forward Roll",
           "packFolder": "DEMO2",
-          "img": "4.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -118,7 +113,6 @@
           "category": "Handstand",
           "title": "Handstand Forward Roll",
           "packFolder": "DEMO2",
-          "img": "4.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -150,7 +144,6 @@
           "category": "Dive Roll",
           "title": "Drive Roll",
           "packFolder": "DEMO2",
-          "img": "1.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -169,7 +162,6 @@
           "category": "Endo Roll",
           "title": "Endo Roll on Mat",
           "packFolder": "DEMO2",
-          "img": "2.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -188,7 +180,6 @@
           "category": "Pommel Horse",
           "title": "Around the Worlds",
           "packFolder": "DEMO2",
-          "img": "7.png",
           "gender": "M",
           "modelSex": "M",
           "level": [
@@ -207,7 +198,6 @@
           "category": "Mushroom",
           "title": "Jump Through Circles",
           "packFolder": "DEMO2",
-          "img": "8.png",
           "gender": "M",
           "modelSex": "M",
           "level": [
@@ -226,7 +216,6 @@
           "category": "Handstand",
           "title": "Handstand Forward Roll",
           "packFolder": "DEMO2",
-          "img": "4.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -245,7 +234,6 @@
           "category": "Round Off",
           "title": "Cartwheel Step In",
           "packFolder": "DEMO2",
-          "img": "6.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -264,7 +252,6 @@
           "category": "Endo Roll",
           "title": "Endo Roll on Mat",
           "packFolder": "DEMO2",
-          "img": "2.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -283,7 +270,6 @@
           "category": "Round Off",
           "title": "Cartwheel Step In",
           "packFolder": "DEMO2",
-          "img": "6.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -302,7 +288,6 @@
           "category": "Tramp",
           "title": "Safety Fall",
           "packFolder": "DEMO1",
-          "img": "18.png",
           "gender": "N",
           "modelSex": "F",
           "level": [
@@ -321,7 +306,6 @@
           "category": "Tramp",
           "title": "Seatdrop",
           "packFolder": "DEMO1",
-          "img": "19.png",
           "gender": "N",
           "modelSex": "F",
           "level": [
@@ -364,7 +348,6 @@
           "category": "Dive Roll",
           "title": "Drive Roll",
           "packFolder": "DEMO2",
-          "img": "1.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -383,7 +366,6 @@
           "category": "Endo Roll",
           "title": "Endo Roll on Mat",
           "packFolder": "DEMO2",
-          "img": "2.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -402,7 +384,6 @@
           "category": "Pommel Horse",
           "title": "Around the Worlds",
           "packFolder": "DEMO2",
-          "img": "7.png",
           "gender": "M",
           "modelSex": "M",
           "level": [
@@ -421,7 +402,6 @@
           "category": "Mushroom",
           "title": "Jump Through Circles",
           "packFolder": "DEMO2",
-          "img": "8.png",
           "gender": "M",
           "modelSex": "M",
           "level": [
@@ -440,7 +420,6 @@
           "category": "Handstand",
           "title": "Handstand Forward Roll",
           "packFolder": "DEMO2",
-          "img": "4.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -459,7 +438,6 @@
           "category": "Round Off",
           "title": "Cartwheel Step In",
           "packFolder": "DEMO2",
-          "img": "6.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -478,7 +456,6 @@
           "category": "Endo Roll",
           "title": "Endo Roll on Mat",
           "packFolder": "DEMO2",
-          "img": "2.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -497,7 +474,6 @@
           "category": "Round Off",
           "title": "Cartwheel Step In",
           "packFolder": "DEMO2",
-          "img": "6.png",
           "gender": "N",
           "modelSex": "M",
           "level": [
@@ -516,7 +492,6 @@
           "category": "Tramp",
           "title": "Safety Fall",
           "packFolder": "DEMO1",
-          "img": "18.png",
           "gender": "N",
           "modelSex": "F",
           "level": [
@@ -535,7 +510,6 @@
           "category": "Tramp",
           "title": "Seatdrop",
           "packFolder": "DEMO1",
-          "img": "19.png",
           "gender": "N",
           "modelSex": "F",
           "level": [
