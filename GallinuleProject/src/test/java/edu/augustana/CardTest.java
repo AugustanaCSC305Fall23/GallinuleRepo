@@ -50,7 +50,7 @@ public class CardTest {
 
     @Test
     public void testGetImg() {
-        assertEquals("1.png", testCard.getImg());
+        assertEquals("1.png", testCard.getImage());
     }
 
     @Test

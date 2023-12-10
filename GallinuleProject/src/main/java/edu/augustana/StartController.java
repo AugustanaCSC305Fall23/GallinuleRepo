@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -24,12 +25,16 @@ import javafx.scene.text.Text;
  */
 public class StartController implements Initializable {
 
-
     @FXML
     private ImageView MenuButton;
 
+
+
     @FXML
-    private BorderPane bp;
+    private BorderPane borderPane;
+
+    @FXML
+    private static BorderPane bp;
 
     @FXML
     private VBox mainScreen;
@@ -39,6 +44,9 @@ public class StartController implements Initializable {
 
     @FXML
     private AnchorPane navPane;
+
+    @FXML
+    private Button createplanbutton;
 
     @FXML
     private HBox MenuHolder;
@@ -55,7 +63,7 @@ public class StartController implements Initializable {
      *
      * @return The lesson plan held until discard.
      */
-    public static LessonPlan getHoldUntilDiscardLessonPlan(){
+    public static LessonPlan getHoldUntilDiscardLessonPlan() {
         return holdUntilDiscardLessonPlan;
     }
 
@@ -64,12 +72,19 @@ public class StartController implements Initializable {
      *
      * @param newLP The new lesson plan to be held until discard.
      */
-    public static void setHoldUntilDiscardLessonPlan(LessonPlan newLP){
+    public static void setHoldUntilDiscardLessonPlan(LessonPlan newLP) {
         holdUntilDiscardLessonPlan = newLP;
     }
 
+    /**
+     * Initializes the controller with the starting FXML page.
+     *
+     * @param url            The location used to resolve relative paths for the root object.
+     * @param resourceBundle The resources specific to this controller.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        bp = borderPane;
         try { //start on the CreatePlanScreen
             switchCreatePlan();
         } catch (IOException e) {
@@ -119,8 +134,22 @@ public class StartController implements Initializable {
     }
 
     @FXML
-    private void switchCreatePlan() throws IOException {
-        loadPage("CreatePlan");
+    static void switchCreatePlan(LessonPlan enteredLessonPlan) throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(StartController.class.getResource("CreatePlan.fxml"));
+            Parent root = fxmlLoader.load();
+            CreatePlanController controller = fxmlLoader.getController();
+            System.out.println(enteredLessonPlan + " - StartController");
+            controller.setEditingPlan(enteredLessonPlan);
+            bp.setCenter(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void switchCreatePlan() throws IOException {
+        switchCreatePlan(new LessonPlan());
     }
 
     @FXML
@@ -129,12 +158,12 @@ public class StartController implements Initializable {
     }
 
     @FXML
-    private void switchAboutPage() throws IOException{
+    private void switchAboutPage() throws IOException {
         loadPage("AboutPage");
     }
 
     @FXML
-    private void switchToCoursePage() throws IOException{
+    private void switchToCoursePage() throws IOException {
         loadPage("CoursePage");
     }
 
@@ -148,11 +177,10 @@ public class StartController implements Initializable {
     @FXML
     public void loadPage(String page) throws IOException {
 
-            FXMLLoader loader = new FXMLLoader(App.class.getResource(page + ".fxml"));
-            Parent root = loader.load();
-            bp.setCenter(root);
+        FXMLLoader loader = new FXMLLoader(App.class.getResource(page + ".fxml"));
+        Parent root = loader.load();
+        bp.setCenter(root);
 
     }
-
 
 }

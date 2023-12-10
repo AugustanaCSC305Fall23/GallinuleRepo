@@ -1,7 +1,9 @@
 edu\augustana\CoursePageController.class
+edu\augustana\SingleCardView.class
 edu\augustana\AboutPage.class
 edu\augustana\AllCourseList.class
 module-info.class
 edu\augustana\PreviewTextOnlyController.class
 edu\augustana\LessonPlanController.class
+edu\augustana\FavoriteSet.class
 edu\augustana\CombinedAndFilter.class

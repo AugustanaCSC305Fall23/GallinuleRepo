@@ -15,7 +15,7 @@ import java.util.List;
 
 
 /**
- * JavaFX App
+ * JavaFX App hat serves as the main entry point for the application.
  */
 public class App extends Application {
 
@@ -26,15 +26,30 @@ public class App extends Application {
 
     private static FavoriteSet favorites;
 
+    /**
+     * Retrieves the currently open course file.
+     *
+     * @return The current open course file.
+     */
     public static File getCurrentOpenCourseFile() {
         return currentOpenCourseFile;
     }
 
+    /**
+     * Retrieves the set of favorites.
+     *
+     * @return The set of favorites.
+     */
     public static FavoriteSet getFavorites() {
         return favorites;
     }
 
-
+    /**
+     * Entry point for the JavaFX application.
+     *
+     * @param stage The primary stage for the application.
+     * @throws IOException If an I/O error occurs while loading the FXML file.
+     */
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("Start"), 1275, 725);
@@ -42,10 +57,21 @@ public class App extends Application {
         stage.show();
     }
 
+    /**
+     * Sets the root of the scene to the specified FXML file.
+     *
+     * @param fxml The name of the FXML file to load.
+     * @throws IOException If an I/O error occurs while loading the FXML file.
+     */
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
+    /**
+     * Retrieves a list of favorite cards.
+     *
+     * @return The list of favorite cards.
+     */
     public static List<Card> getFavCards() {
         List<Card> favCards = new ArrayList<>();
         for (String favCardId : favorites.getFavoriteIDs()) {
@@ -60,30 +86,42 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
+    /**
+     * Method called when the application is stopped.
+     *
+     * @throws IOException If an I/O error occurs while saving data.
+     */
     @Override
-    public void stop() throws IOException{
+    public void stop() throws IOException {
         currentOpenCourse.saveCourse(currentOpenCourseFile);
         favorites.saveToFile();
     }
 
+    /**
+     * Main method that launches the application.
+     *
+     * @param args Command-line arguments.
+     * @throws CsvValidationException If an error occurs during CSV validation.
+     * @throws IOException            If an I/O error occurs.
+     */
     public static void main(String[] args) throws CsvValidationException, IOException {
-
         addCardsFromCardPacksDirectory("CardPacks");
-
         favorites = FavoriteSet.loadFromFile();
-        // favorites = new FavoriteSet();
 
         currentOpenCourseFile = new File("Courses/Untitled.gymCourse");
         currentOpenCourse = Course.loadCourse(currentOpenCourseFile);
-        //currentOpenCourse = new Course("Untitled", new ArrayList<>()); // or load it from last saved location?
         launch();
     }
 
-
+    /**
+     * Adds cards from the specified card packs directory.
+     *
+     * @param cardPacksDirectory The directory containing card packs.
+     * @throws CsvValidationException If an error occurs during CSV validation.
+     * @throws IOException            If an I/O error occurs.
+     */
     public static void addCardsFromCardPacksDirectory(String cardPacksDirectory) throws CsvValidationException, IOException {
         File directory = new File(cardPacksDirectory);
-
-        // Check if the given directory exists
         if (directory.exists() && directory.isDirectory()) {
             processDirectory(directory);
         } else {
@@ -107,16 +145,33 @@ public class App extends Application {
         }
     }
 
+    /**
+     * Retrieves the currently open course.
+     *
+     * @return The currently open course.
+     */
     public static Course getCurrentOpenCourse() {
         return currentOpenCourse;
     }
 
-    //somewhere in the GUI, you would let the user choose a file (with a file chooser)
-    // adn then you'd call this method
+    /**
+     * Opens a course from the specified file.
+     *
+     * @param courseFile The file from which to open the course.
+     * @throws FileNotFoundException If the specified file is not found.
+     */
     public static void openCourseFromFile(File courseFile) throws FileNotFoundException {
         currentOpenCourseFile = courseFile;
         currentOpenCourse = Course.loadCourse(courseFile);
     }
+
+    /**
+     * Saves the course to the specified file.
+     *
+     * @param courseFile  The file to which the course will be saved.
+     * @param lessonPlans The list of lesson plans to be saved.
+     * @throws IOException If an I/O error occurs while saving the course.
+     */
     public static void saveCourseToFile(File courseFile, List<LessonPlan> lessonPlans) throws IOException {
         currentOpenCourseFile = courseFile;
         currentOpenCourse.setLessons(lessonPlans);

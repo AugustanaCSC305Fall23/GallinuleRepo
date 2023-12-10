@@ -1,8 +1,6 @@
 package edu.augustana;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -20,17 +18,13 @@ import javafx.stage.Window;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
+
+/**
+ * Controller class for the Create Plan view.
+ */
 public class CreatePlanController implements Initializable {
-    @FXML
-    private AnchorPane changeBorderAnchor;
-    @FXML
-    private BorderPane motherPane;
-    @FXML
-    private Button addNewRowButton;
     @FXML
     public TextField searchTextField;
     @FXML
@@ -41,25 +35,7 @@ public class CreatePlanController implements Initializable {
     private ListView<Label> searchCardList;
 
     @FXML
-    private TilePane tilePane1;
-
-    @FXML
-    private TilePane tilePane2;
-
-    @FXML
-    private TilePane tilePane3;
-
-    @FXML
     private ListView<String> equipmentList;
-
-    @FXML
-    private ComboBox<String> eventCombo1;
-
-    @FXML
-    private ComboBox<String> eventCombo2;
-
-    @FXML
-    private ComboBox<String> eventCombo3;
 
     @FXML
     private TextField titleBar;
@@ -68,7 +44,6 @@ public class CreatePlanController implements Initializable {
     private ComboBox<Object> filterBox;
 
     public static LessonPlan currentLessonPlan;
-
 
     private List<Card> allCards;
 
@@ -82,12 +57,15 @@ public class CreatePlanController implements Initializable {
     @FXML
     private Button helpBtn;
 
+    private ViewAllCard viewAllCard;
 
     int rowCount = 1;
 
     String beforeEventChange;
+
     private static File currentLessonPlanFile = null;
 
+    private LessonPlan editingLessonPlan;
 
     @FXML
     void switchToPreview() throws IOException {
@@ -98,12 +76,18 @@ public class CreatePlanController implements Initializable {
 
         // Add the current lesson plan to the list
         LessonPlan.getAllLessonPlans().add(currentLessonPlan);
-        if(currentLessonPlan.getTextOnly()){
-                 App.setRoot("PreviewTextOnly");
+        if (currentLessonPlan.getTextOnly()) {
+            App.setRoot("PreviewTextOnly");
         } else {
             App.setRoot("Preview");
         }
 
+
+    }
+
+    @FXML
+    void switchToStart() throws IOException {
+        App.setRoot("Start");
 
     }
 
@@ -113,11 +97,11 @@ public class CreatePlanController implements Initializable {
     }
     //filter objects
 
-    private CheckBox favorite = new CheckBox();
-    private ComboBox<String> genderFilter = new ComboBox<String>();
-    private ComboBox<String> eventFilter = new ComboBox<String>();
-    private ComboBox<String> levelFilter = new ComboBox<String>();
-    private ComboBox<String> modelFilter = new ComboBox<String>();
+    private final CheckBox favoriteCheckBox = new CheckBox();
+    private final ComboBox<String> genderFilter = new ComboBox<String>();
+    private final ComboBox<String> eventFilter = new ComboBox<String>();
+    private final ComboBox<String> levelFilter = new ComboBox<String>();
+    private final ComboBox<String> modelFilter = new ComboBox<String>();
 
     public static File getCurrentLessonPlanFile() {
         return currentLessonPlanFile;
@@ -127,6 +111,7 @@ public class CreatePlanController implements Initializable {
         currentLessonPlan = LessonPlan.loadFromFile(LessonPlanFile);
         currentLessonPlanFile = LessonPlanFile;
     }
+
     public void saveCurrentPlanToFile(File chosenFile) throws IOException {
         currentLessonPlan.saveToFile(chosenFile);
         currentLessonPlanFile = chosenFile;
@@ -134,6 +119,12 @@ public class CreatePlanController implements Initializable {
 
     private TextSearchFilter textSearchFilter;
 
+    /**
+     * Initializes the Create Plan view.
+     *
+     * @param url            The location used to resolve relative paths for the root object.
+     * @param resourceBundle The resources specific to the locale.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         allCards = CardDatabase.getAllCards();
@@ -141,14 +132,23 @@ public class CreatePlanController implements Initializable {
         currentLessonPlan = new LessonPlan();
         populateListView(allCards);
         motherVBox.setAlignment(Pos.TOP_LEFT);
-        createEventBox();
+        System.out.println(editingLessonPlan + "- CreatePlanController");
+        if(editingLessonPlan != null){
+            System.out.println("EDITING - CreatePlanController");
+            System.out.println(editingLessonPlan.getSavedCards());
+            HashMap<String, List<String>> lessonMap = editingLessonPlan.getLessonMap();
+            System.out.println(lessonMap);
+            lessonMap.forEach((key, code) -> {
 
+                createEditingBox(lessonMap, key, editingLessonPlan);
 
-        populateFilterBox();
+            });
 
-        Tooltip tooltip = new Tooltip("This the Create Plan Page."+"\n" + "Double click on " +
-                "'Untitled' Title bar to change the Title. "+
-                "\n"+ "Click on the cards you want in your plan and the cards stock you want to place it in" +"\n");
+        } else {
+            createEventBox();
+        }
+
+        Tooltip tooltip = new Tooltip("This the Create Plan Page." + "\n" + "Double click on " + "'Untitled' Title bar to change the Title. " + "\n" + "Click on the cards you want in your plan and the cards stock you want to place it in" + "\n");
         helpBtn.setTooltip(tooltip);
 
         titleBar.textProperty().addListener((obs, oldV, newV) -> currentLessonPlan.setTitle(newV));
@@ -160,7 +160,6 @@ public class CreatePlanController implements Initializable {
             }
         });
 
-        favorite.setOnAction(showFavCards());
 
         genderFilter.setOnAction(event -> {
             applyGenderFilter(genderFilter.getValue());
@@ -178,6 +177,32 @@ public class CreatePlanController implements Initializable {
             applyModelSexFilter(modelFilter.getValue());
         });
 
+        favoriteCheckBox.setOnAction(event -> {
+            showFavCards();
+        });
+
+    }
+    private void createEditingBox(Map<String, List<String>> map, String key, LessonPlan editingLessonPlan){
+        VBox tempVBox = new VBox();
+        System.out.println("got into the function");
+        tempVBox.setAlignment(Pos.BOTTOM_LEFT);
+        tempVBox.setPrefHeight(150);
+        //event selector
+        ComboBox<String> tempCombo = new ComboBox<String>();
+        tempCombo.setPrefWidth(220);
+        tempCombo.setPrefHeight(40);
+        tempCombo.getStyleClass().add("comboBox");
+        tempCombo.setValue(key);
+        populateEventBox(tempCombo);
+        TilePane tempTile = new TilePane();
+        tempTile.setPrefWidth(645);
+        tempTile.setPrefHeight(100);
+        tempTile.getStyleClass().add("cardHolder");
+        populateEventRowsEditing(tempTile, tempCombo, map.get(key));
+
+        tempVBox.getChildren().add(tempCombo);
+        tempVBox.getChildren().add(tempTile);
+        motherVBox.getChildren().add(tempVBox);
 
     }
 
@@ -190,8 +215,8 @@ public class CreatePlanController implements Initializable {
         tempCombo.setPrefWidth(220);
         tempCombo.setPrefHeight(40);
         tempCombo.getStyleClass().add("comboBox");
-        tempCombo.setValue("ALL-"+rowCount);
-        currentLessonPlan.getLessonMap().put("ALL-"+rowCount, new ArrayList<String>());
+        tempCombo.setValue("ALL-" + rowCount);
+        currentLessonPlan.getLessonMap().put("ALL-" + rowCount, new ArrayList<String>());
         populateEventBox(tempCombo);
         //event row
         TilePane tempTile = new TilePane();
@@ -204,10 +229,16 @@ public class CreatePlanController implements Initializable {
         tempVBox.getChildren().add(tempTile);
         motherVBox.getChildren().add(tempVBox);
     }
+
     @FXML
-    public void addNewRow(){
+    public void addNewRow() {
         rowCount++;
         createEventBox();
+    }
+
+    public void setEditingPlan(LessonPlan enteredLessonPlan){
+        System.out.println(editingLessonPlan + "setEditingPlan");
+        editingLessonPlan = enteredLessonPlan;
     }
 
     public void setTextOnly(){
@@ -218,7 +249,7 @@ public class CreatePlanController implements Initializable {
 
     private void populateEventBox(ComboBox<String> box) {
         List<String> eventList = CardDatabase.getDB().getEventList();
-        for(String event: eventList){
+        for (String event : eventList) {
             event = String.format("%s-%d", event, rowCount);
             box.getItems().add(event);
         }
@@ -235,11 +266,8 @@ public class CreatePlanController implements Initializable {
 
 
     private void populateFilterBox() {
-//        CheckBox favorite = new CheckBox();
-//        Separator line = new Separator();
 
-
-        favorite.setText("Only favorites?");
+        favoriteCheckBox.setText("Only favorites?");
         genderFilter.setPromptText("Gender");
         eventFilter.setPromptText("Event");
         levelFilter.setPromptText("Level");
@@ -251,11 +279,28 @@ public class CreatePlanController implements Initializable {
         levelFilter.getItems().addAll("ALL", "Beginner", "Advance Beginner", "Intermediate", "Advance");
         modelFilter.getItems().addAll("Male", "Female");
 
-        //filterBox.getItems().addAll(favorite, line, genderFilter, eventFilter, levelFilter, modelFilter);
-        filterBox.getItems().addAll(favorite, genderFilter, eventFilter, levelFilter, modelFilter);
+        filterBox.getItems().addAll(favoriteCheckBox, genderFilter, eventFilter, levelFilter, modelFilter);
     }
 
+    private void populateEventRowsEditing(TilePane pane, ComboBox<String> eventCombo, List<String> loadedCards){
+        for (int i = 0; i < 8; i++) {
+            VBox removeHolder = new VBox();
+            removeHolder.setAlignment(Pos.TOP_CENTER);
+            Label cardHolder = new Label("+");
+            cardHolder.setPrefHeight(100);
+            cardHolder.setPrefWidth(80);
+            cardHolder.getStyleClass().add("eventRow");
+            if(!(i + 1 < loadedCards.size())){
+                cardHolder.setText(loadedCards.get(i));
+            }
+            removeHolder.getChildren().add(cardHolder);
 
+            cardHolderListener(cardHolder, eventCombo, removeHolder);
+
+            pane.getChildren().add(removeHolder);
+
+        }
+    }
     private void populateEventRows(TilePane pane, ComboBox<String> eventCombo){
 
         for (int i = 0; i < 8; i++) {
@@ -275,8 +320,7 @@ public class CreatePlanController implements Initializable {
     }
 
 
-
-    private void cardHolderListener(Label cardHolder, ComboBox<String> eventBox, VBox removeHolder){
+    private void cardHolderListener(Label cardHolder, ComboBox<String> eventBox, VBox removeHolder) {
 
         cardHolder.setOnMouseClicked(event -> {
             Label selectedLabel = searchCardList.getSelectionModel().getSelectedItem();
@@ -298,7 +342,9 @@ public class CreatePlanController implements Initializable {
             cardHolder.setWrapText(true);
             cardHolder.setTooltip(img);
             img.setGraphic(searchCardList.getSelectionModel().getSelectedItem().getTooltip().getGraphic());
-            cardHolder.setDisable(true);
+            if(!(cardHolder.getText().equals("+"))){
+                cardHolder.setDisable(true);
+            }
             double sceneX = cardHolder.getLayoutX();
             double sceneY = cardHolder.getLayoutY();
 
@@ -317,10 +363,8 @@ public class CreatePlanController implements Initializable {
     }
 
 
-
-
-    private void populateListView(List<Card> cards){
-
+    private void populateListView(List<Card> cards) {
+        searchCardList.getItems().clear();
 
         for (Card card : cards) {
             ImageView imageView = card.createThumbnailImageView(); // we use thumbnail
@@ -339,7 +383,6 @@ public class CreatePlanController implements Initializable {
     }
 
 
-
     private void handleSearch() {
         String searchCriteria = searchTextField.getText(); // Get the text from the search field
         textSearchFilter.setSearchCriteria(searchCriteria);
@@ -352,9 +395,6 @@ public class CreatePlanController implements Initializable {
 
     }
 
-
-
-
     private void existingCodeCheckToAdd() {
         if (!equipmentList.getItems().contains(String.format("%s- %s", codeCheck, equipment))) {
             equipmentList.getItems().add(String.format("%s- %s", codeCheck, equipment));
@@ -364,18 +404,6 @@ public class CreatePlanController implements Initializable {
     public static LessonPlan getCurrentLessonPlan() {
         return currentLessonPlan;
     }
-
-
-
-//    public List<ComboBox<String>> getEventCombos(){
-//        return comboBoxList;
-//    }
-
-
-    //FXML code
-
-
-
 
     public void saveCurrentPlanToFile(ActionEvent actionEvent) throws IOException {
 
@@ -418,17 +446,6 @@ public class CreatePlanController implements Initializable {
     }
 
 
-    EventHandler<ActionEvent> showFavCards() {
-        if (favorite.isSelected()) {
-            List<Card> favCards = App.getFavCards();
-            Platform.runLater(() -> populateListView(favCards));
-        }else{
-            Platform.runLater(()-> populateListView(allCards));
-        }
-        return null;
-    }
-
-
     private void applyCardFilter(CardFilter filter) {
         List<Card> filteredCards = filter.filter(allCards);
         // Clear and repopulate the listView with the filtered cards
@@ -463,6 +480,16 @@ public class CreatePlanController implements Initializable {
         if (selectedModelSex != null) {
             ModelSexFilter modelSexFilter = new ModelSexFilter(selectedModelSex);
             applyCardFilter(modelSexFilter);
+        }
+    }
+
+    private void showFavCards() {
+        if (favoriteCheckBox.isSelected()) {
+            List<Card> favCards = App.getFavCards();
+            populateListView(favCards);
+        } else {
+            // If the checkbox is not selected, show all cards
+            populateListView(allCards);
         }
     }
 

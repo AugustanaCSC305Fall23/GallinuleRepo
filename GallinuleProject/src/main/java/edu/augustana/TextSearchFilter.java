@@ -18,6 +18,7 @@ public class TextSearchFilter implements CardFilter {
     public void setSearchCriteria(String searchCriteria) {
         this.searchCriteria = searchCriteria;
     }
+
     private final List<Card> allCards;
     private String searchCriteria;
 
@@ -60,6 +61,13 @@ public class TextSearchFilter implements CardFilter {
         return filteredCards;
     }
 
+    /**
+     * Applies the specified filter to the list of cards.
+     *
+     * @param cards  The list of cards to be filtered.
+     * @param filter The filter criteria.
+     * @return The filtered list of cards.
+     */
     private List<Card> applyFilter(List<Card> cards, String filter) {
         if (searchCriteria.isEmpty()) {
             return cards; // Show all cards if the search field is empty
@@ -70,6 +78,13 @@ public class TextSearchFilter implements CardFilter {
         }
     }
 
+    /**
+     * Checks if a card contains the specified filter criteria in any of its properties.
+     *
+     * @param card   The card to be checked.
+     * @param filter The filter criteria.
+     * @return True if the card contains the filter criteria, false otherwise.
+     */
     private boolean cardContainsProperty(Card card, String filter) {
         String filterLowerCase = filter.toLowerCase();
         List<String> propertiesToSearch = Arrays.asList(
@@ -78,7 +93,7 @@ public class TextSearchFilter implements CardFilter {
                 card.getCategory(),
                 card.getTitle(),
                 card.getPackFolder(),
-                card.getImg(),
+                card.getImage(),
                 card.getGender(),
                 card.getModelSex()
         );
