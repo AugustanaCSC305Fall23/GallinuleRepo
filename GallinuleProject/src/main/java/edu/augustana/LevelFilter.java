@@ -59,6 +59,12 @@ public class LevelFilter implements CardFilter {
         }
     }
 
+    /**
+     * Checks if any of the specified levels match the selected level.
+     *
+     * @param cardLevels The list of levels associated with a card.
+     * @return {@code true} if any level matches the selected level, otherwise {@code false}.
+     */
     private boolean matchesAnyLevel(List<String> cardLevels) {
 
         for (String cardLevel : cardLevels) {

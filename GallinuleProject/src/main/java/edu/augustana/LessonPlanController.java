@@ -16,6 +16,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the Lesson Plan view, responsible for managing lesson plans.
+ */
 public class LessonPlanController implements Initializable {
 
     @FXML
@@ -33,8 +36,6 @@ public class LessonPlanController implements Initializable {
     @FXML
     private Button saveAsBtn;
 
-//    private AllPlansList allLessonPlan;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -48,6 +49,12 @@ public class LessonPlanController implements Initializable {
 
     }
 
+    /**
+     * Opens the selected Lesson Plan for preview.
+     * Invoked when the "Open" button is clicked.
+     *
+     * @throws IOException If an error occurs while opening the Lesson Plan.
+     */
     @FXML
     private void openLessonPlan() throws IOException {
 
@@ -62,7 +69,12 @@ public class LessonPlanController implements Initializable {
 
     }
 
-
+    /**
+     * Opens the selected Lesson Plan for editing.
+     * Invoked when the "Edit" button is clicked.
+     *
+     * @throws IOException If an error occurs while opening the Lesson Plan for editing.
+     */
     @FXML
     private void openEditPage() throws IOException {
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
@@ -76,8 +88,14 @@ public class LessonPlanController implements Initializable {
         }
     }
 
+    /**
+     * Deletes the selected Lesson Plan.
+     * Invoked when the "Delete" button is clicked.
+     *
+     * @throws IOException If an error occurs while deleting the Lesson Plan.
+     */
     @FXML
-    private void deletePlan() throws IOException  {
+    private void deletePlan() throws IOException {
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
             lessonPlanListView.getItems().remove(selectedLessonPlan);
@@ -89,8 +107,14 @@ public class LessonPlanController implements Initializable {
         }
     }
 
+    /**
+     * Duplicates the selected Lesson Plan.
+     * Invoked when the "Duplicate" button is clicked.
+     *
+     * @throws IOException If an error occurs while duplicating the Lesson Plan.
+     */
     @FXML
-    private void duplicatePlan() throws IOException  {
+    private void duplicatePlan() throws IOException {
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
             lessonPlanListView.getItems().add(selectedLessonPlan);
@@ -102,6 +126,12 @@ public class LessonPlanController implements Initializable {
         }
     }
 
+    /**
+     * Saves the current Lesson Plan.
+     * Invoked when the "Save" button is clicked.
+     *
+     * @param event The ActionEvent triggered by the button click.
+     */
     @FXML
     private void menuActionSave(ActionEvent event) {
         if (App.getCurrentOpenCourse() == null) {
@@ -111,6 +141,13 @@ public class LessonPlanController implements Initializable {
         }
     }
 
+
+    /**
+     * Saves the current Lesson Plan with a new file name or path.
+     * Invoked when the "Save As" button is clicked.
+     *
+     * @param event The ActionEvent triggered by the button click.
+     */
     @FXML
     private void menuActionSaveAs(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -122,6 +159,11 @@ public class LessonPlanController implements Initializable {
         saveCurrentMovieLogToFile(chosenFile);
     }
 
+    /**
+     * Saves the current Lesson Plan to the specified file.
+     *
+     * @param chosenFile The file where the Lesson Plan should be saved.
+     */
     private void saveCurrentMovieLogToFile(File chosenFile) {
         if (chosenFile != null) {
             try {
