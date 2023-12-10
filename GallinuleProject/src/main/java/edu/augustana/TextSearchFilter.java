@@ -78,7 +78,7 @@ public class TextSearchFilter implements CardFilter {
                 card.getCategory(),
                 card.getTitle(),
                 card.getPackFolder(),
-                card.getImg(),
+                card.getImage(),
                 card.getGender(),
                 card.getModelSex()
         );
