@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for displaying a single card's details.
+ * It allows users to mark the card as a favorite, print its details, and close the view.
+ */
 public class SingleCardView extends BorderPane implements Initializable {
     @FXML
     private ToggleButton favoriteBtn;
@@ -42,19 +46,26 @@ public class SingleCardView extends BorderPane implements Initializable {
     @FXML
     private VBox printVBox;
 
+    /**
+     * Constructs a SingleCardView with a null card.
+     */
     public SingleCardView() {
-        // Use the parameterized constructor with a null card initially
         this(null);
     }
 
+    /**
+     * Constructs a SingleCardView with the specified card.
+     *
+     * @param card The card to be displayed.
+     */
     public SingleCardView(Card card) {
         this.card = card;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SingleCardView.fxml"));
-        // Set the controller to this instance
+
         fxmlLoader.setController(this);
         try {
-            // Load the FXML content and initialize the UI components
+
             fxmlLoader.load();
         } catch (IOException exception) {
             throw new RuntimeException("Unable to load file", exception);
@@ -66,6 +77,11 @@ public class SingleCardView extends BorderPane implements Initializable {
     }
 
 
+    /**
+     * Sets the card to be displayed.
+     *
+     * @param card The card to be displayed.
+     */
     public void setCard(Card card){
         this.card = card;
     }
@@ -111,6 +127,11 @@ public class SingleCardView extends BorderPane implements Initializable {
     }
 
 
+    /**
+     * Gets the root BorderPane of the SingleCardView.
+     *
+     * @return The root BorderPane.
+     */
     public BorderPane getRootBorderPane() {
         return this;
     }

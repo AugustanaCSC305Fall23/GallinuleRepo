@@ -19,8 +19,11 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javafx.scene.text.Text;
 
+/**
+ * Controller class for the start screen of the application.
+ * Manages navigation between different screens using a side menu.
+ */
 public class StartController implements Initializable {
-
 
     @FXML
     private ImageView MenuButton;
@@ -55,14 +58,30 @@ public class StartController implements Initializable {
 
     private int x = 0;
 
-    public static LessonPlan getHoldUntilDiscardLessonPlan(){
+    /**
+     * Gets the clicked lesson plan from the search bar held until discard.
+     *
+     * @return The lesson plan held until discard.
+     */
+    public static LessonPlan getHoldUntilDiscardLessonPlan() {
         return holdUntilDiscardLessonPlan;
     }
 
-    public static void setHoldUntilDiscardLessonPlan(LessonPlan newLP){
+    /**
+     * Sets the lesson plan to be held until discard.
+     *
+     * @param newLP The new lesson plan to be held until discard.
+     */
+    public static void setHoldUntilDiscardLessonPlan(LessonPlan newLP) {
         holdUntilDiscardLessonPlan = newLP;
     }
 
+    /**
+     * Initializes the controller with the starting FXML page.
+     *
+     * @param url            The location used to resolve relative paths for the root object.
+     * @param resourceBundle The resources specific to this controller.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bp = borderPane;
@@ -139,20 +158,28 @@ public class StartController implements Initializable {
     }
 
     @FXML
-    private void switchAboutPage() throws IOException{
+    private void switchAboutPage() throws IOException {
         loadPage("AboutPage");
     }
 
     @FXML
-    private void switchToCoursePage() throws IOException{
+    private void switchToCoursePage() throws IOException {
         loadPage("CoursePage");
     }
+
+
+    /**
+     * Loads the specified FXML page into the BorderPane's center.
+     *
+     * @param page The name of the FXML page (without the .fxml extension) to load.
+     * @throws IOException If an error occurs while loading the FXML page.
+     */
     @FXML
     public void loadPage(String page) throws IOException {
 
-            FXMLLoader loader = new FXMLLoader(App.class.getResource(page + ".fxml"));
-            Parent root = loader.load();
-            bp.setCenter(root);
+        FXMLLoader loader = new FXMLLoader(App.class.getResource(page + ".fxml"));
+        Parent root = loader.load();
+        bp.setCenter(root);
 
     }
 

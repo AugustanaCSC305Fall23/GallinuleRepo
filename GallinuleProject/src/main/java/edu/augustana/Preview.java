@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -22,49 +23,65 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the "Preview" view, responsible for displaying a preview of lesson plans and their details.
+ */
 public class Preview implements Initializable {
     public Button backButton;
+
     @FXML
     private VBox motherVBox;
+
     private LessonPlan lessonPlan;
+
     @FXML
     private FlowPane flowPaneCards;
+
     @FXML
     private Label previewLabel1;
 
     @FXML
     private Label previewLabel2;
+
     @FXML
     private Button printButton;
 
-
     private List<VBox> printList = new ArrayList<>();
 
-
     private PrintGymFile printer = new PrintGymFile(); // Create an instance of the printing class
-
 
 
     public Preview(){
 
     }
+
+    /**
+     * Initializes the PreviewController with necessary data and actions.
+     *
+     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Fetch all cards and populate the preview
         HashMap<String, List<String>> finishedCards = CreatePlanController.getCurrentLessonPlan().getLessonMap();
-
         populatePreview(finishedCards);
-
         // Set up the print button action
         printButton.setOnAction(event -> printPlan());
 
     }
 
+
+    /**
+     * Populates the preview with information about each lesson plan.
+     *
+     * @param finishedCards A map containing finished lesson plans and their associated cards.
+     */
     public void populatePreview(HashMap<String, List<String>> finishedCards) {
         motherVBox.setAlignment(Pos.TOP_CENTER);
         List<VBox> populateList = new ArrayList<>();
         finishedCards.forEach((key, value) -> {
-            if(finishedCards.get(key).isEmpty()){
+            if (finishedCards.get(key).isEmpty()) {
                 return; //only creates pages for filled rows
             }
             //each page
@@ -116,10 +133,13 @@ public class Preview implements Initializable {
         motherVBox.getChildren().addAll(populateList);
     }
 
+    /**
+     * Prints the lesson plan.
+     */
     @FXML
     private void printPlan() {
         printList = new ArrayList<>();
-        for(Node page: motherVBox.getChildren()){
+        for (Node page : motherVBox.getChildren()) {
             if (page instanceof VBox) {
                 printList.add((VBox) page);
             }

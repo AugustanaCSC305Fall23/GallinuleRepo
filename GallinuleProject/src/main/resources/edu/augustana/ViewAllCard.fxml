@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -53,6 +54,7 @@
                         <ComboBox fx:id="modelFilterCB" layoutX="20.0" layoutY="180.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Model" style="-fx-background-color: transparent; -fx-border-radius: 10; -fx-border-color: ff0099;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
                         <ComboBox fx:id="genderFilterCB" layoutX="20.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Gender" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 10;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
                         <ComboBox fx:id="levelFilterCB" layoutX="20.0" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Select Level" style="-fx-background-color: trans; -fx-border-color: ff0099; -fx-border-radius: 10;" styleClass="genButton" stylesheets="@Style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                  <CheckBox fx:id="favcheckBox" layoutX="40.0" layoutY="227.0" mnemonicParsing="false" onAction="#showFavCards" text="Favorite" textFill="#ff0099" />
                     </children>
                 </AnchorPane>
             </children>

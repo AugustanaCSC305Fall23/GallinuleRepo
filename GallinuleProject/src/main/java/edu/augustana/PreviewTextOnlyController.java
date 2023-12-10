@@ -21,6 +21,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the "PreviewTextOnly" view, responsible for displaying a text-only preview of a lesson plan.
+ */
 public class PreviewTextOnlyController implements Initializable {
     public Button backButton;
     @FXML
@@ -61,13 +64,16 @@ public class PreviewTextOnlyController implements Initializable {
     @FXML
     private VBox motherVBox;
 
-    private List<VBox> printList = new ArrayList<>();
+    private final List<VBox> printList = new ArrayList<>();
 
+    private final PrintGymFile printer = new PrintGymFile(); // Create an instance of the printing class
 
-    private PrintGymFile printer = new PrintGymFile(); // Create an instance of the printing class
-
-
-
+    /**
+     * Initializes the ViewLessonPlanController with necessary data and actions.
+     *
+     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Fetch all cards and populate the preview
@@ -75,19 +81,23 @@ public class PreviewTextOnlyController implements Initializable {
         titleLabel.setText(CreatePlanController.getCurrentLessonPlan().getTitle());
 
         populatePreview(finishedCards);
-
         // Set up the print button action
         printButton.setOnAction(event -> printPlan());
 
     }
 
+    /**
+     * Populates the preview with finished cards.
+     *
+     * @param finishedCards A HashMap containing event names as keys and lists of card codes as values.
+     */
     public void populatePreview(HashMap<String, List<String>> finishedCards) {
         motherVBox.setAlignment(Pos.TOP_CENTER);
         List<VBox> populateList = new ArrayList<>();
         finishedCards.forEach((key, value) -> {
             VBox temp = new VBox();
             temp.setAlignment(Pos.TOP_CENTER);
-            Text tempText = new Text(key.substring(0, key.length()-1));
+            Text tempText = new Text(key.substring(0, key.length() - 1));
             tempText.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
             temp.getChildren().add(tempText);
             for (String code : value) {
