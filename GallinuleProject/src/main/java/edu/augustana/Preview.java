@@ -29,18 +29,24 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Preview implements Initializable {
     public Button backButton;
+
     @FXML
     private VBox motherVBox;
+
     private LessonPlan lessonPlan;
+
     @FXML
     private FlowPane flowPaneCards;
+
     @FXML
     private Label previewLabel1;
 
     @FXML
     private Label previewLabel2;
+
     @FXML
     private Button printButton;
+
     @FXML
     private Label eventLabel1;
 
@@ -58,38 +64,34 @@ public class Preview implements Initializable {
     @FXML
     private Label titleLabel3;
 
-
     private List<VBox> printList = new ArrayList<>();
 
-
     private PrintGymFile printer = new PrintGymFile(); // Create an instance of the printing class
-
-
 
     private final int cardsPerSection = 4;
 
     private LessonPlan currentLessonPlan;
 
-
-
-    public Preview(){
+    public Preview() {
 
     }
+
+    /**
+     * Initializes the PreviewController with necessary data and actions.
+     *
+     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Fetch all cards and populate the preview
         HashMap<String, List<String>> finishedCards = CreatePlanController.getCurrentLessonPlan().getLessonMap();
-
-//        previewLabel1.setText(
         populatePreview(finishedCards);
-
         // Set up the print button action
         printButton.setOnAction(event -> printPlan());
 
     }
 
-
- 
 
     /**
      * Populates the preview with information about each lesson plan.
@@ -100,7 +102,7 @@ public class Preview implements Initializable {
         motherVBox.setAlignment(Pos.TOP_CENTER);
         List<VBox> populateList = new ArrayList<>();
         finishedCards.forEach((key, value) -> {
-            if(finishedCards.get(key).isEmpty()){
+            if (finishedCards.get(key).isEmpty()) {
                 return; //only creates pages for filled rows
             }
             //each page
@@ -151,10 +153,13 @@ public class Preview implements Initializable {
         motherVBox.getChildren().addAll(populateList);
     }
 
+    /**
+     * Prints the lesson plan.
+     */
     @FXML
     private void printPlan() {
         printList = new ArrayList<>();
-        for(Node page: motherVBox.getChildren()){
+        for (Node page : motherVBox.getChildren()) {
             if (page instanceof VBox) {
                 printList.add((VBox) page);
             }
