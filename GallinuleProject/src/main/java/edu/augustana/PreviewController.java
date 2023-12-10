@@ -22,15 +22,13 @@ public class PreviewController implements Initializable {
 
     @FXML
     private VBox previewVBox;
-//    private LessonPlan currentLessonPlan;
-//
-//    public PreviewController(LessonPlan lessonPlan) {
-//        this.currentLessonPlan = lessonPlan;
-//    }
-//    public void setLessonPlan(LessonPlan lessonPlan) {
-//        this.currentLessonPlan = lessonPlan;
-//    }
 
+    /**
+     * Initializes the PreviewController with necessary data and actions.
+     *
+     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Fetch all cards and populate the preview
@@ -38,6 +36,11 @@ public class PreviewController implements Initializable {
         populatePreview(allCards);
     }
 
+    /**
+     * Populates the preview VBox with TitledPane elements, each representing a card with its details.
+     *
+     * @param allCards The list of all cards to be displayed in the preview.
+     */
     private void populatePreview(List<Card> allCards) {
         for (Card card : allCards) {
             TitledPane titledPane = new TitledPane();
@@ -75,9 +78,13 @@ public class PreviewController implements Initializable {
             previewVBox.getChildren().add(titledPane);
         }
     }
-
-
-    // Method to populate the second section with card images
+    
+    /**
+     * Populates the specified VBox with images of the card.
+     *
+     * @param imagesVBox The VBox to be populated with card images.
+     * @param card       The card for which images are to be displayed.
+     */
     private void populateCardImages(VBox imagesVBox, Card card) {
         double spacingBetweenCards = 10.0;
 
@@ -88,6 +95,12 @@ public class PreviewController implements Initializable {
         imagesVBox.getChildren().add(cardView);
     }
 
+    /**
+     * Populates the specified VBox with equipment details from the card.
+     *
+     * @param equipmentVBox The VBox to be populated with equipment details.
+     * @param card          The card for which equipment details are to be displayed.
+     */
     private void populateEquipmentList(VBox equipmentVBox, Card card) {
         // Customize this based on how you want to display the equipment list
         for (String equipment : card.getEquipments()) {
