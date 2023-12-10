@@ -56,7 +56,7 @@ public class FavoriteSet {
      *
      * @return The set of favorite card IDs.
      */
-    public Set<String> getFavoriteIDs(){
+    public Set<String> getFavoriteIDs() {
         return favoriteIDs;
     }
 
@@ -69,7 +69,7 @@ public class FavoriteSet {
     public static FavoriteSet loadFromFile() throws IOException {
         FileReader reader = new FileReader(new File(FAVORITES_FILENAME));
         Gson gson = new Gson();
-        return gson.fromJson(reader,FavoriteSet.class);
+        return gson.fromJson(reader, FavoriteSet.class);
     }
 
     /**

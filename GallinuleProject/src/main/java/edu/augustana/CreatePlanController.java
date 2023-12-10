@@ -366,17 +366,6 @@ public class CreatePlanController implements Initializable {
     }
 
 
-
-//    public List<ComboBox<String>> getEventCombos(){
-//        return comboBoxList;
-//    }
-
-
-    //FXML code
-
-
-
-
     public void saveCurrentPlanToFile(ActionEvent actionEvent) throws IOException {
 
         String newTitle = currentLessonPlan.getTitle();
