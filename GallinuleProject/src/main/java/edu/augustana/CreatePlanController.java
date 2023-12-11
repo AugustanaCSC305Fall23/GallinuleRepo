@@ -130,23 +130,25 @@ public class CreatePlanController implements Initializable {
         allCards = CardDatabase.getAllCards();
         textSearchFilter = new TextSearchFilter(allCards, "");
         currentLessonPlan = new LessonPlan();
+        editingLessonPlan = LessonPlanController.getSelectedLessonPlanTransfer();
+        System.out.println(LessonPlanController.getSelectedLessonPlanTransfer() + " - New Check");
         populateListView(allCards);
         motherVBox.setAlignment(Pos.TOP_LEFT);
         System.out.println(editingLessonPlan + "- CreatePlanController");
         if(editingLessonPlan != null){
             System.out.println("EDITING - CreatePlanController");
-            System.out.println(editingLessonPlan.getSavedCards());
             HashMap<String, List<String>> lessonMap = editingLessonPlan.getLessonMap();
             System.out.println(lessonMap);
             lessonMap.forEach((key, code) -> {
 
-                createEditingBox(lessonMap, key, editingLessonPlan);
+                createEditingBox(lessonMap, key);
 
             });
 
         } else {
             createEventBox();
         }
+        populateFilterBox();
 
         Tooltip tooltip = new Tooltip("This the Create Plan Page." + "\n" + "Double click on " + "'Untitled' Title bar to change the Title. " + "\n" + "Click on the cards you want in your plan and the cards stock you want to place it in" + "\n");
         helpBtn.setTooltip(tooltip);
@@ -182,7 +184,7 @@ public class CreatePlanController implements Initializable {
         });
 
     }
-    private void createEditingBox(Map<String, List<String>> map, String key, LessonPlan editingLessonPlan){
+    private void createEditingBox(Map<String, List<String>> map, String key){
         VBox tempVBox = new VBox();
         System.out.println("got into the function");
         tempVBox.setAlignment(Pos.BOTTOM_LEFT);
@@ -283,6 +285,8 @@ public class CreatePlanController implements Initializable {
     }
 
     private void populateEventRowsEditing(TilePane pane, ComboBox<String> eventCombo, List<String> loadedCards){
+        Button removeButton = new Button("remove");
+        removeButton.getStyleClass().add("eventRow");
         for (int i = 0; i < 8; i++) {
             VBox removeHolder = new VBox();
             removeHolder.setAlignment(Pos.TOP_CENTER);
@@ -290,13 +294,14 @@ public class CreatePlanController implements Initializable {
             cardHolder.setPrefHeight(100);
             cardHolder.setPrefWidth(80);
             cardHolder.getStyleClass().add("eventRow");
-            if(!(i + 1 < loadedCards.size())){
-                cardHolder.setText(loadedCards.get(i));
-            }
+
+
             removeHolder.getChildren().add(cardHolder);
-
-            cardHolderListener(cardHolder, eventCombo, removeHolder);
-
+            if(loadedCards.size() > i){
+                cardHolder.setText(loadedCards.get(i));
+                cardHolder.setDisable(true);
+            }
+            cardHolderListener(cardHolder, eventCombo, removeHolder, editingLessonPlan);
             pane.getChildren().add(removeHolder);
 
         }
@@ -312,7 +317,7 @@ public class CreatePlanController implements Initializable {
             cardHolder.getStyleClass().add("eventRow");
             removeHolder.getChildren().add(cardHolder);
 
-            cardHolderListener(cardHolder, eventCombo, removeHolder);
+            cardHolderListener(cardHolder, eventCombo, removeHolder, currentLessonPlan);
 
             pane.getChildren().add(removeHolder);
 
@@ -320,8 +325,7 @@ public class CreatePlanController implements Initializable {
     }
 
 
-    private void cardHolderListener(Label cardHolder, ComboBox<String> eventBox, VBox removeHolder) {
-
+    private void cardHolderListener(Label cardHolder, ComboBox<String> eventBox, VBox removeHolder, LessonPlan currentLessonPlan) {
         cardHolder.setOnMouseClicked(event -> {
             Label selectedLabel = searchCardList.getSelectionModel().getSelectedItem();
             if (selectedLabel != null) {
@@ -342,14 +346,14 @@ public class CreatePlanController implements Initializable {
             cardHolder.setWrapText(true);
             cardHolder.setTooltip(img);
             img.setGraphic(searchCardList.getSelectionModel().getSelectedItem().getTooltip().getGraphic());
-            if(!(cardHolder.getText().equals("+"))){
-                cardHolder.setDisable(true);
-            }
             double sceneX = cardHolder.getLayoutX();
             double sceneY = cardHolder.getLayoutY();
 
+
+
             Button removeButton = new Button("remove");
             removeButton.getStyleClass().add("eventRow");
+            cardHolder.setDisable(true);
             removeHolder.getChildren().add(removeButton);
             removeButton.setOnMouseClicked(event2 -> {
                 cardHolder.setDisable(false);
@@ -491,6 +495,10 @@ public class CreatePlanController implements Initializable {
             // If the checkbox is not selected, show all cards
             populateListView(allCards);
         }
+    }
+
+    public static void setCurrentLessonPlan(LessonPlan editingLessonPlan){
+        currentLessonPlan = editingLessonPlan;
     }
 
 }

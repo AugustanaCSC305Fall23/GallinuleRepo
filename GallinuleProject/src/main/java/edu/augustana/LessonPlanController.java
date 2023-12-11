@@ -25,6 +25,9 @@ public class LessonPlanController implements Initializable {
     private ListView<LessonPlan> lessonPlanListView;
 
     @FXML
+    private static LessonPlan selectedLessonPlanTransfer;
+
+    @FXML
     private Button loadButton;
 
     @FXML
@@ -61,7 +64,7 @@ public class LessonPlanController implements Initializable {
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
 
-            CreatePlanController.currentLessonPlan = selectedLessonPlan;
+            CreatePlanController.setCurrentLessonPlan(selectedLessonPlan);
 
             CreatePlanController controller = new CreatePlanController();
             controller.loadPlanPreview();
@@ -80,12 +83,24 @@ public class LessonPlanController implements Initializable {
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
             System.out.println(selectedLessonPlan.getSavedCards());
+            selectedLessonPlanTransfer = selectedLessonPlan;
+            System.out.println(selectedLessonPlan);
+            System.out.println(selectedLessonPlanTransfer);
             StartController.switchCreatePlan(selectedLessonPlan);
 
         } else {
             new Alert(Alert.AlertType.WARNING, "Please select a plan to edit first!").show();
         }
     }
+
+    public static void setSelectedLessonPlanTransfer(LessonPlan selectedLessonPlan) {
+        selectedLessonPlanTransfer = selectedLessonPlan;
+    }
+    public static LessonPlan getSelectedLessonPlanTransfer(){
+        return selectedLessonPlanTransfer;
+    }
+
+
 
     /**
      * Deletes the selected Lesson Plan.
