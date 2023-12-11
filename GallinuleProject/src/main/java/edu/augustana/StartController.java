@@ -138,9 +138,9 @@ public class StartController implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(StartController.class.getResource("CreatePlan.fxml"));
             Parent root = fxmlLoader.load();
-            CreatePlanController controller = fxmlLoader.getController();
+            CreatePlanController controller = new CreatePlanController();
             System.out.println(enteredLessonPlan + " - StartController");
-            controller.setEditingPlan(enteredLessonPlan);
+//            CreatePlanController.setCurrentLessonPlan(enteredLessonPlan);
             bp.setCenter(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -150,6 +150,12 @@ public class StartController implements Initializable {
     @FXML
     public void switchCreatePlan() throws IOException {
         switchCreatePlan(new LessonPlan());
+    }
+
+    @FXML
+    public void switchCreatePlanStartController() throws IOException {
+        LessonPlanController.setSelectedLessonPlanTransfer(null);
+        loadPage("CreatePlan");
     }
 
     @FXML
