@@ -37,7 +37,7 @@
       <ListView fx:id="lessonPlanListView" prefHeight="542.0" prefWidth="1065.0" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" onDragDetected="#menuActionSave" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="loadButton" mnemonicParsing="false" onAction="#openLessonPlan" text="Load Plan">
                <HBox.margin>
