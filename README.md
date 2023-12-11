@@ -8,7 +8,7 @@
 -   [Known Issues](#known-issues)
 -   [Link To Our Final Presentation](#link-to-presentation)
 
-# Overview {#overview}
+# Overview 
 
 Welcome to the Gymnastic Lesson Planner App -- your go-to solution for streamlined lesson planning in the world of gymnastics. Developed using Java and JavaFX, this application leverages the power of SceneBuilder to provide a user-friendly interface for gymnastics coaches, instructors, and enthusiasts. The incorporation of CSS ensures a visually appealing and customizable experience. With Git handling version control, our app is a reliable and efficient tool to simplify the development, organization, and visualization of gymnastic lesson plans.
 
