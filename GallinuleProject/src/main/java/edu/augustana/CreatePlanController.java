@@ -8,8 +8,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -70,16 +68,16 @@ public class CreatePlanController implements Initializable {
     @FXML
     void switchToPreview() throws IOException {
 
-
+        
         setTextOnly();
         currentLessonPlan.renameLesson(titleBar.getText());
 
         // Add the current lesson plan to the list
         LessonPlan.getAllLessonPlans().add(currentLessonPlan);
         if (currentLessonPlan.getTextOnly()) {
-            App.setRoot("PreviewTextOnly");
+            loadTxtPlanPreview();
         } else {
-            App.setRoot("Preview");
+            loadImgPlanPreview();
         }
 
 
@@ -92,11 +90,15 @@ public class CreatePlanController implements Initializable {
     }
 
     @FXML
-    void loadPlanPreview() throws IOException {
+    void loadImgPlanPreview() throws IOException {
         App.setRoot("Preview");
     }
     //filter objects
 
+    @FXML
+    void loadTxtPlanPreview() throws IOException {
+        App.setRoot("PreviewTextOnly");
+    }
     private final CheckBox favoriteCheckBox = new CheckBox();
     private final ComboBox<String> genderFilter = new ComboBox<String>();
     private final ComboBox<String> eventFilter = new ComboBox<String>();

@@ -3,10 +3,7 @@ package edu.augustana;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
@@ -14,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -54,12 +52,12 @@ public class LessonPlanController implements Initializable {
 
     /**
      * Opens the selected Lesson Plan for preview.
-     * Invoked when the "Open" button is clicked.
+     * Invoked when the "Load Image Outline" button is clicked.
      *
      * @throws IOException If an error occurs while opening the Lesson Plan.
      */
     @FXML
-    private void openLessonPlan() throws IOException {
+    private void loadImageOutline() throws IOException {
 
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
@@ -67,7 +65,31 @@ public class LessonPlanController implements Initializable {
             CreatePlanController.setCurrentLessonPlan(selectedLessonPlan);
 
             CreatePlanController controller = new CreatePlanController();
-            controller.loadPlanPreview();
+            controller.loadImgPlanPreview();
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Please select a plan to load first!").show();
+        }
+
+    }
+
+    /**
+     * Opens the selected Lesson Plan for Text-only preview.
+     * Invoked when the "Load Text Outline" button is clicked.
+     *
+     * @throws IOException If an error occurs while opening the Lesson Plan.
+     */
+    @FXML
+    private void loadTextOutline() throws IOException {
+
+        LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
+        if (selectedLessonPlan != null) {
+
+            CreatePlanController.setCurrentLessonPlan(selectedLessonPlan);
+
+            CreatePlanController controller = new CreatePlanController();
+            controller.loadTxtPlanPreview();
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Please select a plan to load first!").show();
         }
 
     }
@@ -112,14 +134,24 @@ public class LessonPlanController implements Initializable {
     private void deletePlan() throws IOException {
         LessonPlan selectedLessonPlan = lessonPlanListView.getSelectionModel().getSelectedItem();
         if (selectedLessonPlan != null) {
-            lessonPlanListView.getItems().remove(selectedLessonPlan);
-            App.getCurrentOpenCourse().removePlan(selectedLessonPlan);
-            App.saveCourseToFile(App.getCurrentOpenCourseFile(), App.getCurrentOpenCourse().getLessons());
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this plan?!");
+            confirmationAlert.setHeaderText(null);
+            confirmationAlert.setTitle("Confirmation");
 
+            confirmationAlert.getButtonTypes().setAll(ButtonType.CANCEL, ButtonType.YES);
+
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.YES) {
+                lessonPlanListView.getItems().remove(selectedLessonPlan);
+                App.getCurrentOpenCourse().removePlan(selectedLessonPlan);
+                App.saveCourseToFile(App.getCurrentOpenCourseFile(), App.getCurrentOpenCourse().getLessons());
+            }
         } else {
             new Alert(Alert.AlertType.WARNING, "Please select a plan to delete first!").show();
         }
     }
+
 
     /**
      * Duplicates the selected Lesson Plan.
